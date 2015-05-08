@@ -1,0 +1,21 @@
+{
+  "name": "hoodMap",
+  "version": "0.0.1",
+  "authors": [
+    "phonofidelic <chris_clemons85@hotmail.com>"
+  ],
+  "description": "Neiberhood map project for Udacity",
+  "main": "[img, js, css, js/lib]",
+  "license": "GNU",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4"
+  }
+}
