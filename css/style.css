@@ -1,0 +1,13 @@
+* {
+	/*border: solid red 1px;*/
+}
+
+/* specs for google maps */
+html,
+body,
+#map-canvas {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-height: 500px;
+}
