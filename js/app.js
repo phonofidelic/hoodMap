@@ -13,38 +13,49 @@ var DataModel = [
 var ViewModel = function() {
 	var self = this;
 
-	this.srcSubmit = function() {
+	// Return google street view images based on search input
+	self.srcSubmit = function() {
 		// get input from search form
-		this.srcInput = $('#loc-src-input').val(),
+		this.srcInput = $('#src-form').value;
+    console.log(this.srcInput);
 
 		//get src string from DataModel
 		this.mapURL = DataModel[0].url + this.srcInput;
-
-
-
-		// $('#map-canvas').append('<iframe frameborder="0" style="border:0" src="' + this.mapURL + '"></iframe>');
-
-		console.log('test');
+    console.log('test');
 	};
 
+  // Scroll down to map on click
+  this.scrollDown = function() {
+        // Scroll-down animation
+    $(document).ready(function (){
+        $("#search").click(function (){
+            //$(this).animate(function(){
+                $('html, body').animate({
+                    scrollTop: $("#page-main").offset().top
+                }, 800);
+            //});
+        });
+    });
+  };
 
 };
+
 
 // Scetch - initialize map and slides TODO: remove!!!!!!!!!!!!!!!!!
 
 //Google Maps API
-var geocoder;
+var geocoder = {};
 var map;
 function initialize() {
   geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(0,0);
   var mapOptions = {
-    zoom: 8,
+    zoom: 12,
     center: latlng,
     scrollwheel: false
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
+};
 
 function codeAddress() {
   var address = document.getElementById('loc-src-input').value;
@@ -59,14 +70,13 @@ function codeAddress() {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
-}
+};
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(document.getElementById('search'), 'click', initialize);
 
 
 // Superslides API
 $('#slides').superslides();
-
 
 
 // Initiate Knockout bindings
