@@ -2,25 +2,31 @@
 // GET requests responses are stored in variables here
 var DataModel = [
 	// Google Map
-	{
-		map: new mapTools({
-      id: 'mymap',
-      lat: 0.00001,
-      lng: 0.00001,
-      zoom: 2,
-      scrollwheel: false,
-    }, function (err, map) {
-      if (!err) {
-        console.log('Map Loaded!', map.instance);
-      }
-    })
-	},
+  {
+    geocoder: {},
+    map: null
+  }
+
 
 
 	// wiki-data
 ];
 
 // Controller
+var GoogleMap = function() {
+
+  this.initialize = function() {
+    DataModel.geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(0,0);
+    var mapOptions = {
+      zoom: 12,
+      center: latlng,
+      scrollwheel: false
+    }
+    DataModel.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  };
+}
+
 var ViewModel = function() {
 	var self = this;
 
@@ -49,6 +55,21 @@ var ViewModel = function() {
     // });
     console.log('scrollDown')
   };
+
+  this.codeAddress = function() {
+    var address = document.getElementById('src-input').value;
+    DataModel.geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  };
 };
 
 
@@ -68,22 +89,22 @@ var ViewModel = function() {
 //   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 // };
 
-// function codeAddress() {
-//   var address = document.getElementById('loc-src-input').value;
-//   geocoder.geocode( { 'address': address}, function(results, status) {
-//     if (status == google.maps.GeocoderStatus.OK) {
-//       map.setCenter(results[0].geometry.location);
-//       var marker = new google.maps.Marker({
-//           map: map,
-//           position: results[0].geometry.location
-//       });
-//     } else {
-//       alert('Geocode was not successful for the following reason: ' + status);
-//     }
-//   });
-// };
+function codeAddress() {
+  var address = document.getElementById('loc-src-input').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+};
 
-// google.maps.event.addDomListener(document.getElementById('search'), 'click', initialize);
+google.maps.event.addDomListener(document.getElementById('search'), 'click', GoogleMap.initialize);
 
 //!!!!!!!!! add onclick="codeAddress()" to search button in index.html!!!!!!!!!!!
 
