@@ -5,20 +5,17 @@ var DataModel = [
 	{
 		map: new mapTools({
       id: 'mymap',
-      lat: 41.3833,
-      lng: 2.1833,
-      on: {
-        tilesloaded: function() {
-          console.log('tiles loaded')
-        }
-      },
+      lat: 0.00001,
+      lng: 0.00001,
+      zoom: 2,
       scrollwheel: false,
     }, function (err, map) {
       if (!err) {
         console.log('Map Loaded!', map.instance);
       }
     })
-	}
+	},
+
 
 	// wiki-data
 ];
@@ -27,45 +24,32 @@ var DataModel = [
 var ViewModel = function() {
 	var self = this;
 
+  this.srcInput = ko.observable("");
+
 	// Return google street view images based on search input
 	this.srcSubmit = function() {
 		// get input from search form
-		this.srcInput = $('#src-form').val;
-    console.log(this.srcInput);
+		// this.srcInput = ko.observable("srcLocation");
+    // self.srcInput = $('#src-input').val();
+    // return self.srcInput;
+    console.log(self.srcInput());
 	};
 
   // Scroll down to map on click
   this.scrollDown = function() {
         // Scroll-down animation
-    $(document).ready(function (){
+    // $(document).ready(function (){
         $("#search").click(function (){
-            //$(this).animate(function(){
-                $('html, body').animate({
+            // $(this).animate(function(){
+                $('body').animate({
                     scrollTop: $("#page-main").offset().top
                 }, 800);
-            //});
+            // });
         });
-    });
+    // });
+    console.log('scrollDown')
   };
-
-  this.mapInit = function() {
-    map.instance;
-  };
-
-
 };
-
-// var googleMap = function() {
-//   var map = new mapTools({
-//     id: 'mymap',
-//     lat: 41.3833,
-//     lng: 2.1833
-//   }, function (err, map) {
-//     if (!err) {
-//       console.log('Map Loaded!', map.instance);
-//     }
-//   });
-// }
 
 
 // Scetch - initialize map and slides TODO: remove!!!!!!!!!!!!!!!!!

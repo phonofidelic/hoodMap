@@ -1,5 +1,5 @@
 * {
-	border: solid red 1px;
+	/*border: solid red 1px;*/
 }
 
 .container {
@@ -41,6 +41,10 @@ body,
 #src-div {
 	height: 100%;
 	text-align: center;
+}
+
+#src-input {
+	width: 200px;
 }
 
 #nav {

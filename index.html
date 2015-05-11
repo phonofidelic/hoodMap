@@ -15,10 +15,12 @@
 			<div class="col-xs-4 md-col4" style="height: 100%">
 			</div>
 			<div class="col-xs-4 md-col4" id="src-div">
-				<form data-bind="submit: srcSubmit" id="src-form">
-					<input type="text" id="loc-src-input" value="">
-					<button id="search" data-bind="click: scrollDown, googleMap">Go!</button>
+				<form id="src-form">
+					<input id="src-input" data-bind="value: srcInput">
+					<button id="search" type="submit" data-bind="click: scrollDown">Go!</button>
+					<pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
 				</form>
+
 			</div>
 			<div class="col-xs-4 md-col4" id="logo"><h1>hoodMap</h1></div>
 		</div>
