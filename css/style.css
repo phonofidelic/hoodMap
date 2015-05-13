@@ -10,8 +10,8 @@
 /* specs for google maps */
 html,
 body,
-#mymap {
-	height: 100%;
+#map-canvas {
+	height: 100vh;
 	width: 100%
 	margin: 0;
 	padding: 0;
@@ -21,7 +21,8 @@ body,
 #page-start {
 	height: 100vh;
 	width: 100%;
-	background: silver;
+	background: url("../img/900.jpg") no-repeat;
+	text-align: right;
 }
 
 #page-main {
@@ -30,13 +31,14 @@ body,
 
 #logo {
 	text-align: right;
-	padding-top: 70%;
+	padding-top: 80vh;
 	color: #fff;
 }
 
 #src-form {
-	margin-top: 100%;
-	margin-bottom: 100%;
+/*	margin-top: 100%;
+	margin-bottom: 100%;*/
+	padding-top:45vh;
 }
 #src-div {
 	height: 100%;

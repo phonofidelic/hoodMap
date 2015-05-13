@@ -11,49 +11,6 @@ var DataModel = [
 
 // Controller
 
-//setup Google map object
-var GoogleMap = function() {
-
-    // var geocoder;
-    // var map;
-    // this.initialize = function() {
-    //     geocoder = new google.maps.Geocoder();
-    //     var mapOptions = {
-    //         center: new google.maps.LatLng(10, 10),
-    //         zoom: 2,
-    //         scrollwheel: false
-    //     };
-    // var map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
-    // };
-
-    // this.loadScript = function() {
-    //     var script = document.createElement('script');
-    //     script.type = 'text/javascript';
-    //     script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-    //     '&signed_in=false&callback=initialize'; //------------------------ set signed_in state to true or false
-    //     document.body.appendChild(script);
-    // }
-
-
-    // this.codeAddress = function() {
-    //     this.address = document.getElementById('src-input').value;
-    //     this.geocoder.geocode( { 'address': address}, function(results, status) {
-    //         if (status == google.maps.GeocoderStatus.OK) {
-    //             map.setCenter(results[0].geometry.location);
-    //             var marker= new google.maps.Marker({
-    //                 map: map,
-    //                 position: results[0].geometry.location
-    //             });
-    //         } else {
-    //             alert('Geocode was not successful for the following reason:' + status);
-    //         }
-    //     });
-    // };
-
-    window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
-    window.onload = this.initialize;
-}
-
 var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
@@ -62,10 +19,11 @@ var ViewModel = function() {
     this.scrollDown = function (){
         $('body').animate({
         scrollTop: $("#page-main").offset().top
-        }, 800);
+        }, 800); //-------------------------------- set scrool speed
 
     console.log('scrollDown');
     };
+    $('#src-form').submit(this.scrollDown);
 
     // Google Maps API ###################################
     this.geocoder;
@@ -74,10 +32,10 @@ var ViewModel = function() {
         self.geocoder = new google.maps.Geocoder();
         self.mapOptions = {
             center: new google.maps.LatLng(10, 10),
-            zoom: 2,
+            zoom: 12,
             scrollwheel: false
         };
-    this.map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
+    this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     };
 
     this.loadScript = function() {
@@ -106,9 +64,9 @@ var ViewModel = function() {
     };
     window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
     window.onload = this.initialize;
+
 };
 
-google.maps.event.addDomListener(window, 'load', this.initialize);
 
 // Superslides API
 $('#slides').superslides();
