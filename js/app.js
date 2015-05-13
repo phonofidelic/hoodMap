@@ -14,76 +14,105 @@ var DataModel = [
 //setup Google map object
 var GoogleMap = function() {
 
-  this.initialize = function() {
-    var mapOptions = {
-      center: new google.maps.LatLng(10, 10),
-      zoom: 2,
-      scrollwheel: false
-    };
+    // var geocoder;
+    // var map;
+    // this.initialize = function() {
+    //     geocoder = new google.maps.Geocoder();
+    //     var mapOptions = {
+    //         center: new google.maps.LatLng(10, 10),
+    //         zoom: 2,
+    //         scrollwheel: false
+    //     };
+    // var map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
+    // };
 
-    var map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
-  };
+    // this.loadScript = function() {
+    //     var script = document.createElement('script');
+    //     script.type = 'text/javascript';
+    //     script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+    //     '&signed_in=false&callback=initialize'; //------------------------ set signed_in state to true or false
+    //     document.body.appendChild(script);
+    // }
 
-  this.loadScript = function() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-      '&signed_in=false&callback=initialize'; //------------------------ set signed_in state to true or false
-    document.body.appendChild(script);
-  }
 
-  window.onload = this.loadScript;
+    // this.codeAddress = function() {
+    //     this.address = document.getElementById('src-input').value;
+    //     this.geocoder.geocode( { 'address': address}, function(results, status) {
+    //         if (status == google.maps.GeocoderStatus.OK) {
+    //             map.setCenter(results[0].geometry.location);
+    //             var marker= new google.maps.Marker({
+    //                 map: map,
+    //                 position: results[0].geometry.location
+    //             });
+    //         } else {
+    //             alert('Geocode was not successful for the following reason:' + status);
+    //         }
+    //     });
+    // };
+
+    window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
+    window.onload = this.initialize;
 }
 
 var ViewModel = function() {
 	var self = this;
+    this.srcInput = ko.observable("");
 
-  this.srcInput = ko.observable("");
+    // Scroll down to map on click (or enter)
+    this.scrollDown = function (){
+        $('body').animate({
+        scrollTop: $("#page-main").offset().top
+        }, 800);
 
-	// Return google street view images based on search input
-	this.srcSubmit = function() {
-		// get input from search form
-		// this.srcInput = ko.observable("srcLocation");
-    // self.srcInput = $('#src-input').val();
-    // return self.srcInput;
-    console.log(self.srcInput());
-	};
+    console.log('scrollDown');
+    };
 
-  // Scroll down to map on click
-  this.scrollDown = function() {
-        // Scroll-down animation
-    // $(document).ready(function (){
-        $("#search").click(function (){
-            // $(this).animate(function(){
-                $('body').animate({
-                    scrollTop: $("#page-main").offset().top
-                }, 800);
-            // });
+    // Google Maps API ###################################
+    this.geocoder;
+    this.map;
+    this.initialize = function() {
+        self.geocoder = new google.maps.Geocoder();
+        self.mapOptions = {
+            center: new google.maps.LatLng(10, 10),
+            zoom: 2,
+            scrollwheel: false
+        };
+    this.map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
+    };
+
+    this.loadScript = function() {
+        self.script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+        '&signed_in=false&callback=initialize'; //------------------------ set signed_in state to true or false
+        document.body.appendChild(script);
+    }
+
+
+    this.codeAddress = function() {
+        self.address = document.getElementById('src-input').value;
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
         });
-    // });
-    console.log('scrollDown')
-  };
-
-  // this.codeAddress = function() {
-  //   var address = document.getElementById('src-input').value;
-  //   DataModel.geocoder.geocode( { 'address': address}, function(results, status) {
-  //     if (status == google.maps.GeocoderStatus.OK) {
-  //       map.setCenter(results[0].geometry.location);
-  //       var marker = new google.maps.Marker({
-  //           map: map,
-  //           position: results[0].geometry.location
-  //       });
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  // };
+    console.log('codeAddress');
+    };
+    window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
+    window.onload = this.initialize;
 };
 
+google.maps.event.addDomListener(window, 'load', this.initialize);
 
 // Superslides API
 $('#slides').superslides();
 
 
 // Initiate Knockout bindings
-ko.applyBindings(new ViewModel(), GoogleMap());
+ko.applyBindings(ViewModel);
