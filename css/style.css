@@ -3,17 +3,27 @@
 }
 
 button {
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 1);
 	border: none;
 }
 
 ul{
-	background-color: hsla(50, 33%, 25%, 0.25);
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+li {
+	margin: 5px;
 }
 
 .container {
 	margin: 0;
 	width: 100%;
+}
+
+.dropdown-menu {
+	border-radius: 0px;
+	margin: 5px;
+	background-color: rgba(255, 255, 255, 0.75);
 }
 
 /* specs for google maps */
@@ -31,6 +41,7 @@ body,
 	height: 100vh;
 	width: 100%;
 	background: url("../img/900.jpg") no-repeat;
+	background-position: center;
 	text-align: right;
 }
 

@@ -17,7 +17,7 @@ var ViewModel = function() {
 
     // Nav bar
     this.navBar = function() {
-        $('.dropdown-toggle').dropdown();
+
     }
 
     // Scroll down to map on click (or enter)
@@ -29,6 +29,16 @@ var ViewModel = function() {
     console.log('scrollDown');
     };
     $('#src-form').submit(this.scrollDown);
+
+    // Superslides
+    this.superSlides = function() {
+        $('#slides').superslides({
+            hashchange: false,
+            pagination:true,
+            play: 5000
+        });
+        $('#slides').superslides('start');
+    }
 
     // Google Maps API ###################################
     this.geocoder;
@@ -127,7 +137,7 @@ var ViewModel = function() {
 
 
 // Superslides API
-$('#slides').superslides();
+$('#slides').superslides('start');
 
 
 // Initiate Knockout bindings
