@@ -15,6 +15,11 @@ var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
 
+    // Nav bar
+    this.navBar = function() {
+        $('.dropdown-toggle').dropdown();
+    }
+
     // Scroll down to map on click (or enter)
     this.scrollDown = function (){
         $('body').animate({

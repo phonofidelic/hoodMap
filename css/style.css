@@ -2,6 +2,15 @@
 	/*border: solid red 1px;*/
 }
 
+button {
+	background-color: #fff;
+	border: none;
+}
+
+ul{
+	background-color: hsla(50, 33%, 25%, 0.25);
+}
+
 .container {
 	margin: 0;
 	width: 100%;
