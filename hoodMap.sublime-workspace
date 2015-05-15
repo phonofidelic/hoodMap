@@ -1,0 +1,1202 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cons",
+				"consumerSecret"
+			],
+			[
+				"js",
+				"js"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"scro",
+				"scrollDown"
+			],
+			[
+				"load",
+				"loadScript"
+			],
+			[
+				"sr",
+				"srcInput"
+			],
+			[
+				"pri",
+				"prioritized"
+			],
+			[
+				"pr",
+				"priority"
+			],
+			[
+				"toggle",
+				"togglePriority"
+			],
+			[
+				"ob",
+				"observableArray"
+			],
+			[
+				"change-ca",
+				"change-cat-name"
+			],
+			[
+				"adm",
+				"adminView"
+			],
+			[
+				"admin-",
+				"admin-button"
+			],
+			[
+				"click",
+				"clickInput"
+			],
+			[
+				"name",
+				"nameInput"
+			],
+			[
+				"ad",
+				"adminView"
+			],
+			[
+				"admin",
+				"admin-area"
+			],
+			[
+				"select",
+				"selectCatDiv"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"append",
+				"appendChild"
+			],
+			[
+				"listi",
+				"listItem"
+			],
+			[
+				"sele",
+				"selectedCat"
+			],
+			[
+				"getCa",
+				"getCatImgElem"
+			],
+			[
+				"sel",
+				"selectCatDiv"
+			],
+			[
+				"ge",
+				"getSelectedCat"
+			],
+			[
+				"re",
+				"render"
+			],
+			[
+				"se",
+				"selectedCat"
+			],
+			[
+				"list",
+				"listImg"
+			],
+			[
+				"lis",
+				"listImg"
+			],
+			[
+				"s",
+				"selectedCat"
+			],
+			[
+				"cat",
+				"cat"
+			],
+			[
+				"menu-",
+				"menu-item"
+			],
+			[
+				"vie",
+				"viewMain"
+			],
+			[
+				"sl",
+				"slctCatImg"
+			],
+			[
+				"replace",
+				"replaceWith"
+			],
+			[
+				"create",
+				"createElement"
+			],
+			[
+				"menu",
+				"menu-item"
+			],
+			[
+				"img",
+				"img-div"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"newN",
+				"newNoteDate"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"im",
+				"imgElemMaker"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cr",
+				"createElement"
+			],
+			[
+				"set",
+				"setAttribute"
+			],
+			[
+				"proj",
+				"projectMaker"
+			],
+			[
+				"pro",
+				"projectMaker"
+			],
+			[
+				"projects",
+				"projectsRow"
+			],
+			[
+				"proje",
+				"projects"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"men",
+				"menu-item"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"catDi",
+				"catDivMaker"
+			],
+			[
+				"cats",
+				"catsArray"
+			],
+			[
+				"selected",
+				"selected-cat"
+			],
+			[
+				"catD",
+				"catDivMaker"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"to",
+				"total_products"
+			],
+			[
+				"tot",
+				"total_pages"
+			],
+			[
+				"tota",
+				"total_pages"
+			],
+			[
+				"prod",
+				"products_count"
+			],
+			[
+				"search",
+				"search_term"
+			],
+			[
+				"get_pr",
+				"get_products_all"
+			],
+			[
+				"produ",
+				"product_id"
+			],
+			[
+				"html",
+				"htmlspecialchars"
+			],
+			[
+				"error",
+				"error_message"
+			],
+			[
+				"erro",
+				"error_message"
+			],
+			[
+				"A",
+				"addAddress"
+			],
+			[
+				"m",
+				"mail"
+			],
+			[
+				"Msg",
+				"msgHTML"
+			],
+			[
+				"php",
+				"php"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"l",
+				"list_view_html"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"ID",
+				"ID"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"shirt",
+				"shirt-101"
+			],
+			[
+				"li",
+				"li	Tag"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"n",
+				"ncurses_addstr"
+			],
+			[
+				"backgrun",
+				"background-position"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
+				"selec",
+				"selected-cat"
+			],
+			[
+				"sco",
+				"scoreDiv"
+			],
+			[
+				"borderc",
+				"border-color"
+			],
+			[
+				"dir",
+				"directionIsRight"
+			],
+			[
+				"score",
+				"scoreCount"
+			],
+			[
+				"fo",
+				"font-family"
+			],
+			[
+				"x",
+				"initXpos"
+			],
+			[
+				"ch",
+				"char-horn-girl"
+			],
+			[
+				"all",
+				"allEnemies"
+			],
+			[
+				"susp",
+				"suspGame"
+			],
+			[
+				"a",
+				"append"
+			],
+			[
+				"su",
+				"suspGame"
+			],
+			[
+				"ini",
+				"init"
+			],
+			[
+				"delay",
+				"delayReset"
+			],
+			[
+				"getE",
+				"getElementById"
+			],
+			[
+				"chan",
+				"changePizzaSizes"
+			],
+			[
+				"new",
+				"newwidth"
+			],
+			[
+				"HTMLco",
+				"HTMLcontact"
+			],
+			[
+				"cont",
+				"contactList"
+			],
+			[
+				"form",
+				"formattedContact"
+			],
+			[
+				"con",
+				"contactList"
+			],
+			[
+				"contact",
+				"contactList"
+			],
+			[
+				"conta",
+				"contactList"
+			],
+			[
+				"size",
+				"font-size"
+			],
+			[
+				"H",
+				"Heart-damage"
+			],
+			[
+				"pla",
+				"playerReset"
+			],
+			[
+				"P",
+				"Player"
+			],
+			[
+				"timeo",
+				"timeoutId"
+			],
+			[
+				"Hea",
+				"Heart"
+			],
+			[
+				"He",
+				"Heart"
+			],
+			[
+				"sp",
+				"sprite"
+			],
+			[
+				"this",
+				"this"
+			],
+			[
+				"rese",
+				"resetPlayer"
+			],
+			[
+				"del",
+				"delayReset"
+			],
+			[
+				"wi",
+				"wikipedia"
+			],
+			[
+				"wiki",
+				"wikiElem"
+			],
+			[
+				"wik",
+				"wikiInfo"
+			],
+			[
+				"cit",
+				"cityVal"
+			],
+			[
+				"nyt",
+				"nytHeaderElem"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2089,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/app.js",
+			"settings":
+			{
+				"buffer_size": 4547,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 688,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/chris/hoodMap/js/yelpRequestTest.js",
+		"/Users/chris/hoodMap/eventfull api key",
+		"/Users/chris/hoodMap/js/eventful.js",
+		"/Users/chris/hoodMap/eventfull-test.html",
+		"/Users/chris/hoodMap/bower_components/yelp/lib/yelp.js",
+		"/Users/chris/hoodMap/node_modules/yelp/README.md",
+		"/Users/chris/hoodMap/node_modules/yelp/demo/yelp.js",
+		"/Users/chris/testEnvironment/package.json",
+		"/Users/chris/hoodMap/bower_components/yelp/index.js",
+		"/Users/chris/hoodMap/bower_components/yelp/README.md",
+		"/Users/chris/hoodMap/maptest.html",
+		"/Users/chris/hoodMap/css/style.css",
+		"/Users/chris/hoodMap/.gitignore",
+		"/Users/chris/hoodMap/in",
+		"/Users/chris/hoodMap/bower.",
+		"/Users/chris/catClicker/todo-app/js/collections/todos.js",
+		"/Users/chris/catClicker/todo-app/js/views/app-view.js",
+		"/Users/chris/catClicker/todo-app/index.html",
+		"/Users/chris/catClicker/index.html",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/js/getCatsArray.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/superslides-0.6.2/dist/jquery.superslides.js",
+		"/Users/chris/.ssh/known_hosts",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/index.html",
+		"/Users/chris/phonofidelic/bigcartel/css/theme.css",
+		"/Users/chris/phonofidelic/bigcartel/index.html",
+		"/Users/chris/phonofidelic/bigcartel/js/theme.js",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/index_test.html",
+		"/Applications/MAMP/htdocs/inc/partial-list-navigation.html.php",
+		"/Applications/MAMP/htdocs/inc/products.php",
+		"/Applications/MAMP/htdocs/inc/partial-list-view.html.php",
+		"/Applications/MAMP/htdocs/search/index.php",
+		"/Applications/MAMP/htdocs/inc/config.php",
+		"/Applications/MAMP/htdocs/receipt/index.php",
+		"/Applications/MAMP/htdocs/contact/index.php",
+		"/Applications/MAMP/htdocs/shirts/shirt.php",
+		"/Applications/MAMP/htdocs/shirts/shirts.php",
+		"/Applications/MAMP/htdocs/index.php",
+		"/Applications/MAMP/htdocs/model-test.php",
+		"/Applications/MAMP/htdocs/inc/header.php",
+		"/Applications/MAMP/htdocs/css/style.css",
+		"/Applications/MAMP/htdocs/favicon.ico",
+		"/Applications/MAMP/htdocs/.htaccess",
+		"/Applications/MAMP/htdocs/inc/footer.php",
+		"/Applications/MAMP/htdocs/shirts4mike_local/inc/header.php",
+		"/Applications/MAMP/htdocs/shirts4mike_local/receipt/index.php",
+		"/Applications/MAMP/htdocs/receipt.php",
+		"/Applications/MAMP/htdocs/contact.php",
+		"/Applications/MAMP/htdocs/inc/phpmailer/class.phpmailer.php",
+		"/Applications/MAMP/htdocs/shirts.php",
+		"/Applications/MAMP/htdocs/shirt.php",
+		"/Applications/MAMP/htdocs/form.php",
+		"/Applications/MAMP/htdocs/contact-thanks.php",
+		"/Applications/MAMP/htdocs/contact-process.php",
+		"/Applications/MAMP/htdocs/info.php",
+		"/Applications/MAMP/htdocs/inc/shirts.php",
+		"/Applications/MAMP/htdocs/index.html",
+		"/Users/chris/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/chris/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/activesupport-4.0.1/lib/active_support/values/time_zone.rb",
+		"/Users/chris/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/activesupport-4.0.1/lib/active_support/dependencies.rb",
+		"/Users/chris/treehouse/projects/odot/spec/spec_helper.rb",
+		"/Users/chris/treehouse/projects/odot/app/helpers/application_helper.rb",
+		"/Users/chris/treehouse/projects/odot/config/environments/development.rb",
+		"/Users/chris/treehouse/projects/odot/config/application.rb",
+		"/Users/chris/treehouse/projects/odot/config/database.yml",
+		"/Users/chris/treehouse/projects/odot/config/routes.rb",
+		"/Users/chris/treehouse/projects/odot/app/views/layouts/application.html.erb",
+		"/Users/chris/treehouse/projects/odot/app/controllers/application_controller.rb",
+		"/Users/chris/treehouse/projects/odot/Gemfile",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/js/scetchPad.js",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/js/mess.js",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/index.html",
+		"/Users/chris/frontend-nanodegree-js-design-patterns/.gitignore",
+		"/Applications/Call of Duty.app/Contents/_CodeSignature/CodeResources",
+		"/Applications/Call of Duty.app/Contents/Call of Duty Data/Main/pak6.pk3",
+		"/Applications/Call of Duty.app/Contents/Call of Duty Data/Main/pak0.pk3",
+		"/Applications/Call of Duty.app/Contents/MacOS/Call of Duty",
+		"/Applications/Call of Duty.app/Contents/Resources/English.lproj/Localizable.strings",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/index.html",
+		"/Users/chris/frontend-nanodegree-arcade-game/js/app.js",
+		"/Users/chris/jsl-0.3.0-mac/jsl-test.js",
+		"/Users/chris/jsl-0.3.0-mac/jsl",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/views/pizza.html",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/README.md",
+		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap.css",
+		"/Users/chris/frontend-nanodegree-resume/css/style.css",
+		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap-theme.css",
+		"/Users/chris/frontend-nanodegree-arcade-game/js/resources.js",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/]",
+		"/Users/chris/minicourse-ajax-project/index.html",
+		"/Users/chris/minicourse-ajax-project/css/style.css",
+		"/Users/chris/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/chris/frontend-nanodegree-arcade-game/.gitignore",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/views/js/main.min.js",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/js/perfmatters.min.js",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/node_modules/grunt/package.json",
+		"/bin/cat",
+		"/Library/Python/2.3/site-packages/Extras.pth",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/media_query.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/modal.txt",
+		"/Users/chris/Desktop/RenderReport.pdf",
+		"/Users/chris/Downloads/vlc-2.2.0.dmg",
+		"/Users/chris/frontend-nanodegree-arcade-game/css/style.css",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/css/fonts.min.css",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/js/perfmatters.js",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/css/style.min.css",
+		"/Users/chris/frontend-nanodegree-mobile-portfolio/css/style.css",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoBuild.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoHelper.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/index",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/css/bootstrap.min.css",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/css/css",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoB",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/.gitignore",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/XMLHttpRequest.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/jQuery.js",
+		"/Users/chris/frontend-nanodegree-arcade-game/README.md",
+		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap.css.map",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoH",
+		"/Users/chris/ooj/run2.js",
+		"/Users/chris/frontend-nanodegree-arcade-game/index.html",
+		"/Users/chris/frontend-nanodegree-arcade-game/js/engine.js",
+		"/Users/chris/phonofidelic/phonofidelic.github.io/css/main.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tagName",
+			"priority",
+			"completed",
+			"priority",
+			"placeholder",
+			"title",
+			"checked",
+			"completed",
+			"checked",
+			"item-template",
+			"completed",
+			"getCatNameElem",
+			"wrap",
+			"ul",
+			"fullimage",
+			"optgroup",
+			"MAKE_LINKS",
+			"* MAKE_LINKS",
+			"init",
+			"phase",
+			"delayR",
+			"size",
+			"elem",
+			"offsetWidth",
+			"allEnemies",
+			"        allEnemies.forEach(function(enemy) {\n            enemy.render();\n        });",
+			".img-re",
+			"enemy-bug.png",
+			"determineDx",
+			"changePizzaSlices",
+			"elem",
+			".length",
+			"changePizzaSlices",
+			"offsetWidth",
+			"scrollTop",
+			".mark",
+			"mark",
+			"performance",
+			"querySelectorAll",
+			"phase",
+			"scroll",
+			"6",
+			"DOMcon",
+			"left carousel-control",
+			"modalImage"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 2089,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2016,
+								2016
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "js/app.js",
+					"settings":
+					{
+						"buffer_size": 4547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2714,
+								2714
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "css/style.css",
+					"settings":
+					{
+						"buffer_size": 688,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 178.0,
+	"status_bar_visible": true
+}

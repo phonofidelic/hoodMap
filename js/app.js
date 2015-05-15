@@ -3,10 +3,10 @@
 var DataModel = [
 	// Google Map
 
-
-
-
 	// wiki-data
+
+    // yelp
+
 ];
 
 // Controller
@@ -64,6 +64,59 @@ var ViewModel = function() {
     };
     window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
     window.onload = this.initialize;
+
+    // Yelp API ####################################
+    this.yelpRequest = function() {
+
+        var httpMethod = 'GET';
+        var parameters = {
+                oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
+                oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
+                oauth_nonce : 'kllo9940pd9333jh',
+                oauth_timestamp : '1191242096',
+                oauth_signature_method : 'HMAC-SHA1',
+                oauth_version : '1.0'
+            };
+        var consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
+        var tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
+
+        $.ajax({
+            url: 'https://api.yelp.com/v2/search?term=food&location=portland',
+            term: 'food',
+            parameters: {
+                oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
+                oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
+                oauth_nonce : 'kllo9940pd9333jh',
+                oauth_timestamp : '1191242096',
+                oauth_signature_method : 'HMAC-SHA1',
+                oauth_version : '1.0'
+            },
+            consumerSecret: '8gxFv_1m-atfA2dU0aMrIY3wOCw',
+            tokenSecret: 'Egb10VCQ2kLIFPpo1QH2k4dgJIo',
+            signature: oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
+            { encodeSignature: false})
+        });
+    };
+    this.yelpTest = function() {
+    var httpMethod = 'GET',
+        url = 'https://api.yelp.com/v2/search?term=food&location=portland',
+        parameters = {
+            oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
+            oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
+            oauth_nonce : 'kllo9940pd9333jh',
+            oauth_timestamp : '1191242096',
+            oauth_signature_method : 'HMAC-SHA1',
+            oauth_version : '1.0'
+        },
+        consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw',
+        tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo',
+        // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
+        encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret),
+        // generates a BASE64 encode HMAC-SHA1 hash
+        signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
+            { encodeSignature: false});
+    };
+
 
 };
 
