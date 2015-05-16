@@ -80,57 +80,42 @@ var ViewModel = function() {
     window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
     window.onload = this.initialize;
 
+    // OAuth init
+    this.oauth = OAuth({
+        consumer: {
+            public: '1OuzfDi-n-yJ2dIO-Ert3A',
+            secret: '8gxFv_1m-atfA2dU0aMrIY3wOCw'
+        },
+        signature_method: 'HMAC-SHA1'
+    });
+
+    // OAuth request data
+    this.request_data = {
+        url: 'http://api.yelp.com/v2/', //--------------------- add search parameters
+        method: 'POST',
+        data: {
+            status: 'testing 123, hello, hello, check, check...'
+        }
+    };
+
+    // OAuth token
+    this.token = {
+        public: 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
+        secret: 'Egb10VCQ2kLIFPpo1QH2k4dgJIo'
+    };
+
     // Yelp API ####################################
     this.yelpRequest = function() {
-
-        var httpMethod = 'GET';
-        var parameters = {
-                oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
-                oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
-                oauth_nonce : 'kllo9940pd9333jh',
-                oauth_timestamp : '1191242096',
-                oauth_signature_method : 'HMAC-SHA1',
-                oauth_version : '1.0'
-            };
-        var consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
-        var tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
-
         $.ajax({
-            url: 'https://api.yelp.com/v2/search?term=food&location=portland',
-            term: 'food',
-            parameters: {
-                oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
-                oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
-                oauth_nonce : 'kllo9940pd9333jh',
-                oauth_timestamp : '1191242096',
-                oauth_signature_method : 'HMAC-SHA1',
-                oauth_version : '1.0'
-            },
-            consumerSecret: '8gxFv_1m-atfA2dU0aMrIY3wOCw',
-            tokenSecret: 'Egb10VCQ2kLIFPpo1QH2k4dgJIo',
-            signature: oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
-            { encodeSignature: false})
+            url: self.request_data.url,
+            type: self.request_data.method,
+            data: self.request_data.data,
+            headers: self.oauth.toHeader(oauth.authorize(request_data, token))
+        }).done(function(data) {
+            //process data
         });
     };
-    this.yelpTest = function() {
-    var httpMethod = 'GET',
-        url = 'https://api.yelp.com/v2/search?term=food&location=portland',
-        parameters = {
-            oauth_consumer_key : '1OuzfDi-n-yJ2dIO-Ert3A',
-            oauth_token : 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
-            oauth_nonce : 'kllo9940pd9333jh',
-            oauth_timestamp : '1191242096',
-            oauth_signature_method : 'HMAC-SHA1',
-            oauth_version : '1.0'
-        },
-        consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw',
-        tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo',
-        // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
-        encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret),
-        // generates a BASE64 encode HMAC-SHA1 hash
-        signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
-            { encodeSignature: false});
-    };
+
 
 
 };
