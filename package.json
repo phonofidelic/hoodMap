@@ -9,6 +9,7 @@
   "author": "info@phonofidelic.com",
   "license": "ISC",
   "dependencies": {
+    "oauth-request": "0.0.1",
     "yelp": "^0.2.0"
   }
 }

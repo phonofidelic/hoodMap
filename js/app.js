@@ -91,7 +91,7 @@ var ViewModel = function() {
 
     // OAuth request data
     this.request_data = {
-        url: 'http://api.yelp.com/v2/', //--------------------- add search parameters
+        url: 'http://api.yelp.com/v2/search?term=food&location=San+Francisco', //--------------------- add search parameters
         method: 'POST',
         data: {
             status: 'testing 123, hello, hello, check, check...'
@@ -104,15 +104,24 @@ var ViewModel = function() {
         secret: 'Egb10VCQ2kLIFPpo1QH2k4dgJIo'
     };
 
+    // Yelp Oath
+    this.yelpOauth = {
+        oauth_consumer_key: '1OuzfDi-n-yJ2dIO-Ert3A'
+    }
+
     // Yelp API ####################################
     this.yelpRequest = function() {
         $.ajax({
             url: self.request_data.url,
             type: self.request_data.method,
             data: self.request_data.data,
-            headers: self.oauth.toHeader(oauth.authorize(request_data, token))
+            callback: 'cb',
+            dataType: 'jsonp',
+            crossDomain: true,
+            headers: self.oauth.toHeader(self.oauth.authorize(self.request_data, self.yelpOauth))
         }).done(function(data) {
             //process data
+            console.log(data);
         });
     };
 
