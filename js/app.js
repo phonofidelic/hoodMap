@@ -80,53 +80,46 @@ var ViewModel = function() {
     window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
     window.onload = this.initialize;
 
-    // OAuth init
-    this.oauth = OAuth({
-        consumer: {
-            public: '1OuzfDi-n-yJ2dIO-Ert3A',
-            secret: '8gxFv_1m-atfA2dU0aMrIY3wOCw'
-        },
-        signature_method: 'HMAC-SHA1'
-    });
 
-    // OAuth request data
-    this.request_data = {
-        url: 'http://api.yelp.com/v2/search?term=food&location=San+Francisco', //--------------------- add search parameters
-        method: 'POST',
-        data: {
-            status: 'testing 123, hello, hello, check, check...'
+    // Random nonce generator
+    this.nonceMaker = function() {
+        return (Math.floor(Math.random() * 1e12).toString());
+    };
+
+    this.yelp_url = 'http://api.yelp.com/v2/search?term=food&location=San+Francisco';
+
+    this.parameters = {
+        oauth_consumer_key: '1OuzfDi-n-yJ2dIO-Ert3A',
+        oauth_token: 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
+        oauth_nonce: self.nonceMaker(),
+        oauth_timestamp: Math.floor(Date.now()/1000),
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_version: '1.0',
+        oauth_signature: self.encodedSignature,
+        callback: 'cb'
+    }
+
+    this.encodedSignature = oauthSignature.generate('GET', yelp_url, self.parameters, '8gxFv_1m-atfA2dU0aMrIY3wOCw', 'Egb10VCQ2kLIFPpo1QH2k4dgJIo');
+    this.parameters.oath_signature = encodedSignature;
+
+    this.settings = {
+        url: yelp_url,
+        data: parameters,
+        cache: true,
+        dataType: 'jsonp',
+        success: function(results) {
+            // process results
+            console.log(results);
+        },
+        fail: function() {
+            // procrss fail
+            console.log('failed');
         }
     };
 
-    // OAuth token
-    this.token = {
-        public: 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
-        secret: 'Egb10VCQ2kLIFPpo1QH2k4dgJIo'
-    };
-
-    // Yelp Oath
-    this.yelpOauth = {
-        oauth_consumer_key: '1OuzfDi-n-yJ2dIO-Ert3A'
-    }
-
-    // Yelp API ####################################
     this.yelpRequest = function() {
-        $.ajax({
-            url: self.request_data.url,
-            type: self.request_data.method,
-            data: self.request_data.data,
-            callback: 'cb',
-            dataType: 'jsonp',
-            crossDomain: true,
-            headers: self.oauth.toHeader(self.oauth.authorize(self.request_data, self.yelpOauth))
-        }).done(function(data) {
-            //process data
-            console.log(data);
-        });
-    };
-
-
-
+        $.ajax(self.settings);
+    }
 };
 
 
