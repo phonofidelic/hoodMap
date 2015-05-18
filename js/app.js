@@ -75,7 +75,7 @@ var ViewModel = function() {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
-    console.log('codeAddress');
+        console.log('codeAddress');
     };
     window.onload = this.loadScript; //----------------------------- change to activate an search buton click?
     window.onload = this.initialize;
@@ -86,21 +86,23 @@ var ViewModel = function() {
         return (Math.floor(Math.random() * 1e12).toString());
     };
 
-    this.yelp_url = 'http://api.yelp.com/v2/search?term=food&location=San+Francisco';
+    this.yelp_url = 'http://api.yelp.com/v2/' + 'search?' + 'portland';
+
+    this.consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
+    this.tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
 
     this.parameters = {
         oauth_consumer_key: '1OuzfDi-n-yJ2dIO-Ert3A',
         oauth_token: 'E8UWzwkiKlCxrsiiH7yHvgWoQ66bm87Q',
-        oauth_nonce: self.nonceMaker(),
+        oauth_nonce: nonceMaker(),
         oauth_timestamp: Math.floor(Date.now()/1000),
         oauth_signature_method: 'HMAC-SHA1',
         oauth_version: '1.0',
-        oauth_signature: self.encodedSignature,
         callback: 'cb'
     }
 
-    this.encodedSignature = oauthSignature.generate('GET', yelp_url, self.parameters, '8gxFv_1m-atfA2dU0aMrIY3wOCw', 'Egb10VCQ2kLIFPpo1QH2k4dgJIo');
-    this.parameters.oath_signature = encodedSignature;
+    this.encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerSecret, tokenSecret);
+    this.parameters.oath_signature = this.encodedSignature;
 
     this.settings = {
         url: yelp_url,
@@ -118,7 +120,7 @@ var ViewModel = function() {
     };
 
     this.yelpRequest = function() {
-        $.ajax(self.settings);
+        $.ajax(settings);
     }
 };
 
