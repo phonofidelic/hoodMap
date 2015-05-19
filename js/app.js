@@ -86,7 +86,7 @@ var ViewModel = function() {
         return (Math.floor(Math.random() * 1e12).toString());
     };
 
-    this.yelp_url = 'http://api.yelp.com/v2/' + 'search?' + 'portland';
+    this.yelp_url = 'http://api.yelp.com/v2/search/';
 
     this.consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
     this.tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
@@ -98,11 +98,13 @@ var ViewModel = function() {
         oauth_timestamp: Math.floor(Date.now()/1000),
         oauth_signature_method: 'HMAC-SHA1',
         oauth_version: '1.0',
-        callback: 'cb'
+        callback: 'cb',
+        tearm: 'food',
+        location: 'portland'
     }
 
     this.encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerSecret, tokenSecret);
-    this.parameters.oath_signature = this.encodedSignature;
+    this.parameters.oauth_signature = this.encodedSignature;
 
     this.settings = {
         url: yelp_url,
@@ -121,7 +123,9 @@ var ViewModel = function() {
 
     this.yelpRequest = function() {
         $.ajax(settings);
-    }
+    };
+
+    this.foodList = [];
 };
 
 
