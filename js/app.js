@@ -24,7 +24,7 @@ var ViewModel = function() {
     this.scrollDown = function (){
         $('body').animate({
         scrollTop: $("#page-main").offset().top
-        }, 800); //-------------------------------- set scrool speed
+        }, 800); //-------------------------------- set scroll speed
 
         console.log('scrollDown');
     };
@@ -68,6 +68,7 @@ var ViewModel = function() {
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
+                    // // Map marker for initial position
                     // var marker = new google.maps.Marker({
                     //     map: map,
                     //     position: results[0].geometry.location
@@ -80,23 +81,52 @@ var ViewModel = function() {
 
             // check if request has been sent
             // if not, send request
-            if (self.requestSent != true) {
+            if (self.requestSent != true) { //TODO-------------------------------- fix to reset Yelp request results on new search
                 self.yelpRequest();
             }
         };
 
+        // Creare map markers
         self.foodMarkers = function() {
-            var foodLoc = new google.maps.LatLng(foodLocation[0].lat, foodLocation[0].lon);
+            // loop through foodLocation array
+            for (var i = 0; i < foodLocation.length; i++) {
+                // create a marker object for each object in foodLocation array
+                var foodLoc = new google.maps.LatLng(foodLocation[i].lat, foodLocation[i].lon);
 
-            var marker = new google.maps.Marker({
-                position: foodLoc
-            });
-            marker.setMap(map);
+                var marker = new google.maps.Marker({
+                    position: foodLoc
+                });
+                marker.setMap(map);
+
+                // create info windo object for each object in foodLoccation array
+                var infowindow = new google.maps.InfoWindow({
+                    content: self.foodLocation[i].foodName,
+                    position: foodLoc
+                });
+
+                // self.foodLocation.push(infowindow);
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
         };
-    };
-    window.onload = this.googleMap();
+
+        // self.infoWindows = function() {
+        //     for (var i = 0; i < foodLocation.length; i++) {
+        //         self.infowindo = new google.maps.InfoWindow({
+        //             content: 'Content goes here'
+        //         });
+        //     }
+        // };
+
+
+
+        google.maps.event.addDomListener(window, 'load', initialize);//<----//
+    };                                                                      //
+    window.onload = this.googleMap();                                       //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
-    window.onload = this.initialize;
+    // window.onload = this.initialize;
 
     // Yelp AJAX request #####################################
     this.yelpRequest = function() {
@@ -143,14 +173,17 @@ var ViewModel = function() {
                     var foodEntry = results.businesses[i].name;
 
                     // push each foodEntry object to the foodList array
-                    self.foodList.push(foodEntry);
+                    self.foodList.push({name: foodEntry});
 
-                    var foodLatLon = {
+                    var foodLatLng = {
                     lat: results.businesses[i].location.coordinate.latitude,
                     lon: results.businesses[i].location.coordinate.longitude
                     };
 
-                    self.foodLocation.push(foodLatLon);
+                    self.foodLocation.push(foodLatLng);
+
+                    foodLatLng.foodName = results.businesses[i].name;
+                    // self.foodLocation.push(foodName);
                 };
 
                 // make Yelp results globaly accessible
@@ -167,12 +200,13 @@ var ViewModel = function() {
         this.requestSent = true;
     };
 
+    // Ko array containing drop-cown menu items
     this.foodList = ko.observableArray([]);
 
+    // array containing Yelp results info
     this.foodLocation = [];
 
-    // this.yelpResults.businesses.forEach()
-};//------ ViewModel
+};//------ end ViewModel
 
 // Superslides API
 $('#slides').superslides('start');
