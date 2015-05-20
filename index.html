@@ -19,7 +19,6 @@
 					<input id="src-input">
 					<button id="src-button" type="submit">Go!</button>
 				</form>
-
 			</div>
 			<div class="col-xs-4 md-col4" id="logo"><h1>hoodMap</h1></div>
 		</div>
@@ -32,11 +31,8 @@
 						<h3>eat/drink</h3>
 						<span class="caret"></span>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="nav1">
-				    	<li>populate</li>
-				    	<li>with</li>
-				    	<li>yelp</li>
-				    	<li>data results</li>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="nav1" id="food-list" data-bind="foreach: foodList">
+						<li data-bind="html: $data" class="list-item"></li>
 				  	</ul>
 				</div>
 				<div class="col-md-3">
