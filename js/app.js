@@ -39,8 +39,7 @@ var ViewModel = function() {
         $('body').animate({
         scrollTop: $("#page-main").offset().top
         }, 800); //-------------------------------- set scroll speed
-
-        console.log('scrollDown');
+        // console.log('scrollDown');
     };
     $('#src-form').submit(this.scrollDown);
 
@@ -108,7 +107,6 @@ var ViewModel = function() {
                 var item = DataModel.foodList()[i];
 
                 var foodLoc = new google.maps.LatLng(item.location.lat, item.location.lng);
-                // var foodName = item.name; //TODO ---------------------------- !!! fix scope problem !!!
 
                 var image = 'img/white-pin.png';
                 var marker = new google.maps.Marker({
@@ -139,9 +137,46 @@ var ViewModel = function() {
                 // };
 
                 DataModel.foodList()[i].markerId = marker + i;
-            }
+            };
+
+
         };
 
+        // takes clicked list item object as parameter.
+        self.infoWindow = function(item) {
+            if (marker != undefined) {
+                marker.setMap(null);
+            }
+            // get map position of clicked item
+            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+            // set marker img
+            var image = 'img/red-pin.png';
+            //create selected marker object for clicked item
+            var marker = new google.maps.Marker({
+                position: loc,
+                icon: image
+            });
+            marker.setMap(map);
+
+            // create new info window object for clicked item
+            var infowindow = new google.maps.InfoWindow({
+                    content: item.name,
+                    position: loc
+                });
+            console.log(item);
+
+            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            //     return function() {
+            //         infowindow.open(map, marker);
+            //     }
+            // })(marker, i));
+
+            //clear selected marker if one exists:
+            // if ()
+            self.clearMarker = function() {
+                return marker.setMap(null);
+            };
+        };
 
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
@@ -149,11 +184,6 @@ var ViewModel = function() {
     window.onload = this.googleMap();                                       //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
-
-    // Object selector
-    this.itemSelector = function(item) {
-        DataModel.selectedItem = item;
-    };
 
     // Yelp AJAX request #####################################
     this.yelpRequest = function() {
@@ -192,7 +222,7 @@ var ViewModel = function() {
             dataType: 'jsonp',
             success: function(results) {
                 // process results
-                console.log(results);
+                // console.log(results);
                 // loop through Yelp businesses array
                 for (var i = 0; i < results.businesses.length; i++) {
 
@@ -212,15 +242,7 @@ var ViewModel = function() {
                         text: results.businesses[i].snippet_text,
                         location: foodLatLng,
                         id: i
-                        // mark:
                     });
-
-
-
-                    // self.foodLocation.push(foodLatLng);
-
-                    foodLatLng.foodName = results.businesses[i].name;
-                    // self.foodLocation.push(foodName);
                 };
 
                 // make Yelp results globaly accessible
@@ -237,10 +259,10 @@ var ViewModel = function() {
         this.requestSent = true;
     };
 
-    // function that returns Yelp items array
-    this.getItems = function() {
-        return DataModel.foodList();
-    };
+    // // function that returns Yelp items array
+    // this.getItems = function() {
+    //     return DataModel.foodList();
+    // };
 
     // selects a list item on click -------------------------------- SELECTOR
     this.selectItem = function(item) {
@@ -252,10 +274,9 @@ var ViewModel = function() {
     // Ko array containing drop-cown menu items
     this.foodList = DataModel.foodList;
 
-
-    this.testFunction = function(item) {
-        console.log(item.name);
-    };
+    this.testFunction = function() {
+        console.log('hello bla bla');
+    }
 
     this.listItem = function() {
         this.listDetails = ko.observable(false);

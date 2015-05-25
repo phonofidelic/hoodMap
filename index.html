@@ -25,14 +25,17 @@
 	</div>
 	<div class="container" id="page-main">
 		<div class="row">
-			<nav id="nav">
+			<nav id="nav" class="navbar navbar-default">
 				<div class="col-md-3" id="food-list">
 					<button id="nav1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bind="click: foodMarkers">
 						<h3>eat/drink</h3>
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="nav1" id="food-list" data-bind="foreach: foodList">
-						<li data-bind="text: name, event: { mouseover: showDetails, mouseout: hideDetails }, click: selectItem" class="list-item"></li>
+						<li data-bind="text: name, event: { mouseover: showDetails, mouseout: hideDetails }, click: infoWindow" class="list-item"></li>
+				  	</ul>
+				  	<ul class="dropdown-menu" role="menu" aria-labelledby="nav1">
+				  		<li>test</li>
 				  	</ul>
 				</div>
 				<div class="col-md-3">
