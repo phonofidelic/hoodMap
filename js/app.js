@@ -1,16 +1,30 @@
 // Model
 // GET requests responses are stored in variables here
-var DataModel = [
+var DataModel = {
+
+    selectedItem: null,
+    foodList: ko.observableArray([])
+
 	// Google Map
 
 	// wiki-data
 
     // yelp
 
-];
+};
+
+// Result object prototype
+var ResultObject = function(data) {
+    this.name = ko.observable(data.name);
+    this.web = ko.observable(data.web);
+    this.address = ko.observableArray(data.address);
+    this.phone = ko.observable(data.phone);
+    this.img = ko.observable(data.img);
+    this.rating = ko.observable(data.rating);
+    this.infoLink = ko.observable(data.infoLink);
+};
 
 // Controller
-
 var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
@@ -48,7 +62,7 @@ var ViewModel = function() {
             self.geocoder = new google.maps.Geocoder();
             self.mapOptions = {
                 center: new google.maps.LatLng(10, 200),
-                zoom: 12,
+                zoom: 14,
                 scrollwheel: false
             };
             this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -86,39 +100,47 @@ var ViewModel = function() {
             }
         };
 
-        // Creare map markers
+        // Create map markers
         self.foodMarkers = function() {
             // loop through foodLocation array
-            for (var i = 0; i < foodLocation.length; i++) {
-                // create a marker object for each object in foodLocation array
-                var foodLoc = new google.maps.LatLng(foodLocation[i].lat, foodLocation[i].lon);
+            for (var i = 0; i < DataModel.foodList().length; i++) {
 
+                var item = DataModel.foodList()[i];
+
+                var foodLoc = new google.maps.LatLng(item.location.lat, item.location.lng);
+                // var foodName = item.name; //TODO ---------------------------- !!! fix scope problem !!!
+
+                var image = 'img/white-pin.png';
                 var marker = new google.maps.Marker({
-                    position: foodLoc
+                    position: foodLoc,
+                    icon: image
                 });
+
                 marker.setMap(map);
+
 
                 // create info windo object for each object in foodLoccation array
                 var infowindow = new google.maps.InfoWindow({
-                    content: self.foodLocation[i].foodName,
+                    content: item.name,
                     position: foodLoc
                 });
 
                 // self.foodLocation.push(infowindow);
 
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
-                });
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                // google.maps.event.addListener(marker, 'mouseover', function() {
+                //     console.log('TEST');
+                // });
+                // };
+
+                DataModel.foodList()[i].markerId = marker + i;
             }
         };
-
-        // self.infoWindows = function() {
-        //     for (var i = 0; i < foodLocation.length; i++) {
-        //         self.infowindo = new google.maps.InfoWindow({
-        //             content: 'Content goes here'
-        //         });
-        //     }
-        // };
 
 
 
@@ -127,6 +149,11 @@ var ViewModel = function() {
     window.onload = this.googleMap();                                       //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
+
+    // Object selector
+    this.itemSelector = function(item) {
+        DataModel.selectedItem = item;
+    };
 
     // Yelp AJAX request #####################################
     this.yelpRequest = function() {
@@ -169,18 +196,28 @@ var ViewModel = function() {
                 // loop through Yelp businesses array
                 for (var i = 0; i < results.businesses.length; i++) {
 
-                    // create an object for each business name
-                    var foodEntry = results.businesses[i].name;
-
-                    // push each foodEntry object to the foodList array
-                    self.foodList.push({name: foodEntry});
-
                     var foodLatLng = {
-                    lat: results.businesses[i].location.coordinate.latitude,
-                    lon: results.businesses[i].location.coordinate.longitude
+                        lat: results.businesses[i].location.coordinate.latitude,
+                        lng: results.businesses[i].location.coordinate.longitude
                     };
 
-                    self.foodLocation.push(foodLatLng);
+                    // create an object for each business and push each object to the foodList array
+                    DataModel.foodList.push({
+                        name: results.businesses[i].name,
+                        address: results.businesses[i].location.display_address,
+                        url: results.businesses[i].url,
+                        phone: results.businesses[i].display_phone,
+                        img: results.businesses[i].image_url,
+                        rating: results.businesses[i].rating_img_url,
+                        text: results.businesses[i].snippet_text,
+                        location: foodLatLng,
+                        id: i
+                        // mark:
+                    });
+
+
+
+                    // self.foodLocation.push(foodLatLng);
 
                     foodLatLng.foodName = results.businesses[i].name;
                     // self.foodLocation.push(foodName);
@@ -200,11 +237,44 @@ var ViewModel = function() {
         this.requestSent = true;
     };
 
-    // Ko array containing drop-cown menu items
-    this.foodList = ko.observableArray([]);
+    // function that returns Yelp items array
+    this.getItems = function() {
+        return DataModel.foodList();
+    };
 
-    // array containing Yelp results info
-    this.foodLocation = [];
+    // selects a list item on click -------------------------------- SELECTOR
+    this.selectItem = function(item) {
+        DataModel.selectedItem = item;
+        console.log(item);
+        return item;
+    };
+
+    // Ko array containing drop-cown menu items
+    this.foodList = DataModel.foodList;
+
+
+    this.testFunction = function(item) {
+        console.log(item.name);
+    };
+
+    this.listItem = function() {
+        this.listDetails = ko.observable(false);
+        this.showDetails = function() {
+            self.listDetails(true);
+            // console.log(1);
+
+        };
+        this.hideDetails = function() {
+            self.listDetails(false);
+        };
+
+        if (self.listDetails == true) {
+            var item = self.foodList()[0].id;
+            self.selectMarker(item);
+            console.log('test');
+        }
+    };
+    this.listItem();
 
 };//------ end ViewModel
 
