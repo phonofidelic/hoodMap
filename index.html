@@ -25,38 +25,65 @@
 	</div>
 	<div class="container" id="page-main">
 		<div class="row">
-			<nav id="nav" class="navbar navbar-default">
-				<div class="col-md-3" id="food-list">
-					<button id="nav1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bind="click: foodMarkers">
-						<h3>eat/drink</h3>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="nav1" id="food-list" data-bind="foreach: foodList">
-						<li data-bind="text: name, event: { mouseover: showDetails, mouseout: hideDetails }, click: infoWindow" class="list-item"></li>
-				  	</ul>
-				  	<ul class="dropdown-menu" role="menu" aria-labelledby="nav1">
-				  		<li>test</li>
-				  	</ul>
-				</div>
-				<div class="col-md-3">
-					<button id="nav2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<h3>see/hear</h3>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="nav2">
-				    	<li>hello</li>
-				  	</ul>
-				</div>
-				<div class="col-md-3">
-					<button id="nav3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<h3>sleep</h3>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="nav3">
-				    	<li>hello</li>
-				  	</ul>
-				</div>
-				<div class="col-md-3" id="logo-2" data-bind="visible: listDetails"><h1>hoodMap</h1></div>
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Brand</a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+			      <ul class="nav navbar-nav">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu" data-bind="click: foodMarkers">
+			            <li></li>
+			          </ul>
+			        </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li><a href="#">Action</a></li>
+			            <li><a href="#">Another action</a></li>
+			            <li><a href="#">Something else here</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">Separated link</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">One more separated link</a></li>
+			          </ul>
+			        </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li><a href="#">Action</a></li>
+			            <li><a href="#">Another action</a></li>
+			            <li><a href="#">Something else here</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">Separated link</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">One more separated link</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+
+			      <form class="navbar-form navbar-right" role="search">
+			        <div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </form>
+
+
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
 			</nav>
 		</div>
 		<div class="row">
