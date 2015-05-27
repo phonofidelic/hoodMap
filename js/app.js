@@ -100,7 +100,7 @@ var ViewModel = function() {
         };
 
         // Create map markers
-        self.foodMarkers = function() {
+        self.foodMarkers = function(select) {
             // loop through foodLocation array
             for (var i = 0; i < DataModel.foodList().length; i++) {
 
@@ -125,9 +125,9 @@ var ViewModel = function() {
 
                 // self.foodLocation.push(infowindow);
 
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                google.maps.event.addListener(marker, 'click', (function(select) {
                     return function() {
-                        infowindow.open(map, marker);
+                        infowindow.open(map, select);
                     }
                 })(marker, i));
 
@@ -143,40 +143,47 @@ var ViewModel = function() {
         };
 
         // takes clicked list item object as parameter.
-        self.infoWindow = function(item) {
-            if (marker != undefined) {
-                marker.setMap(null);
+        self.selectMarker = function(item) {
+            if (item != null) {
+                self.clearMarker();
             }
             // get map position of clicked item
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
             // set marker img
             var image = 'img/red-pin.png';
             //create selected marker object for clicked item
-            var marker = new google.maps.Marker({
+            self.marker = new google.maps.Marker({
                 position: loc,
-                icon: image
+                icon: image,
+                zIndex: 1000
             });
-            marker.setMap(map);
+            self.marker.setMap(map);
 
-            // create new info window object for clicked item
-            var infowindow = new google.maps.InfoWindow({
-                    content: item.name,
-                    position: loc
-                });
-            console.log(item);
+            // console.log(item);
 
             // google.maps.event.addListener(marker, 'click', (function(marker, i) {
             //     return function() {
             //         infowindow.open(map, marker);
             //     }
             // })(marker, i));
-
-            //clear selected marker if one exists:
-            // if ()
-            self.clearMarker = function() {
-                return marker.setMap(null);
-            };
         };
+
+        self.clearMarker = function(item) {
+            // clear selected marker if one exists
+            if(item != null) {
+                self.marker.setMap(null);
+            }
+        };
+
+        self.infoWindow = function(item) {
+            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+            // create new info window object for clicked item
+            var infowindow = new google.maps.InfoWindow({
+                content: item.name,
+                position: loc
+            });
+            console.log('test: infowindow');
+        }
 
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
