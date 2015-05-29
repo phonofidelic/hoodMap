@@ -1,0 +1,10 @@
+object-relational mapping (ORM)
+
+I got hold of a book called "JavaScript Web Applications" by Alex MacCaw (O'Reiley Books) which talks alot about MVC. In a chapter addressing the Model he introduces a concept caled ORM (object-relational mapper). I'm struggling a bit trying to get my head around how this works, but from what I understand so far it seems to be a technique usefull for handling multiple Ajax request and can store the results in new Model objects which can be assigned id's for later access.
+
+I am wondering if this can be usefull in the neighborhood maps project, or if it falls outside the scope of what we are trying to do.
+
+Here is a link to what I've got down so far. The code for the Model is taken from examples in the book so I'm still trying to figure out what everything does. It's a bit messy, so any feedback would be welcome :)
+
+Thanks,
+Chris

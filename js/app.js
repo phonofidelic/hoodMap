@@ -1,4 +1,115 @@
 // Model
+var Model = {
+    inherited: function() {},
+    created: function() {},
+
+    prototype: {
+        init: function() {}
+    },
+
+    create: function() {
+        var object = Object.create(this);
+        object.parent = this;
+        object.prototype = object.fn = Object.create(this.prototype);
+
+        object.created();
+        this.inherited(object);
+        return object;
+    },
+
+    init: function() {
+        var instance = Object.create(this.prototype);
+        instance.parent = this;
+        instance.init.apply(instance, arguments);
+        return instance;
+    },
+
+    extend: function(o) {
+        var extended  = o.extended;
+        $.extend(this, o);
+        if (extended) extended(this);
+    },
+
+    include: function(o) {
+        var included = o.included;
+        $.extend(this.prototype, o);
+        if (included) included(this);
+    }
+};
+
+//Add object properties
+$.extend(Model, {
+    find: function() {}
+});
+
+Model.extend({
+    find: function() {}
+});
+
+//Add instance properties
+$.extend(Model.prototype, {
+    init: function(atts) {
+        if (atts) this.load(atts);
+    },
+
+    load: function() {
+        for(var name in attributes)
+            this[name] = attributes[name];
+    }
+});
+
+Model.include({
+    init: function(atts) {},
+    load: function(attributes) {}
+});
+
+// An object of saved assets
+Model.records = {};
+
+Model.include({
+    newRecord: true,
+
+    create: function() {
+        this.newRecord = false;
+        this.parent.records[this.id];
+    },
+
+    destroy: function() {
+        delete this.parent.records[this.id];
+    },
+
+    update: function() {
+        this.parent.records[this.id] = this;
+    },
+
+// Save the object th the records hash, keeping a reference to it
+    save: function() {
+        this.newRecord ? this.create() : this.update();
+    }
+});
+
+Model.extend({
+    // Fins by ID or rais an exeption
+    find: function(id) {
+        var record = this.records[id];
+        if ( !record ) throw new Error("Unknown record");
+        return record;
+    },
+
+    populate: function(values) {
+        // Reset model & records
+        this.records = {};
+
+        for (var i = 0; i < values.length; i++) {
+            var record = this.init(values[i]);
+            record.newRecord = false;
+            this.records[record.id] = record;
+        }
+    }
+});
+
+var Asset = Model.create();
+
 // GET requests responses are stored in variables here
 var DataModel = {
 
@@ -24,22 +135,27 @@ var ResultObject = function(data) {
     this.infoLink = ko.observable(data.infoLink);
 };
 
-// Controller
+// Controller ################################################################################
 var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
 
-    // Nav bar
-    this.navBar = function() {
+    this.sendRequests = function() {
+        self.yelpRequest();
+    };
 
-    }
+    this.getCurrentSearch = function() {
+        var search = document.getElementById('src-input').value;
+        return search;
+    };
 
     // Scroll down to map on click (or enter)
-    this.scrollDown = function (){
+    this.scrollDown = function() {
         $('body').animate({
         scrollTop: $("#page-main").offset().top
         }, 800); //-------------------------------- set scroll speed
         // console.log('scrollDown');
+        self.codeAddress();
     };
     $('#src-form').submit(this.scrollDown);
 
@@ -51,9 +167,14 @@ var ViewModel = function() {
             play: 5000
         });
         $('#slides').superslides('start');
+    };
+
+    this.getCurrentModel = function() {
+        // creates a new Model object
+        self.asset = Asset.init();
     }
 
-    // Google Maps API ###################################
+    // Google Maps API *******************************************
     this.googleMap = function() {
         self.geocoder;
         self.map;
@@ -78,7 +199,7 @@ var ViewModel = function() {
 
         self.codeAddress = function() {
             self.address = document.getElementById('src-input').value;
-            geocoder.geocode( { 'address': address}, function(results, status) {
+            geocoder.geocode( { 'address': self.getCurrentSearch() }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
                     // // Map marker for initial position
@@ -95,16 +216,16 @@ var ViewModel = function() {
             // check if request has been sent
             // if not, send request
             if (self.requestSent != true) { //TODO-------------------------------- fix to reset Yelp request results on new search
-                self.yelpRequest();
+                // self.yelpRequest();
             }
         };
 
         // Create map markers
         self.foodMarkers = function(select) {
             // loop through foodLocation array
-            for (var i = 0; i < DataModel.foodList().length; i++) {
+            for (var i = 0; i < asset.yelp().length; i++) {
 
-                var item = DataModel.foodList()[i];
+                var item = asset.yelp()[i];
 
                 var foodLoc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
@@ -136,7 +257,7 @@ var ViewModel = function() {
                 // });
                 // };
 
-                DataModel.foodList()[i].markerId = marker + i;
+                asset.yelp()[i].markerId = marker + i;
             };
 
 
@@ -185,6 +306,7 @@ var ViewModel = function() {
             console.log('test: infowindow');
         }
 
+        self.getCurrentModel(); //------------------------------------------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!   TEMP!!!!!
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
     };                                                                      //
@@ -192,7 +314,7 @@ var ViewModel = function() {
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
 
-    // Yelp AJAX request #####################################
+    // Yelp AJAX request *******************************************
     this.yelpRequest = function() {
         // Random nonce generator
         this.nonceMaker = function() {
@@ -214,7 +336,7 @@ var ViewModel = function() {
             oauth_version: '1.0',
             callback: 'cb',
             tearm: 'food', //OPTION/TODO----------------------------------------- search term
-            location: address //------------------------------------------------- bind location to search input value
+            location: self.getCurrentSearch() //------------------------------------------------- bind location to search input value
         };
 
         // appends generated oauth-signature to parameters obj
@@ -229,8 +351,24 @@ var ViewModel = function() {
             dataType: 'jsonp',
             success: function(results) {
                 // process results
-                // console.log(results);
-                // loop through Yelp businesses array
+
+                // // creates a new Model object
+                // self.asset = Asset.init();
+                // give it a yelp property containing the yelp ajax results
+                self.asset.yelp = ko.observableArray();
+
+                // create a cache for storing ajax requests
+                DataModel.assetCache = [];
+                // push yelp results to assetCache
+                DataModel.assetCache.push(results.businesses);
+
+                // for (var i = 0; i < foodList.length; i++) {
+                // self.foodList.push(asset.yelp.businesses);
+                // }
+
+                console.log(results);
+
+                //loop through Yelp businesses array
                 for (var i = 0; i < results.businesses.length; i++) {
 
                     var foodLatLng = {
@@ -239,7 +377,7 @@ var ViewModel = function() {
                     };
 
                     // create an object for each business and push each object to the foodList array
-                    DataModel.foodList.push({
+                    self.asset.yelp.push({
                         name: results.businesses[i].name,
                         address: results.businesses[i].location.display_address,
                         url: results.businesses[i].url,
@@ -253,7 +391,7 @@ var ViewModel = function() {
                 };
 
                 // make Yelp results globaly accessible
-                self.yelpResults = results;
+                // self.yelpResults = results;
             },
             fail: function() {
                 // procrss fail
@@ -278,8 +416,9 @@ var ViewModel = function() {
         return item;
     };
 
-    // Ko array containing drop-cown menu items
-    this.foodList = DataModel.foodList;
+    // Ko array containing drop-down menu items
+    // this.foodList = asset.yelp;
+    // self.foodList = asset.yelp;
 
     this.testFunction = function() {
         console.log('hello bla bla');
@@ -308,7 +447,6 @@ var ViewModel = function() {
 
 // Superslides API
 $('#slides').superslides('start');
-
 
 // Initiate Knockout bindings
 ko.applyBindings(ViewModel);

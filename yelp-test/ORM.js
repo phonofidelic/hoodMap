@@ -79,11 +79,9 @@ Model.include({
 
 	update: function() {
 		this.parent.records[this.id] = this;
-	}
-});
+	},
 
 // Save the object th the records hash, keeping a reference to it
-Model.include({
 	save: function() {
 		this.newRecord ? this.create() : this.update();
 	}
@@ -95,5 +93,18 @@ Model.extend({
 		var record = this.records[id];
 		if ( !record ) throw new Error("Unknown record");
 		return record;
+	},
+
+	populate: function(values) {
+		// Reset model & records
+		this.records = {};
+
+		for (var i = 0; i < values.length; i++) {
+			var record = this.init(values[i]);
+			record.newRecord = false;
+			this.records[record.id] = record;
+		}
 	}
 });
+
+var Asset = Model.create();

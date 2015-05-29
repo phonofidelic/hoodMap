@@ -18,7 +18,7 @@
 			<div class="col-xs-12 col-sm-4 col-md-4" id="src-div">
 
 				<div class="input-group input-group-lg">
-					<form id="src-form" data-bind="submit: searchQuery">
+					<form id="src-form" data-bind="submit: sendRequests">
 						<input type="text" class="form-control" placeholder="where to?" id="src-input">
 						<span class="input-group-btn">
 							<button class="btn btn-default" id="src-button" type="submit">go!</button>
@@ -50,7 +50,7 @@
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
 				         	<button class="btn btn-large dropdown-toggle" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: foodMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
-				         	<ul class="dropdown-menu" role="menu" data-bind="foreach: foodList">
+				         	<ul class="dropdown-menu" role="menu" data-bind="foreach: asset.yelp">
 				            	<li data-bind="text: name, event: { mouseover: selectMarker, mouseout: clearMarker, click: infoWindow }, click: selectMarker" class="food-list-item"></li>
 				         	</ul>
 				        </li>
