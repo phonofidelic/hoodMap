@@ -355,7 +355,7 @@ var ViewModel = function() {
                 // // creates a new Model object
                 // self.asset = Asset.init();
                 // give it a yelp property containing the yelp ajax results
-                self.asset.yelp = ko.observableArray();
+                asset.yelp = ko.observableArray();
 
                 // create a cache for storing ajax requests
                 DataModel.assetCache = [];
