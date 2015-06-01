@@ -178,6 +178,31 @@ var ViewModel = function() {
             };
         };
 
+        self.selectMarker = function(item) {
+            // if (item != null) {
+            //     self.clearMarker();
+            // }
+            // get map position of clicked item
+            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+            // set marker img
+            var image = 'img/red-pin.png';
+            //create selected marker object for clicked item
+            self.marker = new google.maps.Marker({
+                position: loc,
+                icon: image,
+                zIndex: 1000
+            });
+            self.marker.setMap(map);
+
+            // console.log(item);
+
+            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            //     return function() {
+            //         infowindow.open(map, marker);
+            //     }
+            // })(marker, i));
+        };
+
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
     };                                                                      //
