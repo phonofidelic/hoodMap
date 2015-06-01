@@ -353,14 +353,15 @@ var ViewModel = function() {
                 // process results
 
                 // // creates a new Model object
-                // self.asset = Asset.init();
+                self.asset = Asset.init();
                 // give it a yelp property containing the yelp ajax results
-                asset.yelp = ko.observableArray();
+                asset.yelp = ko.observableArray([]);
 
                 // create a cache for storing ajax requests
-                DataModel.assetCache = [];
+                // DataModel.assetCache = ko.observableArray([]);
                 // push yelp results to assetCache
-                DataModel.assetCache.push(results.businesses);
+                // DataModel.assetCache.push(results.businesses);
+                // self.foodList.push(results.businesses);
 
                 // for (var i = 0; i < foodList.length; i++) {
                 // self.foodList.push(asset.yelp.businesses);
@@ -377,7 +378,7 @@ var ViewModel = function() {
                     };
 
                     // create an object for each business and push each object to the foodList array
-                    self.asset.yelp.push({
+                    asset.yelp.push({
                         name: results.businesses[i].name,
                         address: results.businesses[i].location.display_address,
                         url: results.businesses[i].url,
@@ -417,12 +418,25 @@ var ViewModel = function() {
     };
 
     // Ko array containing drop-down menu items
+    // this.foodList = DataModel.assetCache;
     // this.foodList = asset.yelp;
-    // self.foodList = asset.yelp;
 
     this.testFunction = function() {
         console.log('hello bla bla');
-    }
+    };
+
+    this.testArray = ko.observableArray([
+        {
+            name: 'test'
+        },
+        {
+            name: 'test2'
+        },
+        {
+            name: 'test3'
+        }
+
+    ]);
 
     this.listItem = function() {
         this.listDetails = ko.observable(false);
