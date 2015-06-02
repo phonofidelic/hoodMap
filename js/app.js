@@ -117,26 +117,6 @@ var ViewModel = function() {
                 marker.setMap(map);
 
 
-                // create info windo object for each object in foodLoccation array
-                var infowindow = new google.maps.InfoWindow({
-                    content: item.name,
-                    position: foodLoc
-                });
-
-                // self.foodLocation.push(infowindow);
-
-                google.maps.event.addListener(marker, 'click', (function(select) {
-                    return function() {
-                        infowindow.open(map, select);
-                    }
-                })(marker, i));
-
-                // google.maps.event.addListener(marker, 'mouseover', function() {
-                //     console.log('TEST');
-                // });
-                // };
-
-                DataModel.foodList()[i].markerId = marker + i;
             };
 
 
@@ -168,6 +148,7 @@ var ViewModel = function() {
             // })(marker, i));
         };
 
+        // clears selected marker
         self.clearMarker = function(item) {
             // clear selected marker if one exists
             if(item != null) {
@@ -175,14 +156,18 @@ var ViewModel = function() {
             }
         };
 
+        // gets clicked list-item object as input
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
-                content: item.name,
+                content: 'item.name',
                 position: loc
             });
             console.log('test: infowindow');
+            console.log(item);
+
+
         }
 
 
@@ -281,28 +266,6 @@ var ViewModel = function() {
     // Ko array containing drop-cown menu items
     this.foodList = DataModel.foodList;
 
-    this.testFunction = function() {
-        console.log('hello bla bla');
-    }
-
-    this.listItem = function() {
-        this.listDetails = ko.observable(false);
-        this.showDetails = function() {
-            self.listDetails(true);
-            // console.log(1);
-
-        };
-        this.hideDetails = function() {
-            self.listDetails(false);
-        };
-
-        if (self.listDetails == true) {
-            var item = self.foodList()[0].id;
-            self.selectMarker(item);
-            console.log('test');
-        }
-    };
-    this.listItem();
 
 };//------ end ViewModel
 
