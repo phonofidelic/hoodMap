@@ -29,11 +29,6 @@ var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
 
-    // Nav bar
-    this.navBar = function() {
-
-    }
-
     // Scroll down to map on click (or enter)
     this.scrollDown = function (){
         $('body').animate({
@@ -100,7 +95,7 @@ var ViewModel = function() {
         };
 
         // Create map markers
-        self.foodMarkers = function(select) {
+        self.foodMarkers = function() {
             // loop through foodLocation array
             for (var i = 0; i < DataModel.foodList().length; i++) {
 
@@ -116,9 +111,23 @@ var ViewModel = function() {
 
                 marker.setMap(map);
 
+                // DataModel.foodList()[i].google_marker = marker;
 
-            };
 
+
+            // // select infowindow
+            // var infowindow = new google.maps.InfoWindow({
+            //     content: item.name,
+            //     position: foodLoc
+            // });
+
+            // google.maps.event.addListener(marker, 'click', (function(marker, item) {
+            //     return function() {
+            //         infowindow.open(map, marker);
+            //     }
+            // })(marker, item));
+
+            }
 
         };
 
@@ -132,27 +141,51 @@ var ViewModel = function() {
             // set marker img
             var image = 'img/red-pin.png';
             //create selected marker object for clicked item
-            self.marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: loc,
                 icon: image,
                 zIndex: 1000
             });
-            self.marker.setMap(map);
+            marker.setMap(map);
 
             // console.log(item);
 
-            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            //     return function() {
-            //         infowindow.open(map, marker);
-            //     }
-            // })(marker, i));
+
+            // select infowindow
+            var infowindow = new google.maps.InfoWindow({
+                content: item.name,
+                position: loc
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, item) {
+                return function() {
+                    infowindow.open(map, marker);
+                }
+            })(marker, item));
+
+            // return marker;
+
+            // //clear marker highlight on mouseout
+            // this.clearMarker = function() {
+            //     marker.setMap(null);
+            //     console.log('test: clearMarker');
+            // };
+
+            // DataModel.foodList.push({
+            //     google_marker: marker,
+            //     google_infowindow: infowindow
+            // });
+
+            // sett google_marker atribute on selected object
+            item.google_marker = marker;
         };
 
         // clears selected marker
         self.clearMarker = function(item) {
+            // var marker = self.selectMarker(item);
             // clear selected marker if one exists
             if(item != null) {
-                self.marker.setMap(null);
+                marker.setMap(null);
             }
         };
 
@@ -165,7 +198,7 @@ var ViewModel = function() {
                 position: loc
             });
             console.log('test: infowindow');
-            console.log(item);
+            // console.log(item);
 
 
         }
@@ -233,7 +266,8 @@ var ViewModel = function() {
                         rating: results.businesses[i].rating_img_url,
                         text: results.businesses[i].snippet_text,
                         location: foodLatLng,
-                        id: i
+                        id: i,
+                        google_marker: {}
                     });
                 };
 
