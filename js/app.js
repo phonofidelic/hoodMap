@@ -178,6 +178,12 @@ var ViewModel = function() {
 
             // sett google_marker atribute on selected object
             item.google_marker = marker;
+
+
+            if (item != null) {
+                marker.setMap(null);
+            }
+
         };
 
         // clears selected marker
