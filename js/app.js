@@ -3,7 +3,8 @@
 var DataModel = {
 
     selectedItem: null,
-    foodList: ko.observableArray([])
+    foodList: ko.observableArray([]),
+    markerArray: []
 
 	// Google Map
 
@@ -149,12 +150,11 @@ var ViewModel = function() {
                 zIndex: 1000
             });
 
-            self.markerArray.push(marker);
+            DataModel.markerArray.push(marker);
 
             marker.setMap(map);
 
-            // console.log(item);
-
+            // console.log(item.id);
 
             // select infowindow
             var infowindow = new google.maps.InfoWindow({
@@ -168,30 +168,21 @@ var ViewModel = function() {
                 }
             })(marker, item));
 
-            // return marker;
-
-            // //clear marker highlight on mouseout
-            // this.clearMarker = function() {
-            //     marker.setMap(null);
-            //     console.log('test: clearMarker');
-            // };
-
-            // DataModel.foodList.push({
-            //     google_marker: marker,
-            //     google_infowindow: infowindow
-            // });
-
             // sett google_marker atribute on selected object
             item.google_marker = marker;
 
-            // clear marker
-            self.clearMarker = function(marker) {
-                self.markerArray[marker].setMap(null);
+            // clear marker on mouseout
+            self.clearMarker = function() {
+                DataModel.markerArray[item.id].setMap(null);
+                // console.log('test: clearMarker');
             };
-            // if (item != null) {
-            //     marker.setMap(null);
-            // }
 
+
+        };
+
+        self.clearMarker = function() {
+            self.markerArray[clear].setMap(null);
+            console.log('test: clearMarker');
         };
 
         // gets clicked list-item object as input
