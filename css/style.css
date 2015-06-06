@@ -54,6 +54,11 @@ li.dropdown {
 
 }
 
+.info-window {
+	max-width: 200px;
+	text-align: center;
+}
+
 /* specs for google maps */
 html,
 body,

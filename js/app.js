@@ -116,14 +116,13 @@ var ViewModel = function() {
                 marker.setMap(map);
             };
 
+            //NOT WORKING
             google.maps.event.addListener(marker, 'click', function() {
                 marker.setIcon(icon = clicked);
                 console.log('test: markerclick');
             });
 
         };
-
-        self.markerArray = [];
 
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
@@ -138,12 +137,15 @@ var ViewModel = function() {
         // gets clicked list-item object as input
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+
+            var yelpInfo = '<div class="info-window">' + '<h4>' + item.name + '</h4><div><img src="' + item.rating + '"></div><div>' + item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' + item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' + item.text + '"</span><span><a href="' + item.url + '" target="blank">more info</a></span></div></div>';
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
-                content: 'item.name',
+                content: yelpInfo,
                 position: loc
             });
-            console.log('test: infowindow');
+            infowindow.setMap(map);
+            // console.log('test: infowindow');
             // console.log(item);
 
 
