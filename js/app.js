@@ -102,61 +102,37 @@ var ViewModel = function() {
 
                 var item = DataModel.foodList()[i];
 
-                var foodLoc = new google.maps.LatLng(item.location.lat, item.location.lng);
+                var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
                 var image = 'img/white-pin.png';
                 var marker = new google.maps.Marker({
-                    position: foodLoc,
-                    icon: image
+                    position: loc,
+                    icon: image,
+                    id: i
                 });
+
+                DataModel.markerArray.push(marker);
+                // render
                 marker.setMap(map);
             };
+
+            google.maps.event.addListener(marker, 'click', function() {
+                marker.setIcon(icon = clicked);
+                console.log('test: markerclick');
+            });
+
         };
 
         self.markerArray = [];
 
-        // takes clicked list item object as parameter.
-        self.selectMarker = function(item) {
-            // if (item != null) {
-            //     self.clearMarker();
-            // }
-            // get map position of clicked item
-            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
-            // set marker img
-            var image = 'img/red-pin.png';
-            //create selected marker object for clicked item
-            var marker = new google.maps.Marker({
-                position: loc,
-                icon: image,
-                zIndex: 1000
-            });
-
-            DataModel.markerArray.push(marker);
-
-            marker.setMap(map);
-
-            // console.log(item.id);
-
-            // select infowindow
-            var infowindow = new google.maps.InfoWindow({
-                content: item.name,
-                position: loc
-            });
-
-            google.maps.event.addListener(marker, 'click', (function(marker, item) {
-                return function() {
-                    infowindow.open(map, marker);
-                }
-            })(marker, item));
-
-            // sett google_marker atribute on selected object
-            item.google_marker = marker;
+        // set marker img to red on mouseover
+        self.mouseoverMarker = function(item) {
+            DataModel.markerArray[item.id].setIcon(icon = 'img/red-pin.png');
         };
 
-        // clear maker on mouseout
-        self.clearMarker = function(item) {
-            DataModel.markerArray[item.id].setMap(null);
-            console.log('test: clearMarker');
+        // set marker img to white on mouseout
+        self.mouseoutMarker = function(item) {
+            DataModel.markerArray[item.id].setIcon(icon = 'img/white-pin.png');
         };
 
         // gets clicked list-item object as input
