@@ -50,8 +50,8 @@ var ViewModel = function() {
 
     // Google Maps API ###################################
     this.googleMap = function() {
-        self.geocoder;
-        self.map;
+        // self.geocoder;
+        // self.map;
         self.initialize = function() {
             self.geocoder = new google.maps.Geocoder();
             self.mapOptions = {
@@ -59,7 +59,7 @@ var ViewModel = function() {
                 zoom: 14,
                 scrollwheel: false
             };
-            this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            self.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         };
 
         self.loadScript = function() {
@@ -131,11 +131,13 @@ var ViewModel = function() {
 
         };
 
+        self.markerArray = [];
+
         // takes clicked list item object as parameter.
         self.selectMarker = function(item) {
-            if (item != null) {
-                self.clearMarker();
-            }
+            // if (item != null) {
+            //     self.clearMarker();
+            // }
             // get map position of clicked item
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
             // set marker img
@@ -146,6 +148,9 @@ var ViewModel = function() {
                 icon: image,
                 zIndex: 1000
             });
+
+            self.markerArray.push(marker);
+
             marker.setMap(map);
 
             // console.log(item);
@@ -179,20 +184,14 @@ var ViewModel = function() {
             // sett google_marker atribute on selected object
             item.google_marker = marker;
 
+            // clear marker
+            self.clearMarker = function(marker) {
+                self.markerArray[marker].setMap(null);
+            };
+            // if (item != null) {
+            //     marker.setMap(null);
+            // }
 
-            if (item != null) {
-                marker.setMap(null);
-            }
-
-        };
-
-        // clears selected marker
-        self.clearMarker = function(item) {
-            // var marker = self.selectMarker(item);
-            // clear selected marker if one exists
-            if(item != null) {
-                marker.setMap(null);
-            }
         };
 
         // gets clicked list-item object as input

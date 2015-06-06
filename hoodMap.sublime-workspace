@@ -4,8 +4,44 @@
 		"selected_items":
 		[
 			[
+				"bo",
+				"bower_components"
+			],
+			[
+				"loc",
+				"loc"
+			],
+			[
 				"goo",
+				"google_marker"
+			],
+			[
+				"google",
+				"google_marker"
+			],
+			[
+				"info",
+				"infowindow"
+			],
+			[
+				"sele",
+				"selectMarker"
+			],
+			[
+				"clear",
+				"clearMarker"
+			],
+			[
+				"googl",
 				"google"
+			],
+			[
+				"in",
+				"infowindow"
+			],
+			[
+				"yelp",
+				"yelpRequest"
 			],
 			[
 				"add",
@@ -14,10 +50,6 @@
 			[
 				"goog",
 				"google"
-			],
-			[
-				"info",
-				"infoWindow"
 			],
 			[
 				"foodL",
@@ -74,10 +106,6 @@
 			[
 				"cle",
 				"clearMarker"
-			],
-			[
-				"sele",
-				"selectMarker"
 			],
 			[
 				"logo",
@@ -194,10 +222,6 @@
 			[
 				"non",
 				"nonceMaker"
-			],
-			[
-				"yelp",
-				"yelpOauth"
 			],
 			[
 				"cons",
@@ -490,30 +514,6 @@
 			[
 				"for",
 				"foreach	foreach …"
-			],
-			[
-				"ID",
-				"ID"
-			],
-			[
-				"va",
-				"var_dump"
-			],
-			[
-				"shirt",
-				"shirt-101"
-			],
-			[
-				"li",
-				"li	Tag"
-			],
-			[
-				"op",
-				"option	Tag"
-			],
-			[
-				"sta",
-				"status"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4290,
+				"buffer_size": 4265,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 9466,
+				"buffer_size": 10755,
 				"line_ending": "Unix"
 			}
 		}
@@ -560,6 +560,9 @@
 	},
 	"file_history":
 	[
+		"/Users/chris/hoodMap/README.md",
+		"/Users/chris/hoodMap/.gitignore",
+		"/Users/chris/hoodMap/js/app.js",
 		"/Users/chris/Desktop/master_index.html",
 		"/Users/chris/Desktop/app-master.js",
 		"/Users/chris/hoodMap/yelp-test/yelpapi.js",
@@ -581,7 +584,6 @@
 		"/Users/chris/hoodMap/bower_components/yelp/index.js",
 		"/Users/chris/hoodMap/bower_components/yelp/README.md",
 		"/Users/chris/hoodMap/maptest.html",
-		"/Users/chris/hoodMap/.gitignore",
 		"/Users/chris/hoodMap/in",
 		"/Users/chris/hoodMap/bower.",
 		"/Users/chris/catClicker/todo-app/js/collections/todos.js",
@@ -685,9 +687,7 @@
 		"/Users/chris/phonofidelic/phonofidelic.github.io/js/jQuery.js",
 		"/Users/chris/frontend-nanodegree-arcade-game/README.md",
 		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap.css.map",
-		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoH",
-		"/Users/chris/ooj/run2.js",
-		"/Users/chris/frontend-nanodegree-arcade-game/index.html"
+		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoH"
 	],
 	"find":
 	{
@@ -705,6 +705,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"selectedItem",
+			"codeAddress",
 			"selectItem",
 			"asset.yelp",
 			"asset",
@@ -793,15 +795,15 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 4290,
+						"buffer_size": 4265,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3598,
-								3598
+								2509,
+								2509
 							]
 						],
 						"settings":
@@ -900,8 +902,8 @@
 							"translate_tabs_to_spaces": false,
 							"word_wrap": false
 						},
-						"translation.x": 222.0,
-						"translation.y": 188.0,
+						"translation.x": 242.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -917,15 +919,15 @@
 					"file": "js/app.js",
 					"settings":
 					{
-						"buffer_size": 9466,
+						"buffer_size": 10755,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4467,
-								4467
+								1364,
+								1364
 							]
 						],
 						"settings":
@@ -1025,7 +1027,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2077.0,
+						"translation.y": 569.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1061,7 +1063,7 @@
 		"cols":
 		[
 			0.0,
-			0.467647984886,
+			0.5,
 			1.0
 		],
 		"rows":
