@@ -109,27 +109,8 @@ var ViewModel = function() {
                     position: foodLoc,
                     icon: image
                 });
-
                 marker.setMap(map);
-
-                // DataModel.foodList()[i].google_marker = marker;
-
-
-
-            // // select infowindow
-            // var infowindow = new google.maps.InfoWindow({
-            //     content: item.name,
-            //     position: foodLoc
-            // });
-
-            // google.maps.event.addListener(marker, 'click', (function(marker, item) {
-            //     return function() {
-            //         infowindow.open(map, marker);
-            //     }
-            // })(marker, item));
-
-            }
-
+            };
         };
 
         self.markerArray = [];
@@ -170,18 +151,11 @@ var ViewModel = function() {
 
             // sett google_marker atribute on selected object
             item.google_marker = marker;
-
-            // clear marker on mouseout
-            self.clearMarker = function() {
-                DataModel.markerArray[item.id].setMap(null);
-                // console.log('test: clearMarker');
-            };
-
-
         };
 
-        self.clearMarker = function() {
-            self.markerArray[clear].setMap(null);
+        // clear maker on mouseout
+        self.clearMarker = function(item) {
+            DataModel.markerArray[item.id].setMap(null);
             console.log('test: clearMarker');
         };
 
