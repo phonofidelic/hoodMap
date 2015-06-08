@@ -51,7 +51,7 @@
 				        <li class="dropdown">
 				         	<button class="btn btn-large dropdown-toggle" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: foodMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
 				         	<ul class="dropdown-menu" role="menu" data-bind="foreach: foodList">
-				            	<li data-bind="text: name, event: { mouseover: selectMarker, mouseout: clearMarker, click: infoWindow }, click: selectMarker" class="food-list-item"></li>
+				            	<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
 				         	</ul>
 				        </li>
 				        <li class="dropdown">
@@ -68,7 +68,7 @@
 				        </li>
 			     	</ul>
 
-			     <div class="navbar-brand navbar-right" id="logo-2" href="#" data-bind="visible: listDetails"><h1>hoodMap</h1></div>
+			     <div class="navbar-brand navbar-right" id="logo-2" href="#"><h1>hoodMap</h1></div>
 
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

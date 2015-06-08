@@ -3,7 +3,8 @@
 var DataModel = {
 
     selectedItem: null,
-    foodList: ko.observableArray([])
+    foodList: ko.observableArray([]),
+    markerArray: []
 
 	// Google Map
 
@@ -29,11 +30,6 @@ var ViewModel = function() {
 	var self = this;
     this.srcInput = ko.observable("");
 
-    // Nav bar
-    this.navBar = function() {
-
-    }
-
     // Scroll down to map on click (or enter)
     this.scrollDown = function (){
         $('body').animate({
@@ -55,8 +51,8 @@ var ViewModel = function() {
 
     // Google Maps API ###################################
     this.googleMap = function() {
-        self.geocoder;
-        self.map;
+        // self.geocoder;
+        // self.map;
         self.initialize = function() {
             self.geocoder = new google.maps.Geocoder();
             self.mapOptions = {
@@ -64,7 +60,7 @@ var ViewModel = function() {
                 zoom: 14,
                 scrollwheel: false
             };
-            this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            self.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         };
 
         self.loadScript = function() {
@@ -100,89 +96,66 @@ var ViewModel = function() {
         };
 
         // Create map markers
-        self.foodMarkers = function(select) {
+        self.foodMarkers = function() {
             // loop through foodLocation array
             for (var i = 0; i < DataModel.foodList().length; i++) {
 
                 var item = DataModel.foodList()[i];
 
-                var foodLoc = new google.maps.LatLng(item.location.lat, item.location.lng);
+                var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
-                var image = 'img/white-pin.png';
+                // var image = 'img/white-pin.png';
+                // var clicked = 'img/red-pin.png';
                 var marker = new google.maps.Marker({
-                    position: foodLoc,
-                    icon: image
+                    position: loc,
+                    icon: 'img/white-pin.png',
+                    id: i
                 });
 
-                marker.setMap(map);
+                DataModel.markerArray.push(marker);
 
-
-                // create info windo object for each object in foodLoccation array
-                var infowindow = new google.maps.InfoWindow({
-                    content: item.name,
-                    position: foodLoc
-                });
-
-                // self.foodLocation.push(infowindow);
-
-                google.maps.event.addListener(marker, 'click', (function(select) {
+                // make marker red on click
+                google.maps.event.addListener(marker, 'click', (function(item) {
                     return function() {
-                        infowindow.open(map, select);
-                    }
-                })(marker, i));
+                        self.selectItem(item);
+                        DataModel.markerArray[item].setIcon(icon = 'img/red-pin.png');
+                        for (var i = 0; i < DataModel.markerArray.length; i++) {
+                            //check that we don't reset the selected marker
+                            if (i !== item) {
+                                DataModel.markerArray[i].setIcon(icon = 'img/white-pin.png');
+                            }
+                        }
+                    };
+                })(i));
 
-                // google.maps.event.addListener(marker, 'mouseover', function() {
-                //     console.log('TEST');
-                // });
-                // };
-
-                DataModel.foodList()[i].markerId = marker + i;
-            };
-
-
-        };
-
-        // takes clicked list item object as parameter.
-        self.selectMarker = function(item) {
-            if (item != null) {
-                self.clearMarker();
-            }
-            // get map position of clicked item
-            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
-            // set marker img
-            var image = 'img/red-pin.png';
-            //create selected marker object for clicked item
-            self.marker = new google.maps.Marker({
-                position: loc,
-                icon: image,
-                zIndex: 1000
-            });
-            self.marker.setMap(map);
-
-            // console.log(item);
-
-            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            //     return function() {
-            //         infowindow.open(map, marker);
-            //     }
-            // })(marker, i));
-        };
-
-        self.clearMarker = function(item) {
-            // clear selected marker if one exists
-            if(item != null) {
-                self.marker.setMap(null);
+                // render markers
+                marker.setMap(map);
             }
         };
 
+        // set marker img to red on mouseover
+        self.mouseoverMarker = function(item) {
+            DataModel.markerArray[item.id].setIcon(icon = 'img/red-pin.png');
+        };
+
+        // set marker img to white on mouseout
+        self.mouseoutMarker = function(item) {
+            DataModel.markerArray[item.id].setIcon(icon = 'img/white-pin.png');
+        };
+
+        // gets clicked list-item object as input
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+
+            // info window content (move to model?)
+            var yelpInfo = '<div class="info-window">' + '<h4>' + item.name + '</h4><div><img src="' + item.rating + '"></div><div>' + item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' + item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' + item.text + '"</span><span><a href="' + item.url + '" target="blank">more info</a></span></div></div>';
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
-                content: item.name,
+                content: yelpInfo,
                 position: loc
             });
-            console.log('test: infowindow');
+
+            infowindow.setMap(map);
         };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
@@ -247,7 +220,8 @@ var ViewModel = function() {
                         rating: results.businesses[i].rating_img_url,
                         text: results.businesses[i].snippet_text,
                         location: foodLatLng,
-                        id: i
+                        id: i,
+                        google_marker: {}
                     });
                 };
 
@@ -280,28 +254,6 @@ var ViewModel = function() {
     // Ko array containing drop-cown menu items
     this.foodList = DataModel.foodList;
 
-    this.testFunction = function() {
-        console.log('hello bla bla');
-    }
-
-    this.listItem = function() {
-        this.listDetails = ko.observable(false);
-        this.showDetails = function() {
-            self.listDetails(true);
-            // console.log(1);
-
-        };
-        this.hideDetails = function() {
-            self.listDetails(false);
-        };
-
-        if (self.listDetails == true) {
-            var item = self.foodList()[0].id;
-            self.selectMarker(item);
-            console.log('test');
-        }
-    };
-    this.listItem();
 
 };//------ end ViewModel
 
