@@ -104,24 +104,33 @@ var ViewModel = function() {
 
                 var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
-                var image = 'img/white-pin.png';
+                // var image = 'img/white-pin.png';
+                // var clicked = 'img/red-pin.png';
                 var marker = new google.maps.Marker({
                     position: loc,
-                    icon: image,
+                    icon: 'img/white-pin.png',
                     id: i
                 });
 
                 DataModel.markerArray.push(marker);
-                // render
+
+                // make marker red on click
+                google.maps.event.addListener(marker, 'click', (function(item) {
+                    return function() {
+                        self.selectItem(item);
+                        DataModel.markerArray[item].setIcon(icon = 'img/red-pin.png');
+                        for (var i = 0; i < DataModel.markerArray.length; i++) {
+                            //check that we don't reset the selected marker
+                            if (i !== item) {
+                                DataModel.markerArray[i].setIcon(icon = 'img/white-pin.png');
+                            }
+                        }
+                    };
+                })(i));
+
+                // render markers
                 marker.setMap(map);
-            };
-
-            //NOT WORKING
-            google.maps.event.addListener(marker, 'click', function() {
-                marker.setIcon(icon = clicked);
-                console.log('test: markerclick');
-            });
-
+            }
         };
 
         // set marker img to red on mouseover
@@ -138,6 +147,7 @@ var ViewModel = function() {
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
+            // info window content (move to model?)
             var yelpInfo = '<div class="info-window">' + '<h4>' + item.name + '</h4><div><img src="' + item.rating + '"></div><div>' + item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' + item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' + item.text + '"</span><span><a href="' + item.url + '" target="blank">more info</a></span></div></div>';
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
@@ -147,9 +157,7 @@ var ViewModel = function() {
             infowindow.setMap(map);
             // console.log('test: infowindow');
             // console.log(item);
-
-
-        }
+        };
 
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
