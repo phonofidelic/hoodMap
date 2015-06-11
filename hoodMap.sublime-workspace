@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"Mar",
+				"markerArray"
+			],
+			[
+				"sele",
+				"selectItem"
+			],
+			[
+				"MA",
+				"markerArray"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"ma",
+				"max-width"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"marker",
+				"markerArray"
+			],
+			[
+				"mar",
+				"markerArray"
+			],
+			[
+				"DA",
+				"DataModel"
+			],
+			[
 				"bo",
 				"bower_components"
 			],
@@ -24,10 +64,6 @@
 				"infowindow"
 			],
 			[
-				"sele",
-				"selectMarker"
-			],
-			[
 				"clear",
 				"clearMarker"
 			],
@@ -42,10 +78,6 @@
 			[
 				"yelp",
 				"yelpRequest"
-			],
-			[
-				"add",
-				"addListener"
 			],
 			[
 				"goog",
@@ -224,10 +256,6 @@
 				"nonceMaker"
 			],
 			[
-				"cons",
-				"consumerSecret"
-			],
-			[
 				"js",
 				"js"
 			],
@@ -290,10 +318,6 @@
 			[
 				"select",
 				"selectCatDiv"
-			],
-			[
-				"mar",
-				"margin-right"
 			],
 			[
 				"append",
@@ -366,10 +390,6 @@
 			[
 				"newN",
 				"newNoteDate"
-			],
-			[
-				"ma",
-				"margin"
 			],
 			[
 				"im",
@@ -494,26 +514,6 @@
 			[
 				"m",
 				"mail"
-			],
-			[
-				"Msg",
-				"msgHTML"
-			],
-			[
-				"php",
-				"php"
-			],
-			[
-				"me",
-				"message"
-			],
-			[
-				"l",
-				"list_view_html"
-			],
-			[
-				"for",
-				"foreach	foreach …"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4265,
+				"buffer_size": 4294,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 1592,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +539,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 10755,
+				"buffer_size": 9979,
 				"line_ending": "Unix"
 			}
 		}
@@ -560,18 +568,19 @@
 	},
 	"file_history":
 	[
+		"/Users/chris/catClicker/js/app.js",
+		"/Users/chris/hoodMap/info-window.html",
+		"/Users/chris/hoodMap/css/style.css",
 		"/Users/chris/hoodMap/README.md",
 		"/Users/chris/hoodMap/.gitignore",
 		"/Users/chris/hoodMap/js/app.js",
 		"/Users/chris/Desktop/master_index.html",
 		"/Users/chris/Desktop/app-master.js",
 		"/Users/chris/hoodMap/yelp-test/yelpapi.js",
-		"/Users/chris/hoodMap/css/style.css",
 		"/Users/chris/hoodMap/yelp-test/yelptest.html",
 		"/Users/chris/hoodMap/yelp-test/ORM.js",
 		"/Users/chris/hoodMap/js/notes",
 		"/Users/chris/Desktop/index-master.html",
-		"/Users/chris/hoodMap/info-window.html",
 		"/Users/chris/phonofidelic/phonofidelic.github.io/index.html",
 		"/Users/chris/hoodMap/js/yelpRequestTest.js",
 		"/Users/chris/hoodMap/eventfull api key",
@@ -686,8 +695,7 @@
 		"/Users/chris/phonofidelic/phonofidelic.github.io/js/XMLHttpRequest.js",
 		"/Users/chris/phonofidelic/phonofidelic.github.io/js/jQuery.js",
 		"/Users/chris/frontend-nanodegree-arcade-game/README.md",
-		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap.css.map",
-		"/Users/chris/phonofidelic/phonofidelic.github.io/js/phonoH"
+		"/Users/chris/frameworks/bootstrap-3.3.2-dist/css/bootstrap.css.map"
 	],
 	"find":
 	{
@@ -795,15 +803,15 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 4265,
+						"buffer_size": 4294,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2509,
-								2509
+								2588,
+								2588
 							]
 						],
 						"settings":
@@ -902,8 +910,125 @@
 							"translate_tabs_to_spaces": false,
 							"word_wrap": false
 						},
-						"translation.x": 242.0,
-						"translation.y": 510.0,
+						"translation.x": 1.0,
+						"translation.y": 15.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"settings":
+					{
+						"buffer_size": 1592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								636,
+								636
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -915,19 +1040,19 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "js/app.js",
 					"settings":
 					{
-						"buffer_size": 10755,
+						"buffer_size": 9979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1364,
-								1364
+								5864,
+								5864
 							]
 						],
 						"settings":
@@ -1027,7 +1152,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 569.0,
+						"translation.y": 2684.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

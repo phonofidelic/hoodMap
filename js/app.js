@@ -148,7 +148,14 @@ var ViewModel = function() {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
             // info window content (move to model?)
-            var yelpInfo = '<div class="info-window">' + '<h4>' + item.name + '</h4><div><img src="' + item.rating + '"></div><div>' + item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' + item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' + item.text + '"</span><span><a href="' + item.url + '" target="blank">more info</a></span></div></div>';
+            var yelpInfo = '<div class="info-window">' +'<h4>' +
+                item.name + '</h4><div><img src="' +
+                item.rating + '"></div><div>' +
+                item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' +
+                item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' +
+                item.text + '"</span><span><a href="' +
+                item.url + '" target="blank">more info</a></span></div></div>';
+
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
                 content: yelpInfo,
