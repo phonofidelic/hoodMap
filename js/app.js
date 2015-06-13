@@ -4,31 +4,25 @@ var DataModel = {
 
     selectedItem: null,
     foodList: ko.observableArray([]),
-    markerArray: []
-
-	// Google Map
-
-	// wiki-data
-
-    // yelp
-
+    markerArray: [],
+    currentLoc: null
 };
 
-// Result object prototype
-var ResultObject = function(data) {
-    this.name = ko.observable(data.name);
-    this.web = ko.observable(data.web);
-    this.address = ko.observableArray(data.address);
-    this.phone = ko.observable(data.phone);
-    this.img = ko.observable(data.img);
-    this.rating = ko.observable(data.rating);
-    this.infoLink = ko.observable(data.infoLink);
-};
+// // Result object prototype
+// var ResultObject = function(data) {
+//     this.name = ko.observable(data.name);
+//     this.web = ko.observable(data.web);
+//     this.address = ko.observableArray(data.address);
+//     this.phone = ko.observable(data.phone);
+//     this.img = ko.observable(data.img);
+//     this.rating = ko.observable(data.rating);
+//     this.infoLink = ko.observable(data.infoLink);
+// };
 
 // Controller
 var ViewModel = function() {
 	var self = this;
-    this.srcInput = ko.observable("");
+    // this.srcInput = ko.observable("");
 
     // Scroll down to map on click (or enter)
     this.scrollDown = function (){
@@ -90,9 +84,9 @@ var ViewModel = function() {
 
             // check if request has been sent
             // if not, send request
-            if (self.requestSent != true) { //TODO-------------------------------- fix to reset Yelp request results on new search
-                self.yelpRequest();
-            }
+            // if (self.requestSent != true) { //TODO-------------------------------- fix to reset Yelp request results on new search
+            //     self.yelpRequest();
+            // }
         };
 
         // Create map markers
@@ -171,8 +165,12 @@ var ViewModel = function() {
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
 
+        this.foodSearch = ko.observable('');
+
+
     // Yelp AJAX request #####################################
     this.yelpRequest = function() {
+
         // Random nonce generator
         this.nonceMaker = function() {
             return (Math.floor(Math.random() * 1e12).toString());
@@ -180,6 +178,7 @@ var ViewModel = function() {
 
         // yelp base-url
         this.yelp_url = 'http://api.yelp.com/v2/search/';
+
 
         this.consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
         this.tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
@@ -193,7 +192,7 @@ var ViewModel = function() {
             oauth_version: '1.0',
             callback: 'cb',
             tearm: 'food', //OPTION/TODO----------------------------------------- search term
-            location: address //------------------------------------------------- bind location to search input value
+            location: DataModel.currentLoc //------------------------------------------------- bind location to search input value
         };
 
         // appends generated oauth-signature to parameters obj
@@ -252,13 +251,32 @@ var ViewModel = function() {
     // };
 
     // selects a list item on click -------------------------------- SELECTOR
+    // and updated DataModel.selectedItem
     this.selectItem = function(item) {
         DataModel.selectedItem = item;
         console.log(item);
         return item;
     };
 
-    // Ko array containing drop-cown menu items
+    this.test = function(item) {
+        var loc = document.getElementById('src-input').value;
+        DataModel.currentLoc = loc;
+        console.log(loc);
+        codeAddress();
+        scrollDown();
+        self.yelpRequest();
+    };
+
+    // this.yelpRequest.settings.data.tearm = ko.observable('food');
+    // this.foodSearch = ko.observable('food');
+
+    // this.foodSearch = function() {
+    //     var foodInput = document.getElementById('food-src-input').value;
+    //     return foodInput;
+    //     $('#bajskorv').append(foodInput);
+    // };
+
+    // Ko array containing drop-cown menu items------------------------------------------- REDUNDANT???
     this.foodList = DataModel.foodList;
 
 

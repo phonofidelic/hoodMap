@@ -17,11 +17,12 @@
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4" id="src-div">
 
+				<!-- initial search form -->
 				<div class="input-group input-group-lg">
 					<form id="src-form" data-bind="submit: codeAddress">
 						<input type="text" class="form-control" placeholder="where to?" id="src-input">
 						<span class="input-group-btn">
-							<button class="btn btn-default" id="src-button" type="submit">go!</button>
+							<button class="btn btn-default" id="src-button" type="submit" data-bind="click: test">go!</button>
 						</span>
 					</form>
 				</div>
@@ -50,8 +51,18 @@
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
 				         	<button class="btn btn-large dropdown-toggle" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: foodMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
-				         	<ul class="dropdown-menu" role="menu" data-bind="foreach: foodList">
-				            	<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
+				         	<ul class="dropdown-menu" role="menu">
+
+				         		<!-- secondary search form -->
+				         		<div class="input-group input-group-lg">
+				         			<form id="food-src">
+				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input"/>
+				         			</form>
+				         		</div>
+
+				         		<ul data-bind="foreach: foodList">
+				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
+				         		</ul>
 				         	</ul>
 				        </li>
 				        <li class="dropdown">
@@ -80,13 +91,13 @@
 			</div>
 		</div>
 		<div class="row text-blocks">
-			<div class="col-xs-12 col-sm-3 col-md-3">#.left-col#</div>
+			<div class="col-xs-12 col-sm-3 col-md-3" data-bind="text: ko.toJSON(foodSearch, null, 2)">#.left-col#</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">#.center-col#</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">#.right-col#</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-	<script type="text/javascript" src="bower_components/knockout.js/knockout.js"></script>
+	<script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="bower_components/superslides/dist/jquery.superslides.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
