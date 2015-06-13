@@ -4,7 +4,7 @@ var DataModel = {
 
     selectedItem: null,
     foodList: ko.observableArray([]),
-    markerArray: [],
+    markerArray: ko.observableArray([]),
     currentLoc: null
 };
 
@@ -106,17 +106,17 @@ var ViewModel = function() {
                     id: i
                 });
 
-                DataModel.markerArray.push(marker);
+                DataModel.markerArray().push(marker);
 
                 // make marker red on click
                 google.maps.event.addListener(marker, 'click', (function(item) {
                     return function() {
                         self.selectItem(item);
-                        DataModel.markerArray[item].setIcon(icon = 'img/red-pin.png');
-                        for (var i = 0; i < DataModel.markerArray.length; i++) {
+                        DataModel.markerArray()[item].setIcon(icon = 'img/red-pin.png');
+                        for (var i = 0; i < DataModel.markerArray().length; i++) {
                             //check that we don't reset the selected marker
                             if (i !== item) {
-                                DataModel.markerArray[i].setIcon(icon = 'img/white-pin.png');
+                                DataModel.markerArray()[i].setIcon(icon = 'img/white-pin.png');
                             }
                         }
                     };
@@ -129,12 +129,12 @@ var ViewModel = function() {
 
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
-            DataModel.markerArray[item.id].setIcon(icon = 'img/red-pin.png');
+            DataModel.markerArray()[item.id].setIcon(icon = 'img/red-pin.png');
         };
 
         // set marker img to white on mouseout
         self.mouseoutMarker = function(item) {
-            DataModel.markerArray[item.id].setIcon(icon = 'img/white-pin.png');
+            DataModel.markerArray()[item.id].setIcon(icon = 'img/white-pin.png');
         };
 
         // gets clicked list-item object as input
@@ -206,8 +206,16 @@ var ViewModel = function() {
             cache: true,
             dataType: 'jsonp',
             success: function(results) {
+                // Clear old result items and markers befor sending new request (if they exist)
+                if (DataModel.foodList().length > 0) {
+                    DataModel.foodList.removeAll();
+                }
+                if (DataModel.markerArray().length > 0) {
+                    DataModel.markerArray.removeAll();
+                }
+
                 // process results
-                // console.log(results);
+
                 // loop through Yelp businesses array
                 for (var i = 0; i < results.businesses.length; i++) {
 
@@ -258,7 +266,7 @@ var ViewModel = function() {
         return item;
     };
 
-    this.test = function(item) {
+    this.currentLoc = function(item) {
         var loc = document.getElementById('src-input').value;
         DataModel.currentLoc = loc;
         console.log(loc);
