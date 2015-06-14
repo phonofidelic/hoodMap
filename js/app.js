@@ -148,7 +148,7 @@ var ViewModel = function() {
                 item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' +
                 item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' +
                 item.text + '"</span><span><a href="' +
-                item.url + '" target="blank">more info</a></span></div></div>';
+                item.url + '" target="blank">more info at <img src="img/yelpLogo.png"></a></span></div></div>';
 
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
