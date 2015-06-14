@@ -102,8 +102,17 @@ var ViewModel = function() {
                 // var clicked = 'img/red-pin.png';
                 var marker = new google.maps.Marker({
                     position: loc,
-                    icon: 'img/white-pin.png',
-                    id: i
+                    icon: {
+                        path: SQUARE_PIN,
+                        fillColor: '#8bb85c',
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        strokeWeight: 1,
+                        scale: 1/3
+                    },
+                    label: '<i class="map-icon-food"></i>',
+                    id: i,
+                    zIndex: 1
                 });
 
                 DataModel.markerArray().push(marker);
@@ -112,11 +121,25 @@ var ViewModel = function() {
                 google.maps.event.addListener(marker, 'click', (function(item) {
                     return function() {
                         self.selectItem(item);
-                        DataModel.markerArray()[item].setIcon(icon = 'img/red-pin.png');
+                        DataModel.markerArray()[item].setIcon(icon = {
+                            path: SQUARE_PIN,
+                            fillColor: '#e03934',
+                            fillOpacity: 1,
+                            strokeColor: '#ffffff',
+                            strokeWeight: 1,
+                            scale: 1/3
+                        });
                         for (var i = 0; i < DataModel.markerArray().length; i++) {
                             //check that we don't reset the selected marker
                             if (i !== item) {
-                                DataModel.markerArray()[i].setIcon(icon = 'img/white-pin.png');
+                                DataModel.markerArray()[i].setIcon(icon = {
+                                    path: SQUARE_PIN,
+                                    fillColor: '#8bb85c',
+                                    fillOpacity: 1,
+                                    strokeColor: '#ffffff',
+                                    strokeWeight: 1,
+                                    scale: 1/3
+                                });
                             }
                         }
                     };
@@ -129,12 +152,28 @@ var ViewModel = function() {
 
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
-            DataModel.markerArray()[item.id].setIcon(icon = 'img/red-pin.png');
+            DataModel.markerArray()[item.id].setIcon(icon = {
+                path: SQUARE_PIN,
+                fillColor: '#e03934',
+                fillOpacity: 1,
+                strokeColor: '#ffffff',
+                strokeWeight: 1,
+                scale: 1/3
+            });
+            DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
         };
 
         // set marker img to white on mouseout
         self.mouseoutMarker = function(item) {
-            DataModel.markerArray()[item.id].setIcon(icon = 'img/white-pin.png');
+            DataModel.markerArray()[item.id].setIcon(icon = {
+                        path: SQUARE_PIN,
+                        fillColor: '#8bb85c',
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        strokeWeight: 1,
+                        scale: 1/3
+                        });
+            DataModel.markerArray()[item.id].setZIndex(zIindex = 1);
         };
 
         // gets clicked list-item object as input
