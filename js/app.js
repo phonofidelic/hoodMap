@@ -100,7 +100,9 @@ var ViewModel = function() {
 
                 // var image = 'img/white-pin.png';
                 // var clicked = 'img/red-pin.png';
-                var marker = new google.maps.Marker({
+                var marker = new Marker({
+                    map: map,
+                    title: 'Map Icons',
                     position: loc,
                     icon: {
                         path: SQUARE_PIN,
@@ -110,9 +112,10 @@ var ViewModel = function() {
                         strokeWeight: 1,
                         scale: 1/3
                     },
-                    label: '<i class="map-icon-food"></i>',
                     id: i,
-                    zIndex: 1
+                    zIndex: 9,
+                    label: '<i class="map-icon-food"></i>',
+                    anchorPoint: (1, 1)
                 });
 
                 DataModel.markerArray().push(marker);
@@ -192,7 +195,7 @@ var ViewModel = function() {
             // create new info window object for clicked item
             var infowindow = new google.maps.InfoWindow({
                 content: yelpInfo,
-                position: loc
+                position: loc,
             });
 
             infowindow.setMap(map);
@@ -245,6 +248,7 @@ var ViewModel = function() {
             cache: true,
             dataType: 'jsonp',
             success: function(results) {
+                console.log(results);
                 // Clear old result items and markers befor sending new request (if they exist)
                 if (DataModel.foodList().length > 0) {
                     DataModel.foodList.removeAll();
@@ -263,6 +267,20 @@ var ViewModel = function() {
                         lng: results.businesses[i].location.coordinate.longitude
                     };
 
+                    // function() {
+                    //     var categorie = results.businesses[i].categories;
+                    //     for (var item in categorie) {
+                    //         if (item.length > 0) {
+                    //             for (var i = 0; i < item.length; i++) {
+                    //                 return i;
+                    //             }
+                    //         }
+                    //     }
+                    // };
+
+                    // var cat = results.businesses[i].categories;
+                    // console.log(cat);
+
                     // create an object for each business and push each object to the foodList array
                     DataModel.foodList.push({
                         name: results.businesses[i].name,
@@ -274,8 +292,10 @@ var ViewModel = function() {
                         text: results.businesses[i].snippet_text,
                         location: foodLatLng,
                         id: i,
-                        google_marker: {}
+                        google_marker: {},
+                        categories: results.businesses[i].categories
                     });
+
                 };
 
                 // make Yelp results globaly accessible
