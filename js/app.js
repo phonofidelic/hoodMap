@@ -114,7 +114,14 @@ var ViewModel = function() {
                     },
                     id: i,
                     zIndex: 9,
-                    label: '<i class="map-icon-food"></i>',
+                    label: (function(){
+                        // check if business is a cafe
+                        if (DataModel.foodList()[i].categories[0][0] == "Coffee & Tea") {
+                            return '<i class="map-icon-cafe"></i>';
+                        } else {
+                            return '<i class="map-icon-restaurant"></i>';
+                        }
+                    })(),
                     anchorPoint: (1, 1)
                 });
 
