@@ -274,20 +274,6 @@ var ViewModel = function() {
                         lng: results.businesses[i].location.coordinate.longitude
                     };
 
-                    // function() {
-                    //     var categorie = results.businesses[i].categories;
-                    //     for (var item in categorie) {
-                    //         if (item.length > 0) {
-                    //             for (var i = 0; i < item.length; i++) {
-                    //                 return i;
-                    //             }
-                    //         }
-                    //     }
-                    // };
-
-                    // var cat = results.businesses[i].categories;
-                    // console.log(cat);
-
                     // create an object for each business and push each object to the foodList array
                     DataModel.foodList.push({
                         name: results.businesses[i].name,
@@ -340,15 +326,6 @@ var ViewModel = function() {
         scrollDown();
         self.yelpRequest();
     };
-
-    // this.yelpRequest.settings.data.tearm = ko.observable('food');
-    // this.foodSearch = ko.observable('food');
-
-    // this.foodSearch = function() {
-    //     var foodInput = document.getElementById('food-src-input').value;
-    //     return foodInput;
-    //     $('#bajskorv').append(foodInput);
-    // };
 
     // Ko array containing drop-cown menu items------------------------------------------- REDUNDANT???
     this.foodList = DataModel.foodList;
