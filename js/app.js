@@ -5,19 +5,10 @@ var DataModel = {
     selectedItem: null,
     foodList: ko.observableArray([]),
     markerArray: ko.observableArray([]),
-    currentLoc: null
+    currentLoc: null,
+    categories: ko.observableArray([]),
+    foodSearch: ko.observable('')
 };
-
-// // Result object prototype
-// var ResultObject = function(data) {
-//     this.name = ko.observable(data.name);
-//     this.web = ko.observable(data.web);
-//     this.address = ko.observableArray(data.address);
-//     this.phone = ko.observable(data.phone);
-//     this.img = ko.observable(data.img);
-//     this.rating = ko.observable(data.rating);
-//     this.infoLink = ko.observable(data.infoLink);
-// };
 
 // Controller
 var ViewModel = function() {
@@ -116,12 +107,17 @@ var ViewModel = function() {
                     zIndex: 9,
                     label: (function(){
                         // check if business is a cafe
-                        if (DataModel.foodList()[i].categories[0][0] == "Coffee & Tea") {
+                        if (DataModel.categories()[i].indexOf("Coffee") > -1) {
                             return '<i class="map-icon-cafe"></i>';
+                        // check if buisness is a bar
+                        } else if (DataModel.categories()[i].indexOf("bars") > -1) {
+                                return '<i class="map-icon-night-club"></i>';
+                        // default to restaurant
                         } else {
                             return '<i class="map-icon-restaurant"></i>';
                         }
                     })(),
+
                     anchorPoint: (1, 1)
                 });
 
@@ -206,6 +202,9 @@ var ViewModel = function() {
             });
 
             infowindow.setMap(map);
+
+            // logs list item's business categorie from DataModel
+            console.log(DataModel.categories[item.id]);
         };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
@@ -214,7 +213,21 @@ var ViewModel = function() {
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
 
-        this.foodSearch = ko.observable('');
+
+    // send input from secondary search to ko.observable DataModel.foodsearch
+    this.secondarySearch = (function() {
+        document.addEventListener(document.getElementById('food-src-input'), function(e) {
+            // console.log(e.target.value);
+            DataModel.foodSearch = e.target.value;
+        });
+    })();
+
+    this.foodSearch = DataModel.foodSearch();
+
+    this.searchFilter = function() {
+        //get input value from foodSearch
+
+    };
 
 
     // Yelp AJAX request #####################################
@@ -240,7 +253,10 @@ var ViewModel = function() {
             oauth_signature_method: 'HMAC-SHA1',
             oauth_version: '1.0',
             callback: 'cb',
-            tearm: 'food', //OPTION/TODO----------------------------------------- search term
+            tearm: '', //OPTION/TODO----------------------------------------- search term
+            limit: 20,
+            radius_filter: 40000,
+            category_filter: 'food,coffee,bars',
             location: DataModel.currentLoc //------------------------------------------------- bind location to search input value
         };
 
@@ -289,6 +305,12 @@ var ViewModel = function() {
                         categories: results.businesses[i].categories
                     });
 
+                    // push each items categorie to DataModel.categories array
+                    var categories = (function() {
+                        if (results.businesses[i].categories[0] != undefined) {
+                            DataModel.categories.push(results.businesses[i].categories[0].toString());
+                        }
+                    })();
                 };
 
                 // make Yelp results globaly accessible
