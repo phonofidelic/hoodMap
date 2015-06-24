@@ -23,9 +23,23 @@ li {
 li.dropdown {
 	margin-bottom: 0px;
 }
+input {
+	background-color: #fff;
+}
 
 .btn {
 	border-radius: 0px;
+}
+
+.cell-item {
+	background-color: #e9e5dc;
+	margin: 4px;
+	padding: 2px;
+	border-radius: 8px;
+}
+
+.cell-container {
+	margin: 5px;
 }
 
 .container {
@@ -43,6 +57,12 @@ li.dropdown {
 	background-color: #c8d8a8;
 }
 
+.form-control:focus {
+	border-color: #F58A2C;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .navbar {
 	margin-bottom: 0px;
 }
@@ -58,6 +78,10 @@ li.dropdown {
 .info-window {
 	max-width: 200px;
 	text-align: center;
+}
+.grid-sizer,
+.grid-item {
+	width: 20%;
 }
 
 .map-icon-food {
@@ -106,6 +130,10 @@ body,
 #logo {
 	text-align: right;
 	/*padding-top: 80vh;*/
+	color: #F58A2C;
+}
+
+#location-title {
 	color: #F58A2C;
 }
 

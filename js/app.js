@@ -7,8 +7,20 @@ var DataModel = {
     markerArray: ko.observableArray([]),
     currentLoc: null,
     categories: ko.observableArray([]),
-    foodSearch: ko.observable('')
+    foodSearch: ko.observable(''),
+    gridBlocks: ko.observableArray([]),
+    markup: '<img src="'+'">'
 };
+
+
+DataModel.markup.className ='grid-item';
+
+// DataModel.div = document.createElement('div');
+//             div.className = 'grid-item';
+//             cellHeader = document.createElement('h4');
+//             cellHeader.appendChild(DataModel.foodList()[].name);
+
+
 
 // Controller
 var ViewModel = function() {
@@ -23,6 +35,38 @@ var ViewModel = function() {
         // console.log('scrollDown');
     };
     $('#src-form').submit(this.scrollDown);
+
+    //init masonry
+    this.masonryLayout = {
+        init: (function(){
+            $('.grid').masonry({
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer'
+            });
+        })(),
+        render: function() {
+            for(var i = 0; i < DataModel.foodList().length; i++) {
+                var gridBlock = document.createElement('div');
+                gridBlock.setAttribute('class', 'grid-item');
+                gridBlock.id = 'item' + i;
+                DataModel.gridBlocks.push(gridBlock);
+            }
+         console.log('test gridmaker');
+        }
+    };
+
+    this.gridMaker = function() {
+
+        for (var i = 0; i < DataModel.foodList().length; i++) {
+            var content = document.createElement('div');
+            content.className = 'grid-item';
+            this.contentMarkup.push(content);
+
+        }
+    };
+
+    this.contentMarkup = ko.observable();
+    this.contentMarkup(DataModel.markup);
 
     // Superslides
     this.superSlides = function() {
@@ -71,13 +115,6 @@ var ViewModel = function() {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
-            // console.log('codeAddress');
-
-            // check if request has been sent
-            // if not, send request
-            // if (self.requestSent != true) { //TODO-------------------------------- fix to reset Yelp request results on new search
-            //     self.yelpRequest();
-            // }
         };
 
         // Create map markers
@@ -107,10 +144,10 @@ var ViewModel = function() {
                     zIndex: 9,
                     label: (function(){
                         // check if business is a cafe
-                        if (DataModel.categories()[i].indexOf("Coffee") > -1) {
+                        if (DataModel.categories()[i].item.indexOf("Coffee") > -1) {
                             return '<i class="map-icon-cafe"></i>';
                         // check if buisness is a bar
-                        } else if (DataModel.categories()[i].indexOf("bars") > -1) {
+                        } else if (DataModel.categories()[i].item.indexOf("bars") > -1) {
                                 return '<i class="map-icon-night-club"></i>';
                         // default to restaurant
                         } else {
@@ -186,7 +223,7 @@ var ViewModel = function() {
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
-            // info window content (move to model?)
+            // info window content ---------------------------------------------------------------(move to model?)
             var yelpInfo = '<div class="info-window">' +'<h4>' +
                 item.name + '</h4><div><img src="' +
                 item.rating + '"></div><div>' +
@@ -285,7 +322,7 @@ var ViewModel = function() {
                 // loop through Yelp businesses array
                 for (var i = 0; i < results.businesses.length; i++) {
 
-                    var foodLatLng = {
+                    var latLng = {
                         lat: results.businesses[i].location.coordinate.latitude,
                         lng: results.businesses[i].location.coordinate.longitude
                     };
@@ -299,16 +336,19 @@ var ViewModel = function() {
                         img: results.businesses[i].image_url,
                         rating: results.businesses[i].rating_img_url,
                         text: results.businesses[i].snippet_text,
-                        location: foodLatLng,
+                        location: latLng,
                         id: i,
                         google_marker: {},
                         categories: results.businesses[i].categories
                     });
 
-                    // push each items categorie to DataModel.categories array
+                    // push each items categories as a string object to DataModel.categories array
                     var categories = (function() {
-                        if (results.businesses[i].categories[0] != undefined) {
-                            DataModel.categories.push(results.businesses[i].categories[0].toString());
+                        if (results.businesses[i].categories != undefined) {
+                            categorieArr = results.businesses[i].categories.toString();
+                            DataModel.categories.push(
+                                {item: categorieArr}
+                                );
                         }
                     })();
                 };
@@ -352,6 +392,7 @@ var ViewModel = function() {
     // Ko array containing drop-cown menu items------------------------------------------- REDUNDANT???
     this.foodList = DataModel.foodList;
 
+    this.locationInput = ko.observable();
 
 };//------ end ViewModel
 
