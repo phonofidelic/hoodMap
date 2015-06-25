@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4"></script>
 	<script type="text/javascript" src="Map-Icons-master/js/map-icons.js"></script>
 	<script type="text/javascript" src="bower_components/oauth-signature/dist/oauth-signature.js"></script>
+	<script type="text/javascript" src="bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
 </head>
 <body>
 	<div class="container" id="page-start">
@@ -58,7 +59,7 @@
 				         		<!-- secondary search form -->
 				         		<div class="input-group input-group-lg">
 				         			<form id="food-src">
-				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input"/>
+				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input">
 				         			</form>
 				         		</div>
 
@@ -68,6 +69,25 @@
 				         	</ul>
 				        </li>
 
+			     	</ul>
+
+			     	<ul class="nav navbar-nav">
+				        <li class="dropdown">
+				         	<button class="btn btn-large dropdown-toggle" id="nav2" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: artMarkers"><h3>see/hear</h3><span class="caret"></span></button>
+				         	<ul class="dropdown-menu" role="menu">
+
+				         		<!-- secondary search form -->
+				         		<div class="input-group input-group-lg">
+				         			<form id="food-src">
+				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input">
+				         			</form>
+				         		</div>
+
+				         		<ul data-bind="foreach: artsList">
+				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
+				         		</ul>
+				         	</ul>
+				        </li>
 
 			     	</ul>
 
@@ -90,25 +110,64 @@
 
 		<div class="row text-blocks">
 
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cell-container" data-bind="foreach: foodList">
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 cell-item">
+			<div class="row cell-container" data-bind="foreach: foodList">
 
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
+						<div class="cell-inner-food">
 							<h4 data-bind="html: $data.name"></h4>
-							<div>
+							<div class="cell-rating">
 								<img data-bind="attr: {src: $data.rating}">
 							</div>
-							<div class="col-md-6">
+							<div class="cell-img">
 								<img data-bind="attr: {src: $data.img}">
 							</div>
-							<div class="col-md-6">
+							<div class="cell-text">
 								<p data-bind="text: $data.text"></p>
 							</div>
+						</div>
 					</div>
-				</div>
+
 			</div>
 
-		</div>
+			<div class="row cell-container" data-bind="foreach: artsList">
+
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
+						<div class="cell-inner-art">
+							<h4 data-bind="html: $data.name"></h4>
+							<div class="cell-rating">
+								<img data-bind="attr: {src: $data.rating}">
+							</div>
+							<div class="cell-img">
+								<img data-bind="attr: {src: $data.img}">
+							</div>
+							<div class="cell-text">
+								<p data-bind="text: $data.text"></p>
+							</div>
+						</div>
+					</div>
+
+			</div>
+
+
+
+<!-- 			<div class="row cell-container" data-bind="foreach: foodList">
+
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
+						<div class="cell-inner">
+							<h4 data-bind="html: $data.name"></h4>
+							<div class="cell-rating">
+								<img data-bind="attr: {src: $data.rating}">
+							</div>
+							<div class="cell-img">
+								<img data-bind="attr: {src: $data.img}">
+							</div>
+							<div class="cell-text">
+								<p data-bind="text: $data.text"></p>
+							</div>
+						</div>
+					</div>
+
+			</div> -->
 
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>

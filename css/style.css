@@ -31,15 +31,31 @@ input {
 	border-radius: 0px;
 }
 
-.cell-item {
+.cell-inner-food {
 	background-color: #e9e5dc;
-	margin: 4px;
-	padding: 2px;
-	border-radius: 8px;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 8px
+}
+
+.cell-inner-art {
+	background-color: #eadb9d;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 8px
+}
+
+.cell-item {
+	/*background-color: #e9e5dc;*/
+	margin: 0px;
+	padding: 0px;
+	/*border: solid black 1px;*/
+	/*border-radius: 8px;*/
 }
 
 .cell-container {
 	margin: 5px;
+	/*max-width: 200px;*/
 }
 
 .container {
