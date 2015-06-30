@@ -16,22 +16,21 @@
 <body>
 	<div class="container" id="page-start">
 		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-4">
-			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4" id="src-div">
+			<div class="col-xs-12 col-sm-12 col-md-12" id="logo"><h1>hoodMap</h1></div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
 
 				<!-- initial search form -->
-				<div class="input-group input-group-lg">
+				<div class="input-group input-group-lg" id="src-div">
 					<form id="src-form" data-bind="submit: codeAddress">
-						<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
 						<span class="input-group-btn">
+						<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
 							<button class="btn btn-default" id="src-button" type="submit" data-bind="click: currentLoc">go!</button>
 						</span>
 					</form>
 				</div>
 
 			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4" id="logo"><h1>hoodMap</h1></div>
+
 		</div>
 	</div>
 	<div class="container" id="page-main">
