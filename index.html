@@ -63,33 +63,20 @@
 				         			</form>
 				         		</div>
 
-				         		<ul data-bind="foreach: itemList">
+				         		<ul class="item-list" data-bind="foreach: itemList">
 				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
 				         		</ul>
-				         	</ul>
-				        </li>
 
-			     	</ul>
-
-			     	<ul class="nav navbar-nav">
-				        <li class="dropdown">
-				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav2" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>see/hear</h3><span class="caret"></span></button>
-				         	<ul class="dropdown-menu" role="menu">
-
-				         		<!-- secondary search form -->
-				         		<div class="input-group input-group-lg">
-				         			<form id="food-src">
-				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input">
-				         			</form>
+				         		<div class="list-scroll">
+			         				<button role="button" aria-expanded="false"><span class="caret"></span></button>
 				         		</div>
 
-				         		<ul data-bind="foreach: artsList">
-				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
-				         		</ul>
 				         	</ul>
 				        </li>
 
 			     	</ul>
+
+
 
 			     <div class="navbar-brand navbar-right" id="logo-2" href="#"><h1>hoodMap</h1></div>
 
@@ -104,7 +91,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<h3>Things to do in <span data-bind="text: locationInput" id="location-title"></span><span class="glyphicon glyphicon glyphicon-chevron-down"></span></h3>
+				<h3>Things to do in <span data-bind="text: locationInput" id="location-title"></span>:</h3>
 			</div>
 		</div>
 
@@ -113,13 +100,13 @@
 			<div class="row cell-container" data-bind="foreach: itemList"><!-- bind to $data.type (?) -->
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner-food">
+						<div class="cell-inner-food" data-bind="style: {backgroundImage: 'url('+$data.street_view+')'}">
 							<h4 data-bind="html: $data.name"></h4>
 							<div class="cell-rating">
 								<img data-bind="attr: {src: $data.rating}">
 							</div>
 							<div class="cell-img">
-								<img data-bind="attr: {src: $data.img}">
+								<!-- <img data-bind="attr: {src: $data.img}"> -->
 							</div>
 							<div class="cell-text">
 								<p data-bind="text: $data.text"></p>

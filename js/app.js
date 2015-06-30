@@ -5,8 +5,8 @@ var DataModel = {
     selectedItem: null,
     currentLoc: null,
     itemList: ko.observableArray([]),
-    foodList: ko.observableArray([]),
-    artsList: ko.observableArray([]),
+    // foodList: ko.observableArray([]),
+    // artsList: ko.observableArray([]),
     markerArray: ko.observableArray([]),
     // artMarkerArray: ko.observableArray([]),
     categories: ko.observableArray([]),
@@ -28,7 +28,7 @@ var ViewModel = function() {
         // console.log('scrollDown');
 
         // yelp requests are sent in the transition from landing page to main app interface -------------------send requests
-        // arguments: search parameters, array name, list type
+        // arguments: search parameters, list type
         self.yelpRequest('food,coffee,bars', 'food'); //DataModel.foodList
         self.yelpRequest('arts', 'art'); //DataModel.artsList
         // TODO: third request: hotels?/transportation?
@@ -58,7 +58,14 @@ var ViewModel = function() {
             self.mapOptions = {
                 center: new google.maps.LatLng(10, 200),
                 zoom: 14,
-                scrollwheel: false
+                scrollwheel: false,
+                mapTypeControl: false,
+                panControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.SMALL,
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                }
             };
             self.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -110,16 +117,9 @@ var ViewModel = function() {
                     position: loc,
                     icon: {
                         path: SQUARE_PIN,
-                        fillColor: (function(){
-                            // check type of item object and return corresponding icon color
-                            if (type == 'food') {
-                                return '#8bb85c';
-                            } else if (type == 'art') {
-                                return '#f1b235';
-                            }
-                        })(),
+                        fillColor: '#fff',
                         fillOpacity: 1,
-                        strokeColor: '#ffffff',
+                        strokeColor: '#000',
                         strokeWeight: 1,
                         scale: 1/3
                     },
@@ -166,9 +166,9 @@ var ViewModel = function() {
                             if (i !== item) {
                                 DataModel.markerArray()[i].setIcon(icon = {
                                     path: SQUARE_PIN,
-                                    fillColor: 'initial',
+                                    fillColor: '#fff',
                                     fillOpacity: 1,
-                                    strokeColor: '#ffffff',
+                                    strokeColor: '#000',
                                     strokeWeight: 1,
                                     scale: 1/3
                                 });
@@ -204,16 +204,9 @@ var ViewModel = function() {
             // if (item.type == 'food') {
                 DataModel.markerArray()[item.id].setIcon(icon = {
                             path: SQUARE_PIN,
-                            fillColor: (function(){
-                                // check type of item object and return corresponding icon color
-                                if (type == 'food') {
-                                    return '#8bb85c';
-                                } else if (type == 'art') {
-                                    return '#f1b235';
-                                }
-                            })(),
+                            fillColor: '#fff',
                             fillOpacity: 1,
-                            strokeColor: '#ffffff',
+                            strokeColor: '#000',
                             strokeWeight: 1,
                             scale: 1/3
                             });
@@ -272,6 +265,10 @@ var ViewModel = function() {
 
     // Yelp AJAX request #####################################
     this.yelpRequest = function(search, listType) {
+
+        if (DataModel.itemList().length > 0) {
+            DataModel.itemList.removeAll();
+        }
 
         // Random nonce generator
         this.nonceMaker = function() {
@@ -336,6 +333,7 @@ var ViewModel = function() {
                         url: results.businesses[i].url,
                         phone: results.businesses[i].display_phone,
                         img: results.businesses[i].image_url,
+                        street_view: 'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4&size=600x300&location='+results.businesses[i].location.display_address,
                         rating: results.businesses[i].rating_img_url,
                         text: results.businesses[i].snippet_text,
                         location: {

@@ -2,6 +2,10 @@
 	/*border: solid red 1px;*/
 }
 
+body {
+	box-sizing: border-box;
+}
+
 button {
 	background-color: rgba(255, 255, 255, 1);
 	border: none;
@@ -12,7 +16,8 @@ button {
 }*/
 
 ul{
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(255, 255, 255, 1);
+	padding: 0 0 0 0;
 }
 
 li {
@@ -27,15 +32,23 @@ input {
 	background-color: #fff;
 }
 
+h3 {
+	margin: 20px 0 20px;
+}
+
 .nav-button {
 	border-radius: 8px 8px 0 0;
 }
 
 .cell-inner-food {
-	background-color: #e9e5dc;
+	/*background-color: #e9e5dc;*/
 	margin: 10px;
 	padding: 10px;
-	border-radius: 8px
+	/*border: solid #CFB788 2px;*/
+	border-radius: 5px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: #fff;
 }
 
 .cell-inner-art {
@@ -49,8 +62,8 @@ input {
 	/*background-color: #e9e5dc;*/
 	margin: 0px;
 	padding: 0px;
-	/*border: solid black 1px;*/
-	/*border-radius: 8px;*/
+	border: none;
+	height: 100%;
 }
 
 .cell-container {
@@ -65,8 +78,14 @@ input {
 
 .dropdown-menu {
 	border-radius: 0px;
-	margin: 5px;
-	background-color: rgba(255, 255, 255, 0.75);
+	margin: 0px;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.item-list {
+	height: auto;
+	max-height: 70vh;
+	overflow-x: hidden;
 }
 
 .food-list-item:hover {
@@ -79,16 +98,16 @@ input {
 	box-shadow: none;
 }
 
+.list-scroll {
+	padding: auto;
+}
+
 .navbar {
 	margin-bottom: 0px;
 }
 
 .icon-bar {
 	border: solid black 1px;
-}
-
-.text-blocks {
-
 }
 
 .info-window {
@@ -116,8 +135,12 @@ input {
     height: 50px;
     font-size: 25px !important;
     text-align: center;
-    color: #FFFFFF;
+    color: #000;
     white-space: nowrap;
+}
+
+.text-blocks {
+	background-color: #e9e5dc;
 }
 
 /* specs for google maps */
