@@ -53,7 +53,7 @@
 
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
-				         	<button class="btn btn-large dropdown-toggle" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: foodMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
+				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
 				         	<ul class="dropdown-menu" role="menu">
 
 				         		<!-- secondary search form -->
@@ -63,7 +63,7 @@
 				         			</form>
 				         		</div>
 
-				         		<ul data-bind="foreach: foodList">
+				         		<ul data-bind="foreach: itemList">
 				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
 				         		</ul>
 				         	</ul>
@@ -73,7 +73,7 @@
 
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
-				         	<button class="btn btn-large dropdown-toggle" id="nav2" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: artMarkers"><h3>see/hear</h3><span class="caret"></span></button>
+				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav2" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>see/hear</h3><span class="caret"></span></button>
 				         	<ul class="dropdown-menu" role="menu">
 
 				         		<!-- secondary search form -->
@@ -110,7 +110,7 @@
 
 		<div class="row text-blocks">
 
-			<div class="row cell-container" data-bind="foreach: foodList">
+			<div class="row cell-container" data-bind="foreach: itemList"><!-- bind to $data.type (?) -->
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
 						<div class="cell-inner-food">
@@ -129,7 +129,7 @@
 
 			</div>
 
-			<div class="row cell-container" data-bind="foreach: artsList">
+<!-- 			<div class="row cell-container" data-bind="foreach: artsList">
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
 						<div class="cell-inner-art">
@@ -147,10 +147,10 @@
 					</div>
 
 			</div>
+ -->
 
 
-
-<!-- 			<div class="row cell-container" data-bind="foreach: foodList">
+<!-- 			<div class="row cell-container" data-bind="foreach: artsList">
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
 						<div class="cell-inner">

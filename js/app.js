@@ -3,12 +3,14 @@
 var DataModel = {
 
     selectedItem: null,
-    foodList: ko.observableArray([]),
-    markerArray: ko.observableArray([]),
     currentLoc: null,
+    itemList: ko.observableArray([]),
+    foodList: ko.observableArray([]),
+    artsList: ko.observableArray([]),
+    markerArray: ko.observableArray([]),
+    // artMarkerArray: ko.observableArray([]),
     categories: ko.observableArray([]),
     foodSearch: ko.observable(''),
-    artsList: ko.observableArray([]),
     srcType: ''
 };
 
@@ -24,8 +26,12 @@ var ViewModel = function() {
         scrollTop: $("#page-main").offset().top
         }, 800); //-------------------------------- set scroll speed
         // console.log('scrollDown');
-        self.eatSearch();
-        self.artsSearch();
+
+        // yelp requests are sent in the transition from landing page to main app interface -------------------send requests
+        // arguments: search parameters, array name, list type
+        self.yelpRequest('food,coffee,bars', 'food'); //DataModel.foodList
+        self.yelpRequest('arts', 'art'); //DataModel.artsList
+        // TODO: third request: hotels?/transportation?
     };
     $('#src-form').submit(this.scrollDown);
 
@@ -84,104 +90,41 @@ var ViewModel = function() {
         };
 
         // Create map markers
-        self.foodMarkers = function() {
-            // loop through foodLocation array
-            for (var i = 0; i < DataModel.foodList().length; i++) {
-
-                var item = DataModel.foodList()[i];
-
-                var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
-
-                // var image = 'img/white-pin.png';
-                // var clicked = 'img/red-pin.png';
-                var marker = new Marker({
-                    map: map,
-                    title: 'Map Icons',
-                    position: loc,
-                    icon: {
-                        path: SQUARE_PIN,
-                        fillColor: '#8bb85c',
-                        fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        strokeWeight: 1,
-                        scale: 1/3
-                    },
-                    id: i,
-                    zIndex: 9,
-                    label: (function(){
-                        // check if business is a cafe
-                        if (DataModel.categories()[i].item.indexOf("Coffee") > -1) {
-                            return '<i class="map-icon-cafe"></i>';
-                        // check if buisness is a bar
-                        } else if (DataModel.categories()[i].item.indexOf("bars") > -1) {
-                                return '<i class="map-icon-night-club"></i>';
-                        // default to restaurant
-                        } else {
-                            return '<i class="map-icon-restaurant"></i>';
-                        }
-                    })(),
-
-                    anchorPoint: (1, 1)
-                });
-
-                DataModel.markerArray().push(marker);
-
-                // make marker red on click
-                google.maps.event.addListener(marker, 'click', (function(item) {
-                    return function() {
-                        self.selectItem(item);
-                        DataModel.markerArray()[item].setIcon(icon = {
-                            path: SQUARE_PIN,
-                            fillColor: '#e03934',
-                            fillOpacity: 1,
-                            strokeColor: '#ffffff',
-                            strokeWeight: 1,
-                            scale: 1/3
-                        });
-                        for (var i = 0; i < DataModel.markerArray().length; i++) {
-                            //check that we don't reset the selected marker
-                            if (i !== item) {
-                                DataModel.markerArray()[i].setIcon(icon = {
-                                    path: SQUARE_PIN,
-                                    fillColor: '#8bb85c',
-                                    fillOpacity: 1,
-                                    strokeColor: '#ffffff',
-                                    strokeWeight: 1,
-                                    scale: 1/3
-                                });
-                            }
-                        }
-                    };
-                })(i));
-
-                // render markers
-                marker.setMap(map);
+        self.renderMarkers = function() {
+            // clear markerArray if there are objects in it
+            if (DataModel.markerArray().length > 0) {
+                DataModel.markerArray.removeAll();
             }
-        };
+            // loop through itemList
+            for (var i = 0; i < DataModel.itemList().length; i++) {
 
-        self.artMarkers = function() {
-            // loop through foodLocation array
-            for (var i = 0; i < DataModel.artsList().length; i++) {
+                //set up for itemMarker
+                var type = DataModel.itemList()[i].type;
+                item = DataModel.itemList()[i];
+                loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
-                var item = DataModel.artsList()[i];
-
-                var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
-
-                // var image = 'img/white-pin.png';
-                // var clicked = 'img/red-pin.png';
-                var marker = new Marker({
+                // create new Marker object
+                itemMarker = new Marker({
                     map: map,
                     title: 'Map Icons',
                     position: loc,
                     icon: {
                         path: SQUARE_PIN,
-                        fillColor: '#8bb85c',
+                        fillColor: (function(){
+                            // check type of item object and return corresponding icon color
+                            if (type == 'food') {
+                                return '#8bb85c';
+                            } else if (type == 'art') {
+                                return '#f1b235';
+                            }
+                        })(),
                         fillOpacity: 1,
                         strokeColor: '#ffffff',
                         strokeWeight: 1,
                         scale: 1/3
                     },
-                    id: i,
+                    id: 'food' + i,
+                    type: 'food',
                     zIndex: 9,
                     label: (function(){
                         // check if business is a cafe
@@ -190,19 +133,24 @@ var ViewModel = function() {
                         // check if buisness is a bar
                         } else if (DataModel.categories()[i].item.indexOf("bars") > -1) {
                                 return '<i class="map-icon-night-club"></i>';
+                        // check if buisness is a museum
+                        } else if (DataModel.categories()[i].item.indexOf("museum") > -1) {
+                                return '<i class="map-icon-museum"></i>';
+                        } else if (DataModel.categories()[i].item.indexOf("art, gallery") > -1) {
+                                return '<i class="map-icon-art-gallery"></i>';
                         // default to restaurant
                         } else {
                             return '<i class="map-icon-restaurant"></i>';
                         }
                     })(),
-
                     anchorPoint: (1, 1)
                 });
 
-                DataModel.markerArray().push(marker);
+                DataModel.itemList()[i].marker = itemMarker;
+                DataModel.markerArray().push(itemMarker);
 
                 // make marker red on click
-                google.maps.event.addListener(marker, 'click', (function(item) {
+                google.maps.event.addListener(itemMarker, 'click', (function(item) {
                     return function() {
                         self.selectItem(item);
                         DataModel.markerArray()[item].setIcon(icon = {
@@ -218,7 +166,7 @@ var ViewModel = function() {
                             if (i !== item) {
                                 DataModel.markerArray()[i].setIcon(icon = {
                                     path: SQUARE_PIN,
-                                    fillColor: '#8bb85c',
+                                    fillColor: 'initial',
                                     fillOpacity: 1,
                                     strokeColor: '#ffffff',
                                     strokeWeight: 1,
@@ -230,39 +178,52 @@ var ViewModel = function() {
                 })(i));
 
                 // render markers
-                marker.setMap(map);
+                itemMarker.setMap(map);
             }
         };
 
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
-            DataModel.markerArray()[item.id].setIcon(icon = {
-                path: SQUARE_PIN,
-                fillColor: '#e03934',
-                fillOpacity: 1,
-                strokeColor: '#ffffff',
-                strokeWeight: 1,
-                scale: 1/3
-            });
-            DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
+            var type = item.type;
+            // if (item.type == 'food') {
+                DataModel.markerArray()[item.id].setIcon(icon = {
+                    path: SQUARE_PIN,
+                    fillColor: '#e03934',
+                    fillOpacity: 1,
+                    strokeColor: '#ffffff',
+                    strokeWeight: 1,
+                    scale: 1/3
+                });
+                DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
+            // }
         };
 
         // set marker img to white on mouseout
         self.mouseoutMarker = function(item) {
-            DataModel.markerArray()[item.id].setIcon(icon = {
-                        path: SQUARE_PIN,
-                        fillColor: '#8bb85c',
-                        fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        strokeWeight: 1,
-                        scale: 1/3
-                        });
-            DataModel.markerArray()[item.id].setZIndex(zIindex = 1);
+            var type = item.type;
+            // if (item.type == 'food') {
+                DataModel.markerArray()[item.id].setIcon(icon = {
+                            path: SQUARE_PIN,
+                            fillColor: (function(){
+                                // check type of item object and return corresponding icon color
+                                if (type == 'food') {
+                                    return '#8bb85c';
+                                } else if (type == 'art') {
+                                    return '#f1b235';
+                                }
+                            })(),
+                            fillOpacity: 1,
+                            strokeColor: '#ffffff',
+                            strokeWeight: 1,
+                            scale: 1/3
+                            });
+                DataModel.markerArray()[item.id].setZIndex(zIindex = 1);
         };
 
         // gets clicked list-item object as input
         self.infoWindow = function(item) {
             var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+            var offset = new google.maps.Size(0, -25);
 
             // info window content ---------------------------------------------------------------(move to model?)
             var yelpInfo = '<div class="info-window">' +'<h4>' +
@@ -277,6 +238,7 @@ var ViewModel = function() {
             var infowindow = new google.maps.InfoWindow({
                 content: yelpInfo,
                 position: loc,
+                pixelOffset: offset
             });
 
             infowindow.setMap(map);
@@ -309,7 +271,7 @@ var ViewModel = function() {
 
 
     // Yelp AJAX request #####################################
-    this.yelpRequest = function(search) {
+    this.yelpRequest = function(search, listType) {
 
         // Random nonce generator
         this.nonceMaker = function() {
@@ -351,105 +313,51 @@ var ViewModel = function() {
             success: function(results) {
                 // if (DataModel.srcType == 'food') {
 
-                    //results of food search
-                    console.log(results);
+                //results of food search
+                console.log(results);
 
-                    // Clear old result items and markers befor sending new request (if they exist)
-                    if (DataModel.foodList.length > 0) {
-                        DataModel.foodList.removeAll();
-                    }
-                    if (DataModel.markerArray.length > 0) {
-                        DataModel.markerArray.removeAll();
-                    }
+                // Clear old result items and markers befor sending new request (if they exist)
+                if (DataModel.itemList.length > 0) {
+                    DataModel.itemList.removeAll();
+                }
+                if (DataModel.markerArray.length > 0) {
+                    DataModel.markerArray.removeAll();
+                }
 
-                    // process results
+                // process results
 
-                    // loop through Yelp businesses array
-                    for (var i = 0; i < results.businesses.length; i++) {
+                // loop through Yelp businesses array
+                for (var i = 0; i < results.businesses.length; i++) {
 
-                        var latLng = {
+                    // create an object for each business and push each object to the itemList array
+                    itemList.push({
+                        name: results.businesses[i].name,
+                        address: results.businesses[i].location.display_address,
+                        url: results.businesses[i].url,
+                        phone: results.businesses[i].display_phone,
+                        img: results.businesses[i].image_url,
+                        rating: results.businesses[i].rating_img_url,
+                        text: results.businesses[i].snippet_text,
+                        location: {
                             lat: results.businesses[i].location.coordinate.latitude,
                             lng: results.businesses[i].location.coordinate.longitude
-                        };
+                        },
+                        id: i,
+                        marker: {},
+                        type: listType,
+                        categories: results.businesses[i].categories
+                    });
 
-                        // create an object for each business and push each object to the foodList array
-                        DataModel.foodList.push({
-                            name: results.businesses[i].name,
-                            address: results.businesses[i].location.display_address,
-                            url: results.businesses[i].url,
-                            phone: results.businesses[i].display_phone,
-                            img: results.businesses[i].image_url,
-                            rating: results.businesses[i].rating_img_url,
-                            text: results.businesses[i].snippet_text,
-                            location: latLng,
-                            id: i,
-                            google_marker: {},
-                            categories: results.businesses[i].categories
-                        });
-
-                        // push each items categories as a string object to DataModel.categories array
-                        // var categories = (function() {
-                        //     if (results.businesses[i].categories != undefined) {
-                        //         categorieArr = results.businesses[i].categories.toString();
-                        //         DataModel.categories.push(
-                        //             {item: categorieArr}
-                        //             );
-                        //     }
-                        // })();
-                    }
-                // } && (DataModel.srcType == 'arts') {
-
-                    //results of art search---------------------------------------------------------------------artsSearch
-                    console.log(results);
-
-                    // Clear old result items and markers befor sending new request (if they exist)
-                    if (DataModel.artsList.length > 0) {
-                        DataModel.artsList.removeAll();
-                    }
-                    if (DataModel.markerArray.length > 0) {
-                        DataModel.markerArray.removeAll();
-                    }
-
-                    // process results
-
-                    // loop through Yelp businesses array
-                    for (var i = 0; i < results.businesses.length; i++) {
-
-                        var latLng = {
-                            lat: results.businesses[i].location.coordinate.latitude,
-                            lng: results.businesses[i].location.coordinate.longitude
-                        };
-
-                        // create an object for each business and push each object to the foodList array
-                        DataModel.artsList.push({
-                            name: results.businesses[i].name,
-                            address: results.businesses[i].location.display_address,
-                            url: results.businesses[i].url,
-                            phone: results.businesses[i].display_phone,
-                            img: results.businesses[i].image_url,
-                            rating: results.businesses[i].rating_img_url,
-                            text: results.businesses[i].snippet_text,
-                            location: latLng,
-                            id: i,
-                            google_marker: {},
-                            categories: results.businesses[i].categories
-                        });
-
-                        // push each items categories as a string object to DataModel.categories array
-                        var categories = (function() {
-                            if (results.businesses[i].categories != undefined) {
-                                categorieArr = results.businesses[i].categories.toString();
-                                DataModel.categories.push(
-                                    {item: categorieArr}
-                                    );
-                                }
-                        })();
-                        // }
-                    }
-                // }
-
-                // make Yelp results globaly accessible
-                // self.yelpResults = results;
+                    // push each items categories as a string object to DataModel.categories array
+                    var categories = (function() {
+                        if (results.businesses[i].categories != undefined) {
+                            categorieArr = results.businesses[i].categories.toString();
+                            DataModel.categories.push(
+                                {item: categorieArr}
+                                );
+                        }
+                    })();
+                }
             },
             fail: function() {
                 // procrss fail
@@ -497,6 +405,7 @@ var ViewModel = function() {
     // Ko array containing drop-cown menu items------------------------------------------- REDUNDANT???
     this.foodList = DataModel.foodList;
     this.artsList = DataModel.artsList;
+    this.itemList = DataModel.itemList;
 
     this.locationInput = ko.observable();
 

@@ -27,8 +27,8 @@ input {
 	background-color: #fff;
 }
 
-.btn {
-	border-radius: 0px;
+.nav-button {
+	border-radius: 8px 8px 0 0;
 }
 
 .cell-inner-food {
