@@ -2,7 +2,7 @@
 // GET requests responses are stored in variables here
 var DataModel = {
 
-    selectedItem: null,
+    selectedItem: ko.observable(),
     currentLoc: null,
     itemList: ko.observableArray([]),
     // foodList: ko.observableArray([]),
@@ -13,6 +13,7 @@ var DataModel = {
     foodSearch: ko.observable(''),
     srcType: ''
 };
+
 
 
 // Controller
@@ -117,7 +118,7 @@ var ViewModel = function() {
                         strokeWeight: 1,
                         scale: 1/3
                     },
-                    id: 'food' + i,
+                    object: item,
                     type: 'food',
                     zIndex: 9,
                     label: (function(){
@@ -146,7 +147,11 @@ var ViewModel = function() {
                 // make marker red on click
                 google.maps.event.addListener(itemMarker, 'click', (function(item) {
                     return function() {
-                        self.selectItem(item);
+                        console.log(DataModel.itemList()[item]);
+                        // open infowindow on marker click
+                        self.infoWindow(DataModel.itemList()[item]);
+
+                        // self.selectItem(item);
                         DataModel.markerArray()[item].setIcon(icon = {
                             path: SQUARE_PIN,
                             fillColor: '#e03934',
@@ -158,6 +163,7 @@ var ViewModel = function() {
                         for (var i = 0; i < DataModel.markerArray().length; i++) {
                             //check that we don't reset the selected marker
                             if (i !== item) {
+
                                 DataModel.markerArray()[i].setIcon(icon = {
                                     path: SQUARE_PIN,
                                     fillColor: '#fff',
@@ -170,12 +176,6 @@ var ViewModel = function() {
                         }
                     };
                 })(i));
-
-                google.maps.event.addListener(itemMarker, 'click', function() {
-                    var infowindow = new google.maps.InfoWindow;
-                    infowindow.setContent('test');
-                    infoWindow.open(map, itemMarker);
-                });
 
                 // render markers
                 itemMarker.setMap(map);
@@ -340,9 +340,9 @@ var ViewModel = function() {
                             lng: results.businesses[i].location.coordinate.longitude
                         },
                         id: i,
-                        marker: {},
                         type: listType,
-                        categories: results.businesses[i].categories
+                        categories: results.businesses[i].categories,
+                        marker: {}
                     });
 
                     // push each items categories as a string object to DataModel.categories array
@@ -372,7 +372,7 @@ var ViewModel = function() {
     // and updated DataModel.selectedItem
     this.selectItem = function(item) {
         DataModel.selectedItem = item;
-        console.log(item);
+        // console.log(item);
         return item;
     };
 
