@@ -68,7 +68,6 @@ var ViewModel = function() {
                 }
             };
             self.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
         };
 
         self.loadScript = function() {
@@ -85,11 +84,6 @@ var ViewModel = function() {
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
-                    // // Map marker for initial position
-                    // var marker = new google.maps.Marker({
-                    //     map: map,
-                    //     position: results[0].geometry.location
-                    // });
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
@@ -176,6 +170,12 @@ var ViewModel = function() {
                         }
                     };
                 })(i));
+
+                google.maps.event.addListener(itemMarker, 'click', function() {
+                    var infowindow = new google.maps.InfoWindow;
+                    infowindow.setContent('test');
+                    infoWindow.open(map, itemMarker);
+                });
 
                 // render markers
                 itemMarker.setMap(map);
@@ -266,6 +266,7 @@ var ViewModel = function() {
     // Yelp AJAX request #####################################
     this.yelpRequest = function(search, listType) {
 
+        // clear itemList before making new request
         if (DataModel.itemList().length > 0) {
             DataModel.itemList.removeAll();
         }
@@ -308,9 +309,7 @@ var ViewModel = function() {
             cache: true,
             dataType: 'jsonp',
             success: function(results) {
-                // if (DataModel.srcType == 'food') {
 
-                //results of food search
                 console.log(results);
 
                 // Clear old result items and markers befor sending new request (if they exist)
