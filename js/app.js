@@ -260,7 +260,7 @@ var ViewModel = function() {
 
     this.searchFilter = function() {
 
-        $('#src-input2').keydown(function() {
+        $('#src-input2').keyup(function() {
 
             //store results here
             self.listFilter = ko.observableArray();

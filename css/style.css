@@ -172,6 +172,7 @@ body,
 
 #logo {
 	text-align: center;
+	margin-top: 12vh;
 	/*padding-top: 80vh;*/
 	color: #fff;
 }
@@ -188,12 +189,15 @@ body,
 #src-div {
 	/*height: 100%;*/
 	/*text-align: center;*/
-	margin: 40vh 40vw;
+	margin: 40vh;
+	margin-left: auto;
+	margin-right: auto;
 	/*display: inline-block;*/
 }
 
 #src-input {
 	width: auto;
+
 }
 
 #nav {
@@ -227,7 +231,7 @@ body,
 	#src-div {
 		/*height: 100%;*/
 		/*text-align: center;*/
-		margin: 50px;
+		/*margin: 50px;*/
 		/*display: inline-block;*/
 	}
 	.text-blocks {
