@@ -53,17 +53,17 @@
 
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
-				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>eat/drink</h3><span class="caret"></span></button>
+				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>find stuff</h3><span class="caret"></span></button>
 				         	<ul class="dropdown-menu" role="menu">
 
 				         		<!-- secondary search form -->
 				         		<div class="input-group input-group-lg">
 				         			<form id="food-src">
-				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: foodSearch" id="food-src-input">
+				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: specSearch" id="src-input2">
 				         			</form>
 				         		</div>
 
-				         		<ul class="item-list" data-bind="foreach: itemList">
+				         		<ul class="item-list" id="list" data-bind="foreach: itemList">
 				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
 				         		</ul>
 

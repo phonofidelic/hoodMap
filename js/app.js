@@ -10,10 +10,10 @@ var DataModel = {
     markerArray: ko.observableArray([]),
     // artMarkerArray: ko.observableArray([]),
     categories: ko.observableArray([]),
-    foodSearch: ko.observable(''),
-    srcType: ''
+    specSearch: ko.observable(''),
+    srcType: '',
+    listFilter: ko.observableArray()
 };
-
 
 
 // Controller
@@ -135,7 +135,7 @@ var ViewModel = function() {
                                 return '<i class="map-icon-art-gallery"></i>';
                         // default to restaurant
                         } else {
-                            return '<i class="map-icon-restaurant"></i>';
+                            return '<i class="map-icon-point-of-interest"></i>';
                         }
                     })(),
                     anchorPoint: (1, 1)
@@ -242,25 +242,44 @@ var ViewModel = function() {
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
     };                                                                      //
-    window.onload = this.googleMap();                                       //
+    // window.onload = this.googleMap();                                       //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
 
 
-    // send input from secondary search to ko.observable DataModel.foodsearch
+    // send input from secondary search to ko.observable DataModel.specSearch
     this.secondarySearch = (function() {
-        document.addEventListener(document.getElementById('food-src-input'), function(e) {
-            // console.log(e.target.value);
-            DataModel.foodSearch = e.target.value;
+        document.addEventListener(document.getElementById('src-input2'), function(e) {
+            console.log(e.target.value);
+            DataModel.specSearch = e.target.value;
         });
     })();
 
-    this.foodSearch = DataModel.foodSearch();
+    // holds src-input2 value
+    this.specSearch = ko.observable();
 
     this.searchFilter = function() {
-        //get input value from foodSearch
 
+        $('#src-input2').keydown(function() {
+
+            //store results here
+            self.listFilter = ko.observableArray();
+
+            //get name from each itemList object
+            var list = $('.item-list').text();
+
+            //get input value from specSearch
+            srcTerm = new RegExp(self.specSearch(), 'gi');
+
+            result = list.match(srcTerm);
+
+            // alert(result);
+
+            listFilter.push(result);
+            console.log(listFilter());
+        });
     };
+
 
 
     // Yelp AJAX request #####################################
@@ -326,7 +345,7 @@ var ViewModel = function() {
                 for (var i = 0; i < results.businesses.length; i++) {
 
                     // create an object for each business and push each object to the itemList array
-                    itemList.push({
+                    DataModel.itemList.push({
                         name: results.businesses[i].name,
                         address: results.businesses[i].location.display_address,
                         url: results.businesses[i].url,
@@ -342,7 +361,8 @@ var ViewModel = function() {
                         id: i,
                         type: listType,
                         categories: results.businesses[i].categories,
-                        marker: {}
+                        marker: {},
+                        visible: ko.observable(true)
                     });
 
                     // push each items categories as a string object to DataModel.categories array
@@ -404,12 +424,17 @@ var ViewModel = function() {
     this.artsList = DataModel.artsList;
     this.itemList = DataModel.itemList;
 
+
     this.locationInput = ko.observable();
 
+    // initialize...
+    window.onload = this.googleMap();
+    window.onload = this.searchFilter();
 };//------ end ViewModel
 
 // Superslides API
 $('#slides').superslides('start');
+
 
 
 // Initiate Knockout bindings
