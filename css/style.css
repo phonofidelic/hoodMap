@@ -88,6 +88,14 @@ h3 {
 	overflow-x: hidden;
 }
 
+.food-list-item {
+	/*visibility: visible;*/
+}
+
+.hidden {
+	visibility: hidden;
+}
+
 .food-list-item:hover {
 	background-color: #c8d8a8;
 }
@@ -189,7 +197,7 @@ body,
 #src-div {
 	/*height: 100%;*/
 	/*text-align: center;*/
-	margin: 40vh;
+	margin: 25vh;
 	margin-left: auto;
 	margin-right: auto;
 	/*display: inline-block;*/

@@ -64,7 +64,7 @@
 				         		</div>
 
 				         		<ul class="item-list" data-bind="foreach: itemList">
-				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem" class="food-list-item"></li>
+				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem, visible: visible" class="food-list-item"></li>
 				         		</ul>
 
 				         		<div class="list-scroll">
@@ -100,13 +100,13 @@
 			<div class="row cell-container" data-bind="foreach: itemList"><!-- bind to $data.type (?) -->
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner-food" data-bind="style: {backgroundImage: 'url('+$data.street_view+')'}">
+						<div class="cell-inner-food">
 							<h4 data-bind="html: $data.name"></h4>
 							<div class="cell-rating">
 								<img data-bind="attr: {src: $data.rating}">
 							</div>
 							<div class="cell-img">
-								<!-- <img data-bind="attr: {src: $data.img}"> -->
+								<img data-bind="attr: {src: $data.street_view}" class="responsive">
 							</div>
 							<div class="cell-text">
 								<p data-bind="text: $data.text"></p>

@@ -4,12 +4,12 @@ var DataModel = {
 
     selectedItem: ko.observable(),
     currentLoc: null,
-    itemList: ko.observableArray([]),
+    itemList: ko.observableArray(),
     // foodList: ko.observableArray([]),
     // artsList: ko.observableArray([]),
-    markerArray: ko.observableArray([]),
+    markerArray: ko.observableArray(),
     // artMarkerArray: ko.observableArray([]),
-    categories: ko.observableArray([]),
+    categories: ko.observableArray(),
     specSearch: ko.observable(''),
     srcType: '',
     listFilter: ko.observableArray()
@@ -236,8 +236,11 @@ var ViewModel = function() {
 
             infowindow.setMap(map);
 
-            // logs list item's business categorie from DataModel
-            console.log(DataModel.categories[item.id]);
+            // logs list item's business categorie from DataModel.categories
+            console.log(DataModel.categories()[item.id]);
+
+            // logs list item object from DataModel.itemList
+            console.log(DataModel.itemList()[item.id]);
         };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
@@ -247,40 +250,37 @@ var ViewModel = function() {
     // window.onload = this.initialize;
 
 
-    // send input from secondary search to ko.observable DataModel.specSearch
-    this.secondarySearch = (function() {
-        document.addEventListener(document.getElementById('src-input2'), function(e) {
-            console.log(e.target.value);
-            DataModel.specSearch = e.target.value;
-        });
-    })();
 
     // holds src-input2 value
     this.specSearch = ko.observable();
 
     this.searchFilter = function() {
-
+        // event listner kicks off filtering on each key-stroke
         $('#src-input2').keyup(function() {
 
-            //store results here
-            self.listFilter = ko.observableArray();
+            //loop through itemList and match each item against current input
+            for (var i = 0; i < DataModel.itemList().length; i++) {
+                    //list to search throug
+                var listItem = DataModel.categories()[i].item,
+                    //current input
+                    srcTerm = new RegExp(self.specSearch(), 'gi'),
+                    //item to be shown or hidden
+                    item = DataModel.itemList()[i];
 
-            //get name from each itemList object
-            var list = $('.item-list').text();
-
-            //get input value from specSearch
-            srcTerm = new RegExp(self.specSearch(), 'gi');
-
-            result = list.match(srcTerm);
-
-            // alert(result);
-
-            listFilter.push(result);
-            console.log(listFilter());
+                if (listItem.match(srcTerm)) {
+                    item.visible(true);
+                } else {
+                    item.visible(false);
+                }
+                console.log(i);
+                console.log('listItem: '+ listItem);
+                console.log('srcTerm: ' +srcTerm);
+                console.log(DataModel.itemList()[i].visible());
+            }
         });
+
+
     };
-
-
 
     // Yelp AJAX request #####################################
     this.yelpRequest = function(search, listType) {
