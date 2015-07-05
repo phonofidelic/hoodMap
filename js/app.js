@@ -156,7 +156,7 @@ var ViewModel = function() {
                             path: SQUARE_PIN,
                             fillColor: '#e03934',
                             fillOpacity: 1,
-                            strokeColor: '#ffffff',
+                            strokeColor: '#000',
                             strokeWeight: 1,
                             scale: 1/3
                         });
@@ -190,7 +190,7 @@ var ViewModel = function() {
                     path: SQUARE_PIN,
                     fillColor: '#e03934',
                     fillOpacity: 1,
-                    strokeColor: '#ffffff',
+                    strokeColor: '#000',
                     strokeWeight: 1,
                     scale: 1/3
                 });
@@ -351,7 +351,7 @@ var ViewModel = function() {
                         url: results.businesses[i].url,
                         phone: results.businesses[i].display_phone,
                         img: results.businesses[i].image_url,
-                        street_view: 'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4&size=600x300&location='+results.businesses[i].location.display_address,
+                        street_view: 'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4&size=400x300&location='+results.businesses[i].location.display_address,
                         rating: results.businesses[i].rating_img_url,
                         text: results.businesses[i].snippet_text,
                         location: {

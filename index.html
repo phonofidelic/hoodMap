@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no">
 	<title>:: hoodMap ::</title>
 	<link rel="stylesheet" type="text/css" href="bower_components/normalize.css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/superslides/dist/stylesheets/superslides.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="Map-Icons-master/css/map-icons.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -101,60 +100,20 @@
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
 						<div class="cell-inner-food">
-							<h4 data-bind="html: $data.name"></h4>
+							<div class="cell-header"><h4 data-bind="text: $data.name"></h4><span data-bind="text: $data.marker.lable"></span></div>
 							<div class="cell-rating">
 								<img data-bind="attr: {src: $data.rating}">
 							</div>
 							<div class="cell-img">
-								<img data-bind="attr: {src: $data.street_view}" class="responsive">
+								<img data-bind="attr: {src: $data.street_view}" class="img-responsive street-view">
 							</div>
 							<div class="cell-text">
-								<p data-bind="text: $data.text"></p>
+								<p data-bind="text: $data.text"></p><a data-bind="attr: { href: $data.url}" target="blank"><span style="text-align: right">more info</span></a>
 							</div>
 						</div>
 					</div>
 
 			</div>
-
-<!-- 			<div class="row cell-container" data-bind="foreach: artsList">
-
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner-art">
-							<h4 data-bind="html: $data.name"></h4>
-							<div class="cell-rating">
-								<img data-bind="attr: {src: $data.rating}">
-							</div>
-							<div class="cell-img">
-								<img data-bind="attr: {src: $data.img}">
-							</div>
-							<div class="cell-text">
-								<p data-bind="text: $data.text"></p>
-							</div>
-						</div>
-					</div>
-
-			</div>
- -->
-
-
-<!-- 			<div class="row cell-container" data-bind="foreach: artsList">
-
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner">
-							<h4 data-bind="html: $data.name"></h4>
-							<div class="cell-rating">
-								<img data-bind="attr: {src: $data.rating}">
-							</div>
-							<div class="cell-img">
-								<img data-bind="attr: {src: $data.img}">
-							</div>
-							<div class="cell-text">
-								<p data-bind="text: $data.text"></p>
-							</div>
-						</div>
-					</div>
-
-			</div> -->
 
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
