@@ -237,10 +237,10 @@ var ViewModel = function() {
             infowindow.setMap(map);
 
             // logs list item's business categorie from DataModel.categories
-            console.log(DataModel.categories()[item.id]);
+            // console.log(DataModel.categories()[item.id]);
 
             // logs list item object from DataModel.itemList
-            console.log(DataModel.itemList()[item.id]);
+            // console.log(DataModel.itemList()[item.id]);
         };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
