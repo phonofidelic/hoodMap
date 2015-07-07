@@ -22,7 +22,7 @@ var ViewModel = function() {
     // this.srcInput = ko.observable("");
 
     // Scroll down to map on click (or enter)
-    this.scrollDown = function (){
+    this.scrollDown = function () {
         $('body').animate({
         scrollTop: $("#page-main").offset().top
         }, 800); //-------------------------------- set scroll speed
@@ -34,10 +34,15 @@ var ViewModel = function() {
         self.yelpRequest('arts', 'art'); //DataModel.artsList
         // TODO: third request: hotels?/transportation?
     };
-    $('#src-form').submit(this.scrollDown);
+    // $('#src-form').submit(this.scrollDown);
 
-
-
+    this.focusMap = function() {
+        $('body').animate({
+            scrollTop: $('#page-main').offset().top
+        }, 800);
+        console.log('test: focusMap');
+    };
+    // $('.show-on-map').click(this.focusMap);
 
 
     // Superslides

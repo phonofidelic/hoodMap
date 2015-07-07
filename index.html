@@ -108,7 +108,15 @@
 								<img data-bind="attr: {src: $data.street_view}" class="img-responsive street-view">
 							</div>
 							<div class="cell-text">
-								<p data-bind="text: $data.text"></p><a data-bind="attr: { href: $data.url}" target="blank"><span style="text-align: right">more info</span></a>
+								<p data-bind="text: $data.text"></p>
+							</div>
+							<div>
+								<span>
+									<a data-bind="attr: { href: $data.url}" target="blank"><button role="button" class="show-on-map">more info</button></a>
+								</span>
+								<span data-bind="click: focusMap">
+									<button role="button" data-bind="click: infoWindow" class="show-on-map">show on map</button>
+								</span>
 							</div>
 						</div>
 					</div>
