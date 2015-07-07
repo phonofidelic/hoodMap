@@ -5,21 +5,15 @@ var DataModel = {
     selectedItem: ko.observable(),
     currentLoc: null,
     itemList: ko.observableArray(),
-    // foodList: ko.observableArray([]),
-    // artsList: ko.observableArray([]),
     markerArray: ko.observableArray(),
-    // artMarkerArray: ko.observableArray([]),
     categories: ko.observableArray(),
     specSearch: ko.observable(''),
-    srcType: '',
     listFilter: ko.observableArray()
 };
-
 
 // Controller
 var ViewModel = function() {
 	var self = this;
-    // this.srcInput = ko.observable("");
 
     // Scroll down to map on click (or enter)
     this.scrollDown = function () {
@@ -34,7 +28,6 @@ var ViewModel = function() {
         self.yelpRequest('arts', 'art'); //DataModel.artsList
         // TODO: third request: hotels?/transportation?
     };
-    // $('#src-form').submit(this.scrollDown);
 
     this.focusMap = function() {
         $('body').animate({
@@ -42,23 +35,10 @@ var ViewModel = function() {
         }, 800);
         console.log('test: focusMap');
     };
-    // $('.show-on-map').click(this.focusMap);
-
-
-    // Superslides
-    this.superSlides = function() {
-        $('#slides').superslides({
-            hashchange: false,
-            pagination:true,
-            play: 5000
-        });
-        $('#slides').superslides('start');
-    }
 
     // Google Maps API ###################################
     this.googleMap = function() {
-        // self.geocoder;
-        // self.map;
+
         self.initialize = function() {
             self.geocoder = new google.maps.Geocoder();
             self.mapOptions = {
@@ -83,7 +63,6 @@ var ViewModel = function() {
             '&signed_in=false&callback=initialize'; //OPTION------------------------ set signed_in state to true or false
             document.body.appendChild(script);
         };
-
 
         self.codeAddress = function() {
             self.address = document.getElementById('src-input').value;
@@ -124,7 +103,6 @@ var ViewModel = function() {
                         scale: 1/3
                     },
                     object: item,
-                    type: 'food',
                     zIndex: 9,
                     label: (function(){
                         // check if business is a cafe
@@ -190,7 +168,6 @@ var ViewModel = function() {
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
             var type = item.type;
-            // if (item.type == 'food') {
                 DataModel.markerArray()[item.id].setIcon(icon = {
                     path: SQUARE_PIN,
                     fillColor: '#e03934',
@@ -200,13 +177,11 @@ var ViewModel = function() {
                     scale: 1/3
                 });
                 DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
-            // }
         };
 
         // set marker img to white on mouseout
         self.mouseoutMarker = function(item) {
             var type = item.type;
-            // if (item.type == 'food') {
                 DataModel.markerArray()[item.id].setIcon(icon = {
                             path: SQUARE_PIN,
                             fillColor: '#fff',
@@ -250,7 +225,7 @@ var ViewModel = function() {
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
     };                                                                      //
-    // window.onload = this.googleMap();                                       //
+    // window.onload = this.googleMap();                                    //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
 
@@ -392,43 +367,24 @@ var ViewModel = function() {
         this.requestSent = true;
     };
 
-
     // selects a list item on click -------------------------------- SELECTOR
     // and updated DataModel.selectedItem
     this.selectItem = function(item) {
         DataModel.selectedItem = item;
-        // console.log(item);
         return item;
     };
 
+    // initializes app ???--------------------------------------------------???
     this.currentLoc = function(item) {
         var loc = document.getElementById('src-input').value;
         DataModel.currentLoc = loc;
         console.log(loc);
         codeAddress();
         scrollDown();
-        // eatSearch();
-        // artsSearch();
-    };
-
-
-    this.eatSearch = function() {
-        self.yelpRequest('food,coffee,bars');
-        DataModel.srcType = 'food';
-        console.log('test food');
-    };
-
-    this.artsSearch = function() {
-        self.yelpRequest('arts');
-        DataModel.srcType = 'arts';
-        console.log('test art');
     };
 
     // Ko array containing drop-cown menu items------------------------------------------- REDUNDANT???
-    this.foodList = DataModel.foodList;
-    this.artsList = DataModel.artsList;
     this.itemList = DataModel.itemList;
-
 
     this.locationInput = ko.observable();
 
@@ -436,11 +392,6 @@ var ViewModel = function() {
     window.onload = this.googleMap();
     window.onload = this.searchFilter();
 };//------ end ViewModel
-
-// Superslides API
-$('#slides').superslides('start');
-
-
 
 // Initiate Knockout bindings
 ko.applyBindings(ViewModel);

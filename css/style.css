@@ -3,7 +3,6 @@
 }
 
 body {
-	/*box-sizing: border-box;*/
 	background-color: #e9e5dc;
 }
 
@@ -11,14 +10,6 @@ button {
 	background-color: rgba(255, 255, 255, 1);
 	border: none;
 }
-
-a {
-	/*color: #E03934;*/
-}
-
-/*input {
-	background-color: #fff;
-}*/
 
 ul{
 	background-color: rgba(255, 255, 255, 1);
@@ -41,13 +32,9 @@ h3 {
 	margin: 20px 0 20px;
 }
 
-
-
 .cell-inner-food {
-	/*background-color: #e9e5dc;*/
 	margin: 10px;
 	padding: 10px;
-	/*border: solid #CFB788 2px;*/
 	border-radius: 5px;
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -62,7 +49,6 @@ h3 {
 }
 
 .cell-item {
-	/*background-color: #e9e5dc;*/
 	margin: 0px;
 	padding: 0px;
 	border: none;
@@ -75,7 +61,6 @@ h3 {
 
 .cell-container {
 	margin: 5px;
-	/*max-width: 200px;*/
 }
 
 .container {
@@ -209,7 +194,6 @@ body,
 #logo {
 	text-align: center;
 	margin-top: 12vh;
-	/*padding-top: 80vh;*/
 	color: #fff;
 }
 
@@ -217,18 +201,10 @@ body,
 	color: #e03934;
 }
 
-#src-form {
-/*	margin-top: 100%;
-	margin-bottom: 100%;*/
-	/*padding-top:45vh;*/
-}
 #src-div {
-	/*height: 100%;*/
-	/*text-align: center;*/
 	margin: 25vh;
 	margin-left: auto;
 	margin-right: auto;
-	/*display: inline-block;*/
 }
 
 #src-input {
@@ -254,18 +230,12 @@ body,
 	color: #fff;
 }
 
-@media (max-width: 650px) {
-	#src-div {
-		/*height: 100%;*/
-		/*text-align: center;*/
-		/*margin: 50px;*/
-		/*display: inline-block;*/
-	}
-	.text-blocks {
-		/*visibility: hidden;*/
-	}
-
+@media (max-width: 767px) {
 	#logo-2 {
 		visibility: hidden;
 	}
+	#nav1 {
+		background-color: #e03934;
+		width: 100%;
+}
 }
