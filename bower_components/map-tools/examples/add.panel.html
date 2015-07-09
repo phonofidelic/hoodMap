@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../dist/map-tools.js"></script>
+    <link href="vendors/prism/prism.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../examples/style/basic.css"/>
+    <script src="vendors/prism/prism.js"></script>
+</head>
+<style>
+
+    html, body, #mymap {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li.active {
+        background: rgba(0,0,0,.08) !important;
+    }
+
+</style>
+<body>
+<script>
+    var map = new mapTools({
+        id: 'mymap',
+        lat: 41.3833,
+        lng: 2.1833
+    }, function (err) {
+        if (!err) {
+            addPanel();
+        }
+    });
+
+    function addPanel() {
+
+        map.addPanel({
+            templateURL: 'templates/custom.panel.html',
+            position:'top center',
+            events: {
+                '.menu li click' : function (e) {
+                    e.target.classList.toggle('active');
+                }
+            }
+        });
+
+        map.addPanel({
+            templateURL: 'code.snippet/add.panel.snippet.html',
+            position:'right center'
+        }, function() {
+          Prism.highlightAll();
+        });
+    }
+</script>
+
+<div id="mymap"></div>
+</body>
+</html>

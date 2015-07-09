@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="vendors/prism/prism.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../examples/style/basic.css"/>
+  <script src="vendors/prism/prism.js"></script>
+  <script src="../dist/map-tools.js"></script>
+</head>
+<body>
+<script>
+  var map = new mapTools({
+    id: 'mymap',
+    lat: 41.3833,
+    lng: 2.1833,
+    zoom: 13
+  }, function (err) {
+    if (!err) {
+      addMarkers();
+
+	    // snippet panel
+	    map.addPanel({
+		    templateURL: 'code.snippet/animate.markers.snippet.html',
+		    position:'right center'
+      }, function() {
+        Prism.highlightAll();
+      });
+    }
+  });
+
+  function addMarkers() {
+    map.addMarker([{
+      lat: 41.387220,
+      lng: 2.169983,
+      title: 'Plaça Catalunya',
+      move: 'bounce'
+
+    },
+      {
+        lat: 41.4036,
+        lng: 2.1744,
+        title: 'Sagrada Familia',
+        move: 'bounce'
+      },
+      {
+        lat: 41.395571,
+        lng: 2.161961,
+        title: 'Casa Milà',
+        move: 'drop'
+      },
+      {
+        lat: 41.385231,
+        lng: 2.180893,
+        title: 'Picasso Museum',
+        move: 'drop'
+      }
+
+    ]);
+  }
+</script>
+<div id="mymap"></div>
+</body>
+</html>

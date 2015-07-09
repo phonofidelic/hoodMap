@@ -1,0 +1,35 @@
+<div class="map-panel" ><pre class="language-javascript"><code class="language-javascript">
+  map.addTopoJson(data, [{
+  object: 'us_country',
+  style: {
+    strokeColor: '#2c2c2c',
+    strokeWeight: 0.5,
+    fillOpacity: 0
+  },filters: ['NAME']}]);
+  var colorado = map.findFeature({NAME:'Colorado'}, {limit: 1});
+  var nevada = map.findFeature({NAME:'Nevada'}, {limit: 1});
+	var options = {
+		style:{
+			fillOpacity: 0.4,
+			fillColor:'black',
+			strokeColor: 'black'
+  }};
+
+  map.updateFeature([colorado, nevada], options);
+
+  // Choropleth function based on the CENSUSAREA data
+  function() {
+    var value = (this.data.CENSUSAREA/570640.95);
+    var alpha = 5;
+    var h = 210, s = 100,
+    // Increase the difference between colors
+    l = (Math.pow((1 - value), alpha) * 50)+50;
+    return {
+      fillColor: 'hsl('+h+','+s+'%,'+l+'%)',
+      fillOpacity:0.7
+    }
+  }
+
+  var all = map.findFeature();
+  map.updateFeature(all), {style: color});
+</code></pre></div>

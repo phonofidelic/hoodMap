@@ -1,0 +1,22 @@
+<div class="map-panel"><pre class="language-javascript"><code class="language-javascript">
+  // Update to Terrain Type and disable controls.
+  map.updateMap({
+			type: 'TERRAIN',
+			mapTypeControl: false,
+			zoomControl: false,
+			streetViewControl: false,
+			panControl: false
+	});
+
+	// Update to RoadMap and enable controls.
+	map.updateMap({
+			type: 'ROADMAP',
+			mapTypeControl: true,
+			zoomControl: true,
+			streetViewControl: true,
+			panControl: true
+	});
+
+  // Center Map
+  map.center(40.416854, -3.703419);
+</code></pre></div>

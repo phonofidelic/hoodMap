@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="vendors/prism/prism.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../examples/style/basic.css"/>
+	<script src="vendors/prism/prism.js"></script>
+	<script src="../dist/map-tools.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+<script>
+
+	var positions = [{lat: 41.3833, lng:2.1833}, {lat: 42.263177, lng: 3.178188}];
+
+	var map = new mapTools({
+		id: 'mymap',
+		lat: 41.3833,
+		lng: 2.1833
+	}, function (err, map) {
+		if (!err) {
+			addMarker();
+
+			map.addPanel({
+				template: '<div class="actions">' +
+				'<div class="update-find">Update Marker by using findMarker()</div>' +
+				'<div class="update-reference">Update Marker by using it\'s own reference</div>' +
+				'<div class="update-reference-location">Update Marker to another location</div>' +
+				'</div>',
+				position: 'right center',
+				events: {
+					'.update-find click': function (e) {
+						var marker = map.findMarker({data: {cityName: 'barcelona'}}, {limit: 1});
+						map.updateMarker([marker], {move: 'drop'});
+						e.preventDefault();
+					},
+
+					'.update-reference click': function (e) {
+						map.updateMarker([markerInstance], {move: 'drop'});
+						e.preventDefault();
+					},
+
+					'.update-reference-location click': function (e) {
+						map.updateMarker([markerInstance], positions[+!toggle]);
+						toggle = !toggle;
+						e.preventDefault();
+					}
+				}
+			});
+
+			var toggle = false
+
+			// snippet panel
+			map.addPanel({
+				templateURL: 'code.snippet/update.marker.snippet.html',
+				position:'right center'
+      }, function() {
+        Prism.highlightAll();
+      });
+		}
+	});
+
+	var markerInstance;
+
+	function addMarker() {
+		markerInstance = map.addMarker({
+			lat: 41.3833,
+			lng: 2.1833,
+			title: 'Barcelona',
+			data: {
+				cityName: 'barcelona'
+			}
+		}, {
+			filters: ['cityName']
+		});
+	}
+
+</script>
+<div id="mymap"></div>
+
+</body>
+</html>

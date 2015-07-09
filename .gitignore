@@ -29,7 +29,6 @@ Temporary Items
 
 
 ### Bower ###
-bower_components
 .bower-cache
 .bower-registry
 .bower-tmp

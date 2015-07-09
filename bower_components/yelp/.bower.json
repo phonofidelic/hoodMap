@@ -1,0 +1,14 @@
+{
+  "name": "yelp",
+  "homepage": "https://github.com/olalonde/node-yelp",
+  "_release": "97c8ccff08",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "97c8ccff08bc349ecf1118648621dcb23a945d98"
+  },
+  "_source": "git://github.com/olalonde/node-yelp.git",
+  "_target": "*",
+  "_originalSource": "yelp",
+  "_direct": true
+}
