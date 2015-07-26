@@ -4,21 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no">
 	<title>:: hoodMap ::</title>
-	<link rel="stylesheet" type="text/css" href="bower_components/normalize.css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="Map-Icons-master/css/map-icons.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/offline/themes/offline-language-english.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/offline/themes/offline-language-english-indicator.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/application.css"> -->
+	<script src="bower_components/offline/offline.min.js"></script>
+	<script src="bower_components/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4"></script>
 	<script type="text/javascript" src="Map-Icons-master/js/map-icons.js"></script>
 	<script type="text/javascript" src="bower_components/oauth-signature/dist/oauth-signature.js"></script>
-	<script type="text/javascript" src="bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
+	<script type="text/javascript">
+		Offline.options = {checks: {xhr: {url: '/connection-test.txt'}}};
+	</script>
 </head>
 <body>
 	<div class="container" id="page-start">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12" id="logo"><h1>hoodMap</h1></div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
-
 				<!-- initial search form -->
 				<div class="input-group input-group-lg" id="src-div">
 					<form id="src-form" data-bind="submit: codeAddress">
@@ -28,9 +33,7 @@
 						</span>
 					</form>
 				</div>
-
 			</div>
-
 		</div>
 	</div>
 	<div class="container" id="page-main">
@@ -46,46 +49,34 @@
 			        <span class="icon-bar"></span>
 			      </button>
 			    </div>
-
-			   		<!-- Collect the nav links, forms, and other content for toggling -->
+		   		<!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="nav">
-
 			     	<ul class="nav navbar-nav">
 				        <li class="dropdown">
 				         	<button class="btn btn-large dropdown-toggle nav-button" id="nav1" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers"><h3>find stuff</h3><span class="caret"></span></button>
 				         	<ul class="dropdown-menu" role="menu">
-
 				         		<!-- secondary search form -->
 				         		<div class="input-group input-group-lg">
 				         			<form id="food-src">
 				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: specSearch" id="src-input2">
 				         			</form>
 				         		</div>
-
 				         		<ul class="item-list" data-bind="foreach: itemList">
 				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem, visible: visible" class="food-list-item"></li>
 				         		</ul>
-
 				         		<div class="list-scroll">
 			         				<button role="button" aria-expanded="false"><span class="caret"></span></button>
 				         		</div>
-
 				         	</ul>
 				        </li>
-
 			     	</ul>
-
-
-
 			     <div class="navbar-brand navbar-right" id="logo-2" href="#"><h1>hoodMap</h1></div>
-
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="map-canvas" style="background-color: #fff;">
-
 			</div>
 		</div>
 		<div class="row">
@@ -93,11 +84,8 @@
 				<h3>Things to do in <span data-bind="text: locationInput" id="location-title"></span>:</h3>
 			</div>
 		</div>
-
 		<div class="row text-blocks">
-
 			<div class="row cell-container" data-bind="foreach: itemList"><!-- bind to $data.type (?) -->
-
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 cell-item">
 						<div class="cell-inner-food">
 							<div class="cell-header">
@@ -122,15 +110,12 @@
 							</div>
 						</div>
 					</div>
-
 			</div>
-
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="bower_components/superslides/dist/jquery.superslides.min.js"></script>
-	<script type="text/javascript" src="bower_components/masonry/dist/masonry.pkgd.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<!-- // <script type="text/javascript" src="js/app.js"></script> -->
 </body>
 </html>
