@@ -98,8 +98,8 @@ var ViewModel = function() {
                         path: SQUARE_PIN,
                         fillColor: '#fff',
                         fillOpacity: 1,
-                        strokeColor: '#000',
-                        strokeWeight: 1,
+                        strokeColor: '#333',
+                        strokeWeight: 2,
                         scale: 1/3
                     },
                     object: item,
@@ -139,8 +139,8 @@ var ViewModel = function() {
                             path: SQUARE_PIN,
                             fillColor: '#e03934',
                             fillOpacity: 1,
-                            strokeColor: '#000',
-                            strokeWeight: 1,
+                            strokeColor: '#333',
+                            strokeWeight: 2,
                             scale: 1/3
                         });
                         for (var i = 0; i < DataModel.markerArray().length; i++) {
@@ -151,8 +151,8 @@ var ViewModel = function() {
                                     path: SQUARE_PIN,
                                     fillColor: '#fff',
                                     fillOpacity: 1,
-                                    strokeColor: '#000',
-                                    strokeWeight: 1,
+                                    strokeColor: '#333',
+                                    strokeWeight: 2,
                                     scale: 1/3
                                 });
                             }
@@ -172,8 +172,8 @@ var ViewModel = function() {
                     path: SQUARE_PIN,
                     fillColor: '#e03934',
                     fillOpacity: 1,
-                    strokeColor: '#000',
-                    strokeWeight: 1,
+                    strokeColor: '#333',
+                    strokeWeight: 2,
                     scale: 1/3
                 });
                 DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
@@ -186,8 +186,8 @@ var ViewModel = function() {
                             path: SQUARE_PIN,
                             fillColor: '#fff',
                             fillOpacity: 1,
-                            strokeColor: '#000',
-                            strokeWeight: 1,
+                            strokeColor: '#333',
+                            strokeWeight: 2,
                             scale: 1/3
                             });
                 DataModel.markerArray()[item.id].setZIndex(zIindex = 1);
@@ -215,6 +215,8 @@ var ViewModel = function() {
             });
 
             infowindow.setMap(map);
+            map.setCenter(loc);
+
 
             // logs list item's business categorie from DataModel.categories
             // console.log(DataModel.categories()[item.id]);

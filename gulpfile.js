@@ -16,13 +16,13 @@ gulp.task('concatScripts', function() {
 	.pipe(maps.init())
 	.pipe(concat('app.js'))
 	.pipe(maps.write('./'))
-	.pipe(gulp.dest('js'));
+	.pipe(gulp.dest('../phonofidelic/phonofidelic.github.io/hoodMap_dist/js'));
 });
 
 gulp.task('miniJs', function() {
-	gulp.src('js/app.js')
+	gulp.src('../phonofidelic/phonofidelic.github.io/hoodMap_dist/js/app.js')
 	.pipe(uglify())
-	.pipe(gulp.dest('js'));
+	.pipe(gulp.dest('../phonofidelic/phonofidelic.github.io/hoodMap_dist/js'));
 });
 
 gulp.task('concatCss', function() {
@@ -34,7 +34,7 @@ gulp.task('concatCss', function() {
 	.pipe(maps.init())
 	.pipe(catCss('application.css'))
 	.pipe(maps.write('./'))
-	.pipe(gulp.dest('css'));
+	.pipe(gulp.dest('../phonofidelic/phonofidelic.github.io/hoodMap_dist/css'));
 });
 
 //!!! not working - img and font paths being altered

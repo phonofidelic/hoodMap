@@ -3,7 +3,7 @@
 }
 
 body {
-	background-color: #e9e5dc;
+	background-color: #fff;
 }
 
 button {
@@ -22,7 +22,7 @@ li {
 }
 
 li.dropdown {
-	margin-bottom: 0px;
+	margin: 0px;
 }
 input {
 	background-color: #fff;
@@ -127,8 +127,12 @@ a .show-on-map :hover {
 	margin-bottom: 0px;
 }
 
+.navbar-nav {
+	margin-bottom: 0;
+}
+
 .nav-button {
-	border-radius: 8px 8px 0 0;
+	border-radius: 0;
 }
 
 .icon-bar {
@@ -168,21 +172,21 @@ a .show-on-map :hover {
 html,
 body,
 #map-canvas {
-	height: 80vh;
+	height: 95vh;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	min-height: 500px;
 }
 
-#page-start {
+.page-start {
 	height: 100vh;
 	width: 100%;
 	background: #e9e5dc;
 	background-image: url('../img/city-background.jpg');
 	background-position: center;
 	text-align: right;
-	background: linear-gradient(0deg, #e9e5dc, transparent 90%),
+	background: linear-gradient(0deg, #fff, transparent 90%),
 				#fff url('../img/city-background.jpg') no-repeat center;
 	background-size: cover;
 }
@@ -212,30 +216,52 @@ body,
 
 }
 
+.nav-label {
+	padding: 0 0 0 12px;
+}
+.navbar h3 {
+	margin-bottom: 0;
+
+	line-height: .75;
+}
+
 .nav {
-	background-color: #e9e5dc;
+	background-color: #333;
+	width: 100%;
 }
 
 #logo-2 {
 	text-align: right;
 	vertical-align: middle;
 }
-#nav1 {
-	background-color: #e9e5dc;
-	color: #000;
+
+.nav button {
+	background-color: #333;
+	color: #fff;
+	width: 95px;
 }
-#nav1:hover,
-#nav1:focus {
+.nav button:hover,
+.nav button:focus {
 	background-color: #e03934;
 	color: #fff;
 }
 
 @media (max-width: 767px) {
+	.navbar-header {
+		background-color: #333;
+	}
+	.icon-bar {
+		border: solid white 1px;
+	}
 	#logo-2 {
 		visibility: hidden;
 	}
 	#nav1 {
 		background-color: #e03934;
 		width: 100%;
-}
+	}
+	.nav-label {
+		text-align: right;
+		margin-right: 15px;
+	}
 }

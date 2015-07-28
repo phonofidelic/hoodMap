@@ -19,7 +19,8 @@
     "jquery": "~2.1.4",
     "knockout": "~3.3.0",
     "oauth-signature": "~1.3.0",
-    "offline": "~0.7.13"
+    "offline": "~0.7.13",
+    "map-icons": "*"
   },
   "devDependencies": {
     "offlinejs-simulate-ui": "~0.1.2"
