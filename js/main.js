@@ -19,8 +19,8 @@ var ViewModel = function() {
     this.scrollDown = function () {
         $('body').animate({
         scrollTop: $("#page-main").offset().top
-        }, 800); //-------------------------------- set scroll speed
-        // console.log('scrollDown');
+        // set scroll speed
+        }, 800);
 
         // yelp requests are sent in the transition from landing page to main app interface -------------------send requests
         // arguments: search parameters, list type
@@ -54,6 +54,7 @@ var ViewModel = function() {
                 }
             };
             self.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            self.infowindow = new google.maps.InfoWindow;
         };
 
         self.loadScript = function() {
@@ -86,24 +87,18 @@ var ViewModel = function() {
 
                 //set up for itemMarker
                 var type = DataModel.itemList()[i].type;
-                item = DataModel.itemList()[i];
-                loc = new google.maps.LatLng(item.location.lat, item.location.lng);
+                    item = DataModel.itemList()[i];
+                     loc = new google.maps.LatLng(item.location.lat, item.location.lng);
 
                 // create new Marker object
                 itemMarker = new Marker({
                     map: map,
                     title: 'Map Icons',
                     position: loc,
-                    icon: {
-                        path: SQUARE_PIN,
-                        fillColor: '#fff',
-                        fillOpacity: 1,
-                        strokeColor: '#333',
-                        strokeWeight: 2,
-                        scale: 1/3
-                    },
+                    icon: self.whiteMarker,
                     object: item,
                     zIndex: 9,
+                    visible: true,
                     label: (function(){
                         // check if business is a cafe
                         if (DataModel.categories()[i].item.indexOf("Coffee") > -1) {
@@ -116,7 +111,7 @@ var ViewModel = function() {
                                 return '<i class="map-icon-museum"></i>';
                         } else if (DataModel.categories()[i].item.indexOf("art, gallery") > -1) {
                                 return '<i class="map-icon-art-gallery"></i>';
-                        // default to restaurant
+                        // default to poi
                         } else {
                             return '<i class="map-icon-point-of-interest"></i>';
                         }
@@ -130,31 +125,18 @@ var ViewModel = function() {
                 // make marker red on click
                 google.maps.event.addListener(itemMarker, 'click', (function(item) {
                     return function() {
-                        console.log(DataModel.itemList()[item]);
+                        // console.log(DataModel.itemList()[item]);
+
                         // open infowindow on marker click
                         self.infoWindow(DataModel.itemList()[item]);
 
                         // self.selectItem(item);
-                        DataModel.markerArray()[item].setIcon(icon = {
-                            path: SQUARE_PIN,
-                            fillColor: '#e03934',
-                            fillOpacity: 1,
-                            strokeColor: '#333',
-                            strokeWeight: 2,
-                            scale: 1/3
-                        });
+                        DataModel.markerArray()[item].setIcon(icon = self.redMarker);
                         for (var i = 0; i < DataModel.markerArray().length; i++) {
                             //check that we don't reset the selected marker
                             if (i !== item) {
 
-                                DataModel.markerArray()[i].setIcon(icon = {
-                                    path: SQUARE_PIN,
-                                    fillColor: '#fff',
-                                    fillOpacity: 1,
-                                    strokeColor: '#333',
-                                    strokeWeight: 2,
-                                    scale: 1/3
-                                });
+                                DataModel.markerArray()[i].setIcon(icon = self.whiteMarker);
                             }
                         }
                     };
@@ -165,38 +147,43 @@ var ViewModel = function() {
             }
         };
 
+        //style attributes for un-selected marker
+        self.whiteMarker = {
+            path: SQUARE_PIN,
+            fillColor: '#fff',
+            fillOpacity: 1,
+            strokeColor: '#333',
+            strokeWeight: 2,
+            scale: 1/3
+        };
+        //style attributes for selected marker
+        self.redMarker = {
+            path: SQUARE_PIN,
+            fillColor: '#e03934',
+            fillOpacity: 1,
+            strokeColor: '#333',
+            strokeWeight: 2,
+            scale: 1/3
+        };
+
         // set marker img to red on mouseover
         self.mouseoverMarker = function(item) {
             var type = item.type;
-                DataModel.markerArray()[item.id].setIcon(icon = {
-                    path: SQUARE_PIN,
-                    fillColor: '#e03934',
-                    fillOpacity: 1,
-                    strokeColor: '#333',
-                    strokeWeight: 2,
-                    scale: 1/3
-                });
+                DataModel.markerArray()[item.id].setIcon(icon = self.redMarker);
                 DataModel.markerArray()[item.id].setZIndex(zIndex = 99);
         };
 
         // set marker img to white on mouseout
         self.mouseoutMarker = function(item) {
             var type = item.type;
-                DataModel.markerArray()[item.id].setIcon(icon = {
-                            path: SQUARE_PIN,
-                            fillColor: '#fff',
-                            fillOpacity: 1,
-                            strokeColor: '#333',
-                            strokeWeight: 2,
-                            scale: 1/3
-                            });
+                DataModel.markerArray()[item.id].setIcon(icon = self.whiteMarker);
                 DataModel.markerArray()[item.id].setZIndex(zIindex = 1);
         };
 
         // gets clicked list-item object as input
         self.infoWindow = function(item) {
-            var loc = new google.maps.LatLng(item.location.lat, item.location.lng);
-            var offset = new google.maps.Size(0, -25);
+            var loc = new google.maps.LatLng(item.location.lat, item.location.lng),
+             offset = new google.maps.Size(0, -25);
 
             // info window content ---------------------------------------------------------------(move to model?)
             var yelpInfo = '<div class="info-window">' +'<h4>' +
@@ -207,8 +194,8 @@ var ViewModel = function() {
                 item.text + '"</span><span><a href="' +
                 item.url + '" target="blank">more info at <img src="img/yelpLogo.png"></a></span></div></div>';
 
-            // create new info window object for clicked item
-            var infowindow = new google.maps.InfoWindow({
+            //set options on infowindow object
+            self.infowindow.setOptions({
                 content: yelpInfo,
                 position: loc,
                 pixelOffset: offset
@@ -217,12 +204,20 @@ var ViewModel = function() {
             infowindow.setMap(map);
             map.setCenter(loc);
 
+        };
 
-            // logs list item's business categorie from DataModel.categories
-            // console.log(DataModel.categories()[item.id]);
-
-            // logs list item object from DataModel.itemList
-            // console.log(DataModel.itemList()[item.id]);
+        // hide/show markers
+        self.hideMarkers = function() {
+            // var marker = google.maps.Marker;
+            for (var i = 0; i < DataModel.markerArray().length; i++) {
+                DataModel.markerArray()[i].setVisible(false);
+            }
+        };
+        self.showMarkers = function() {
+            // var marker = google.maps.Marker;
+            for (var i = 0; i < DataModel.markerArray().length; i++) {
+                DataModel.markerArray()[i].setVisible(true);
+            }
         };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
