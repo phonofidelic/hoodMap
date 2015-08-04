@@ -96,6 +96,7 @@ a .show-on-map :hover {
 
 .item-list {
 	height: auto;
+	width:250px;
 	max-height: 70vh;
 	overflow-x: hidden;
 }
@@ -224,7 +225,7 @@ body,
 
 #navbar {
 	z-index: 1000;
-	background-color: #fff;
+	background-color: #333;
 	border: none;
 }
 
@@ -241,7 +242,7 @@ body,
 
 .nav {
 	background-color: #333;
-	/*width: 100%;*/
+	width: 100%;
 	padding: 0;
 }
 
@@ -265,11 +266,17 @@ body,
 }
 .nav-search{
 	/*width: 100%;*/
-	display: block;
+	display: inline-block;
 }
-.sticky-wrapper {
+/*.sticky-wrapper {
+	min-height: none;
+	height: none;*/
+}
+#navbar-sticky-wrapper {
+	min-height: none;
 	height: none;
 }
+
 .btn-default {
 	border: none;
 }
@@ -302,6 +309,9 @@ body,
 	}
 	.nav {
 		padding-left: 15px;
+	}
+	.nav button {
+		width: 50px;
 	}
 }
 @media (min-width: 768px) {

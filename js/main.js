@@ -416,11 +416,11 @@ var ViewModel = function() {
     window.onload = this.searchFilter();
 };//------ end ViewModel
 
-var run = function(){
- if (Offline.state === 'up')
-    Offline.check();
- };
- setInterval(run, 5000);
+// var run = function(){
+//  if (Offline.state === 'up')
+//     Offline.check();
+//  };
+//  setInterval(run, 5000);
 
 $(document).ready(function(){
     $('#navbar').sticky({topSpacing:0});
