@@ -13,7 +13,7 @@
 	<script src="bower_components/offline/offline.min.js"></script>
 	<!-- <script src="bower_components/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script> -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4"></script>
-	<script type="text/javascript" src="Map-Icons-master/js/map-icons.js"></script>
+	<script type="text/javascript" src="bower_components/map-icons/js/map-icons.js"></script>
 	<script type="text/javascript" src="bower_components/oauth-signature/dist/oauth-signature.js"></script>
 	<script type="text/javascript">
 		Offline.options = {checks: {xhr: {url: '/connection-test.txt'}}};
@@ -26,6 +26,8 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<!-- initial search form -->
 				<div class="input-group input-group-lg" id="src-div">
+					<i class="map-icon-cafe"></i>
+					<i class="map-icon-museum"></i>
 					<form id="src-form" data-bind="submit: codeAddress">
 						<span class="input-group-btn">
 						<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
@@ -38,28 +40,29 @@
 	</div>
 	<div class="container" id="page-main">
 		<div class="row">
-			<nav class="navbar">
+			<nav class="navbar" id="navbar">
 				<div class="nav-label">
 					<h3>find stuff</h3>
 				</div>
-			  	<div class="container-fluid nav">
+			  	<div class="row container nav">
 				    <!-- Brand and toggle get grouped for better mobile display -->
-				    <div class="navbar-header">
+<!-- 				    <div class="navbar-header">
 				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav">
 				        <span class="sr-only">Toggle navigation</span>
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				      </button>
-				    </div>
+				    </div> -->
 			   		<!-- Collect the nav links, forms, and other content for toggling -->
-				    <div class="collapse navbar-collapse" id="nav">
-				     	<ul class="nav navbar-nav">
-					        <li class="dropdown">
+				    <!-- <div class="collapse navbar-collapse" id="nav"> -->
+				     	<div class="nav navbar-nav">
+					        <span class="dropdown">
 					         	<button class="btn btn-large dropdown-toggle nav-button" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers">
-					         		<span class="caret">
+					         		<span class="glyphicon glyphicon-search">
 					         		</span>
 					         	</button>
+
 					         	<ul class="dropdown-menu" role="menu">
 					         		<!-- secondary search form -->
 					         		<div class="input-group input-group-lg">
@@ -71,13 +74,35 @@
 					            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem, visible: visible" class="food-list-item"></li>
 					         		</ul>
 					         		<div class="list-scroll">
-				         				<button role="button" aria-expanded="false"><span class="caret"></span></button>
+				         				<span class="caret"></span>
 					         		</div>
 					         	</ul>
-					        </li>
-				     	</ul>
+					        </span>
+
+			         			<button class="btn btn-large nav-button" data-bind="click: hideMarkers">
+					         		<span class="glyphicon glyphicon-pushpin">
+					         		</span>
+					         	</button>
+					         	<button class="btn btn-large nav-button" data-bind="click: scrollToListView">
+					         		<span class="glyphicon glyphicon glyphicon-list">
+					         		</span>
+					         	</button>
+					         	<button class="btn btn-large nav-button" data-bind="click: scrollDown">
+					         		<span class="glyphicon glyphicon glyphicon-globe">
+					         		</span>
+					         	</button>
+
+		        					<form id="src-form" class="nav-search" data-bind="submit: codeAddress">
+
+										<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
+											<button class="btn btn-large nav-button" type="submit" data-bind="click: currentLoc">go!</button>
+
+									</form>
+
+				     	</div>
 				     <!-- <div class="navbar-brand navbar-right" id="logo-2" href="#"><h1>hoodMap</h1></div> -->
-				    </div><!-- /.navbar-collapse -->
+				    <!-- </div>/.navbar-collapse -->
+
 			  	</div><!-- /.container-fluid -->
 			</nav>
 		</div>
@@ -117,8 +142,10 @@
 						</div>
 					</div>
 			</div>
+		</div>
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/sticky/jquery.sticky.js"></script>
 	<script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>

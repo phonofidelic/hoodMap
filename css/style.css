@@ -23,6 +23,7 @@ li {
 
 li.dropdown {
 	margin: 0px;
+	border: none;
 }
 input {
 	background-color: #fff;
@@ -111,7 +112,12 @@ a .show-on-map :hover {
 .hidden {
 	visibility: hidden;
 }
-
+.form-control {
+	display: inline-block;
+}
+#navbar .form-control {
+	margin: 5px 5px 5px 15px;
+}
 
 .form-control:focus {
 	border-color: #F58A2C;
@@ -135,6 +141,10 @@ a .show-on-map :hover {
 	border-radius: 0;
 }
 
+.navbar-collapse.in {
+	margin-left: 0;
+}
+
 .icon-bar {
 	border: solid black 1px;
 }
@@ -143,6 +153,7 @@ a .show-on-map :hover {
 	max-width: 200px;
 	text-align: center;
 }
+
 
 .marker-label,
 .marker-icon {
@@ -211,18 +222,27 @@ body,
 
 }
 
+#navbar {
+	z-index: 1000;
+	background-color: #fff;
+	border: none;
+}
+
 .nav-label {
 	padding: 0 0 0 12px;
 }
 .navbar h3 {
 	margin-bottom: 0;
-
 	line-height: .75;
+}
+.navbar {
+	width: 100%;
 }
 
 .nav {
 	background-color: #333;
-	width: 100%;
+	/*width: 100%;*/
+	padding: 0;
 }
 
 #logo-2 {
@@ -234,11 +254,24 @@ body,
 	background-color: #333;
 	color: #fff;
 	width: 95px;
+	margin: 0 5px 0 5px;
+	border: none;
+	height: 100%;
 }
 .nav button:hover,
 .nav button:focus {
 	background-color: #e03934;
 	color: #fff;
+}
+.nav-search{
+	/*width: 100%;*/
+	display: block;
+}
+.sticky-wrapper {
+	height: none;
+}
+.btn-default {
+	border: none;
 }
 
 @media (max-width: 767px) {
@@ -258,5 +291,21 @@ body,
 	.nav-label {
 		text-align: right;
 		margin-right: 15px;
+	}
+	.navbar {
+		border-radius: none;
+	}
+
+	.btn {
+		border-radius: 5px 5px 0 0;
+		/*font-size: 7pt;*/
+	}
+	.nav {
+		padding-left: 15px;
+	}
+}
+@media (min-width: 768px) {
+	.navbar {
+	    border-radius: 0 0 0 0;
 	}
 }

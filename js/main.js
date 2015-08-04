@@ -29,6 +29,13 @@ var ViewModel = function() {
         // TODO: third request: hotels?/transportation?
     };
 
+    this.scrollToListView = function () {
+        $('body').animate({
+        scrollTop: $("#location-title").offset().top
+        // set scroll speed
+        }, 800);
+    };
+
     this.focusMap = function() {
         $('body').animate({
             scrollTop: $('#page-main').offset().top
@@ -82,6 +89,10 @@ var ViewModel = function() {
             if (DataModel.markerArray().length > 0) {
                 DataModel.markerArray.removeAll();
             }
+
+
+
+
             // loop through itemList
             for (var i = 0; i < DataModel.itemList().length; i++) {
 
@@ -99,7 +110,7 @@ var ViewModel = function() {
                     object: item,
                     zIndex: 9,
                     visible: true,
-                    label: (function(){
+                    custom_label: (function(){
                         // check if business is a cafe
                         if (DataModel.categories()[i].item.indexOf("Coffee") > -1) {
                             return '<i class="map-icon-cafe"></i>';
@@ -122,20 +133,21 @@ var ViewModel = function() {
                 DataModel.itemList()[i].marker = itemMarker;
                 DataModel.markerArray().push(itemMarker);
 
-                // make marker red on click
+                // marker click event handling
                 google.maps.event.addListener(itemMarker, 'click', (function(item) {
                     return function() {
-                        // console.log(DataModel.itemList()[item]);
+                        // log clicked object
+                        console.log(DataModel.itemList()[item]);
 
                         // open infowindow on marker click
                         self.infoWindow(DataModel.itemList()[item]);
 
-                        // self.selectItem(item);
+                        // make marker red on click
                         DataModel.markerArray()[item].setIcon(icon = self.redMarker);
                         for (var i = 0; i < DataModel.markerArray().length; i++) {
                             //check that we don't reset the selected marker
                             if (i !== item) {
-
+                                //reset rest of icons
                                 DataModel.markerArray()[i].setIcon(icon = self.whiteMarker);
                             }
                         }
@@ -190,7 +202,8 @@ var ViewModel = function() {
                 item.name + '</h4><div><img src="' +
                 item.rating + '"></div><div>' +
                 item.address[0] +'<br>' + item.address[1] + '<br>' + item.address[2] + '</div><div>' +
-                item.phone + '</div><div><img src="' + item.img + '"></div><div><span>"' +
+                item.phone + '</div><div><img src="' +
+                item.img + '" alt="Image for ' + item.name + '"></div><div><span>"' +
                 item.text + '"</span><span><a href="' +
                 item.url + '" target="blank">more info at <img src="img/yelpLogo.png"></a></span></div></div>';
 
@@ -204,17 +217,31 @@ var ViewModel = function() {
             infowindow.setMap(map);
             map.setCenter(loc);
 
+            // DataModel.markerArray()[item.id].setIcon(icon = self.redMarker);
+            console.log(item.id);
+
+            // // make marker red on click
+            // DataModel.markerArray()[item.id].setIcon(icon = self.redMarker);
+            // for (var i = 0; i < DataModel.markerArray().length; i++) {
+            //     //check that we don't reset the selected marker
+            //     if (i !== item.id) {
+            //         //reset rest of icons
+            //         DataModel.markerArray()[i].setIcon(icon = self.whiteMarker);
+            //     }
+            // }
+
         };
 
         // hide/show markers
         self.hideMarkers = function() {
-            // var marker = google.maps.Marker;
             for (var i = 0; i < DataModel.markerArray().length; i++) {
                 DataModel.markerArray()[i].setVisible(false);
             }
+
+            $('.marker-label').css('visiblity', 'hidden');
+            $('.marker-icon').css('visiblity', 'hidden');
         };
         self.showMarkers = function() {
-            // var marker = google.maps.Marker;
             for (var i = 0; i < DataModel.markerArray().length; i++) {
                 DataModel.markerArray()[i].setVisible(true);
             }
@@ -394,6 +421,14 @@ var run = function(){
     Offline.check();
  };
  setInterval(run, 5000);
+
+$(document).ready(function(){
+    $('#navbar').sticky({topSpacing:0});
+});
+
+// //append search element to nav when windo scrolls down to nav ---------------------TODO
+// var srcDiv = document.getElementById('src-div');
+// $('#navbar').append(srcDiv);
 
 // Initiate Knockout bindings
 ko.applyBindings(ViewModel);
