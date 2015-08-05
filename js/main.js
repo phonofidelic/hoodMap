@@ -256,7 +256,7 @@ var ViewModel = function() {
 
 
     // holds src-input2 value
-    this.specSearch = ko.observable();
+    this.specSearch = ko.observable("");
 
     this.searchFilter = function() {
         // event listner kicks off filtering on each key-stroke
@@ -416,12 +416,6 @@ var ViewModel = function() {
     window.onload = this.googleMap();
     window.onload = this.searchFilter();
 };//------ end ViewModel
-
-// var run = function(){
-//  if (Offline.state === 'up')
-//     Offline.check();
-//  };
-//  setInterval(run, 5000);
 
 $(document).ready(function(){
     $('#navbar').sticky({topSpacing:0});
