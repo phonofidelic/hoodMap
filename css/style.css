@@ -42,12 +42,6 @@ h3 {
 	background-color: #fff;
 }
 
-.cell-inner-art {
-	background-color: #eadb9d;
-	margin: 10px;
-	padding: 10px;
-	border-radius: 8px
-}
 
 .cell-item {
 	margin: 0px;
@@ -302,13 +296,18 @@ body,
 	.navbar {
 		border-radius: none;
 	}
+	.form-control {
+		/*max-width: 50%;*/
+		margin: 0 auto;
+	}
 
 	.btn {
 		border-radius: 5px 5px 0 0;
 		/*font-size: 7pt;*/
 	}
 	.nav {
-		padding-left: 15px;
+		padding: 0 auto;
+		margin: 0 auto;
 	}
 	.nav button {
 		width: 50px;

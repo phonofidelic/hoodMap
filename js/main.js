@@ -379,9 +379,10 @@ var ViewModel = function() {
                     })();
                 }
             },
-            fail: function() {
-                // procrss fail
-                console.log('failed');
+            error: function() {
+                // process fail
+                console.log('yelpRequest failed');
+                alert('Sorry! We are having trouble getting search results from Yelp. Please try again later.');
             }
         };
 
