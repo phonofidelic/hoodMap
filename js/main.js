@@ -17,7 +17,7 @@ var ViewModel = function() {
 
     // Scroll down to map on click (or enter)
     this.scrollDown = function () {
-        $('body').animate({
+        $('body,html').animate({
         scrollTop: $("#page-main").offset().top
         // set scroll speed
         }, 800);
@@ -30,14 +30,14 @@ var ViewModel = function() {
     };
 
     this.scrollToListView = function () {
-        $('body').animate({
+        $('body,html').animate({
         scrollTop: $("#location-title").offset().top
         // set scroll speed
         }, 800);
     };
 
     this.focusMap = function() {
-        $('body').animate({
+        $('body,html').animate({
             scrollTop: $('#page-main').offset().top
         }, 800);
         console.log('test: focusMap');
