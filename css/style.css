@@ -188,11 +188,11 @@ body,
 	height: 100vh;
 	width: 100%;
 	background: #e9e5dc;
-	background-image: url('../img/city-background.jpg');
+	/*background-image: url('../img/city-background.jpg');*/
 	background-position: center;
 	text-align: right;
 	background: linear-gradient(0deg, #fff, transparent 90%),
-				#fff url('../img/city-background.jpg') no-repeat center;
+				#fff url(../img/city-background.jpg) no-repeat center;
 	background-size: cover;
 }
 

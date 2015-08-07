@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no">
+	<title>:: hoodMap ::</title>
+	<link rel="stylesheet" href="css/application.min.css">
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places?key=AIzaSyDsUk8JPHC9zfd3CLCEAk9kRVR9RpopZN4"></script>
+	<script src="js/scripts.min.js"></script>
+</head>
+<body>
+	<div class="container page-start">
+		<div class="row">
+			<div class="col-xs-12 col-md-12" id="logo"><h1>hoodMap</h1></div>
+			<div class="col-xs-12 col-md-12">
+				<!-- initial search form -->
+				<div class="input-group input-group-lg" id="src-div">
+					<form id="src-form" data-bind="submit: codeAddress">
+						<span class="input-group-btn">
+						<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
+							<button class="btn btn-default" id="src-button" type="submit" data-bind="click: currentLoc">go!</button>
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container" id="page-main">
+		<div class="row">
+			<nav class="navbar" id="navbar">
+			  	<div class="row container">
+			     	<div class="nav">
+				        <span class="dropdown">
+				         	<button class="btn btn-large dropdown-toggle nav-button" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers">
+				         		<span class="glyphicon glyphicon-search">
+				         		</span>
+				         	</button>
+				         	<ul class="dropdown-menu" role="menu">
+				         		<!-- secondary search form -->
+				         		<div class="input-group input-group-lg">
+				         			<form id="food-src">
+				         				<input type="text" class="form-control" placeholder="more specific?" data-bind="textInput: specSearch" id="src-input2">
+				         			</form>
+				         		</div>
+				         		<ul class="item-list list-group" data-bind="foreach: itemList">
+				            		<li data-bind="text: name, event: { mouseover: mouseoverMarker, mouseout: mouseoutMarker, click: infoWindow }, click: selectItem, visible: visible" class="food-list-item list-group-item"></li>
+				         		</ul>
+				         		<div class="list-scroll">
+			         				<span class="caret">
+			         				</span>
+				         		</div>
+				         	</ul>
+				        </span>
+	         			<button class="btn btn-large nav-button" data-bind="click: hideMarkers">
+			         		<span class="glyphicon glyphicon-pushpin">
+			         		</span>
+			         	</button>
+			         	<button class="btn btn-large nav-button" data-bind="click: scrollToListView">
+			         		<span class="glyphicon glyphicon glyphicon-list">
+			         		</span>
+			         	</button>
+			         	<button class="btn btn-large nav-button" data-bind="click: scrollDown">
+			         		<span class="glyphicon glyphicon glyphicon-globe">
+			         		</span>
+			         	</button>
+    					<form id="src-form" class="nav-search" data-bind="submit: codeAddress">
+							<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
+							<button class="btn btn-large nav-button" type="submit" data-bind="click: currentLoc">go!
+							</button>
+						</form>
+			     	</div>
+			  	</div>
+			</nav>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-12" id="map-canvas" style="background-color: #fff;">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<h3>Things to do in <span data-bind="text: locationInput" id="location-title"></span>:</h3>
+			</div>
+		</div>
+		<div class="row text-blocks">
+			<div class="row cell-container" data-bind="foreach: itemList">
+					<div class="col-xs-12 col-md-4 col-lg-4 cell-item">
+						<div class="cell-inner-food">
+							<div class="cell-header">
+								<h4 data-bind="text: $data.name"></h4>
+							</div>
+							<div class="cell-rating">
+								<img data-bind="attr: {src: $data.rating}">
+							</div>
+							<div class="cell-img">
+								<img data-bind="attr: {src: $data.street_view}" class="img-responsive street-view">
+							</div>
+							<div class="cell-text">
+								<p data-bind="text: $data.text"></p>
+							</div>
+							<div>
+								<span>
+									<a data-bind="attr: { href: $data.url}" target="blank"><button role="button" class="show-on-map">more info</button></a>
+								</span>
+								<span data-bind="click: focusMap">
+									<button role="button" data-bind="click: infoWindow" class="show-on-map">show on map</button>
+								</span>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js"></script>
+		<script>
+    $(function(){
+
+        var
+            $online = $('.online'),
+            $offline = $('.offline');
+
+        Offline.on('confirmed-down', function () {
+            $online.fadeOut(function () {
+                $offline.fadeIn();
+            });
+        });
+
+        Offline.on('confirmed-up', function () {
+            $offline.fadeOut(function () {
+                $online.fadeIn();
+            });
+        });
+
+    });
+	</script>
+</body>
+</html>
