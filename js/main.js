@@ -300,7 +300,7 @@ var ViewModel = function() {
         };
 
         // yelp base-url
-        this.yelp_url = 'http://api.yelp.com/v2/search/';
+        this.yelp_url = 'https://api.yelp.com/v2/search/';
 
         this.consumerSecret = '8gxFv_1m-atfA2dU0aMrIY3wOCw';
         this.tokenSecret = 'Egb10VCQ2kLIFPpo1QH2k4dgJIo';
