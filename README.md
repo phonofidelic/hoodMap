@@ -8,6 +8,7 @@ Enter a location you would like to explore into the search prompt. Click the 'fi
 
 * jQuery scroll on click function:
 http://stackoverflow.com/a/6677069/4677401
+http://stackoverflow.com/questions/8149155/animate-scrolltop-not-working-in-firefox
 
 * Access-Control-Allow-Origin error sending a jQuery Post to Google (Yelp) API's
 http://stackoverflow.com/a/6120260/4677401
