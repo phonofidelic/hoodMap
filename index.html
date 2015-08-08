@@ -63,7 +63,7 @@
 				         		</div>
 				         	</ul>
 				        </span>
-	         			<button class="btn btn-large nav-button" data-bind="click: hideMarkers">
+	         			<button class="btn btn-large nav-button" data-bind="click: hideMarkers" id="pin-button">
 			         		<span class="glyphicon glyphicon-pushpin">
 			         		</span>
 			         	</button>
@@ -96,7 +96,7 @@
 		<div class="row text-blocks">
 			<div class="row cell-container" data-bind="foreach: itemList">
 					<div class="col-xs-12 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner-food">
+						<div class="cell-inner">
 							<div class="cell-header">
 								<h4 data-bind="text: $data.name"></h4>
 							</div>
