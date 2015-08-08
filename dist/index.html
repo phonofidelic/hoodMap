@@ -11,13 +11,13 @@
 <body>
 	<div class="container page-start">
 		<div class="row">
-			<div class="col-xs-12 col-md-12" id="logo"><h1>hoodMap</h1></div>
+			<div class="col-xs-12 col-md-12 logo"><h1>hoodMap</h1></div>
 			<div class="col-xs-12 col-md-12">
 				<!-- initial search form -->
-				<div class="input-group input-group-lg" id="src-div">
-					<form id="src-form" data-bind="submit: codeAddress">
+				<div class="input-group input-group-lg start-search">
+					<form data-bind="submit: codeAddress">
 						<span class="input-group-btn">
-						<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
+						<input type="text" class="form-control src-input" id="src-input" placeholder="where to?" data-bind="textInput: locationInput">
 							<button class="btn btn-default" id="src-button" type="submit" data-bind="click: currentLoc">go!</button>
 						</span>
 					</form>
@@ -25,11 +25,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" id="page-main">
+	<div class="container main" id="page-main">
 		<div class="row">
-			<nav class="navbar" id="navbar">
-			  	<div class="row container">
-			     	<div class="nav">
+			<nav class="navbar nav" id="navbar">
+			  	<!-- <div class="row container"> -->
+			     	<!-- <div class="nav"> -->
 				        <span class="dropdown">
 				         	<button class="btn btn-large dropdown-toggle nav-button" data-toggle="dropdown" role="button" aria-expanded="false" data-bind="click: renderMarkers">
 				         		<span class="glyphicon glyphicon-search">
@@ -51,9 +51,6 @@
 				         		</div>
 				         	</ul>
 				        </span>
-	         			<button class="btn btn-large nav-button" data-bind="click: hideMarkers">
-			         		<span class="glyphicon glyphicon-pushpin">
-			         		</span>
 			         	</button>
 			         	<button class="btn btn-large nav-button" data-bind="click: scrollToListView">
 			         		<span class="glyphicon glyphicon glyphicon-list">
@@ -64,12 +61,12 @@
 			         		</span>
 			         	</button>
     					<form id="src-form" class="nav-search" data-bind="submit: codeAddress">
-							<input type="text" class="form-control" placeholder="where to?" id="src-input" data-bind="textInput: locationInput">
+							<input type="text" class="form-control nav-input" placeholder="where to?" data-bind="textInput: locationInput">
 							<button class="btn btn-large nav-button" type="submit" data-bind="click: currentLoc">go!
 							</button>
 						</form>
-			     	</div>
-			  	</div>
+			     	<!-- </div> -->
+			  	<!-- </div> -->
 			</nav>
 		</div>
 		<div class="row">
@@ -84,7 +81,7 @@
 		<div class="row text-blocks">
 			<div class="row cell-container" data-bind="foreach: itemList">
 					<div class="col-xs-12 col-md-4 col-lg-4 cell-item">
-						<div class="cell-inner-food">
+						<div class="cell-inner">
 							<div class="cell-header">
 								<h4 data-bind="text: $data.name"></h4>
 							</div>
