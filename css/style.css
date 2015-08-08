@@ -115,8 +115,8 @@ a .show-on-map :hover {
 	display: inline-block;
 }
 
-#navbar .form-control {
-	margin: 5px 5px 5px 15px;
+.form-control.nav-input {
+	margin: 5px 5px 5px 5px;
 }
 
 .form-control:focus {
@@ -127,26 +127,6 @@ a .show-on-map :hover {
 
 .list-scroll {
 	padding: auto;
-}
-
-.navbar {
-	margin-bottom: 0px;
-}
-
-.navbar-nav {
-	margin-bottom: 0;
-}
-
-.nav-button {
-	border-radius: 0;
-}
-
-.navbar-collapse.in {
-	margin-left: 0;
-}
-
-.icon-bar {
-	border: solid black 1px;
 }
 
 .info-window {
@@ -196,11 +176,11 @@ body,
 	background-size: cover;
 }
 
-#page-main {
+.container.main {
 	height: 100vh;
 }
 
-#logo {
+.logo {
 	text-align: center;
 	margin-top: 12vh;
 	color: #fff;
@@ -210,24 +190,20 @@ body,
 	color: #e03934;
 }
 
-#src-div {
+.start-search {
 	margin: 25vh;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#src-input {
-	width: auto;
-}
-
-#navbar {
+/* Navigation */
+.navbar {
+	width: 100%;
+	margin-bottom: 0px;
 	z-index: 1000;
 	background-color: #333;
 	border: none;
-}
-
-.nav-label {
-	padding: 0 0 0 12px;
+	min-height: 0;
 }
 
 .navbar h3 {
@@ -235,8 +211,16 @@ body,
 	line-height: .75;
 }
 
-.navbar {
-	width: 100%;
+.nav-button {
+	border-radius: 0;
+}
+
+.nav-input {
+	width: auto;
+}
+
+.nav-label {
+	padding: 0 0 0 12px;
 }
 
 .nav {
@@ -245,16 +229,11 @@ body,
 	padding: 0;
 }
 
-#logo-2 {
-	text-align: right;
-	vertical-align: middle;
-}
-
 .nav button {
 	background-color: #333;
 	color: #fff;
 	width: 95px;
-	margin: 0 5px 0 5px;
+	margin: 0;
 	padding: 12px 0 12px 0;
 	border: none;
 	height: 100%;
@@ -271,45 +250,13 @@ body,
 	display: inline-block;
 }
 
-/*.sticky-wrapper {
-	min-height: none;
-	height: none;
-}*/
-
-#navbar-sticky-wrapper {
-	min-height: none;
-	height: none;
-}
-
 .btn-default {
 	border: none;
-}
-
-.glyphicon-pushpin {
-	/*transform: rotate(45deg);*/
-	transform: rotate(0deg);
-}
-
-.glyphicon-pushpin.on {
-	transform: rotate(-45deg);
 }
 
 @media (max-width: 767px) {
 	.navbar-header {
 		background-color: #333;
-	}
-
-	.icon-bar {
-		border: solid white 1px;
-	}
-
-	#logo-2 {
-		visibility: hidden;
-	}
-
-	#nav1 {
-		background-color: #e03934;
-		width: 100%;
 	}
 
 	.nav-label {
@@ -322,13 +269,7 @@ body,
 	}
 
 	.form-control {
-		/*max-width: 50%;*/
 		margin: 0 auto;
-	}
-
-	.btn {
-		border-radius: 5px 5px 0 0;
-		/*font-size: 7pt;*/
 	}
 
 	.nav {

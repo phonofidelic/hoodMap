@@ -8,8 +8,7 @@ var DataModel = {
     markerArray: ko.observableArray(),
     categories: ko.observableArray(),
     specSearch: ko.observable(''),
-    listFilter: ko.observableArray(),
-    pinsVisible: ko.observable(null)
+    listFilter: ko.observableArray()
 };
 
 // Controller
@@ -157,7 +156,6 @@ var ViewModel = function() {
 
                 // render markers
                 itemMarker.setMap(map);
-                DataModel.pinsVisible(true);
             }
         };
 
@@ -234,38 +232,12 @@ var ViewModel = function() {
 
         };
 
-        // hide/show markers
-        self.hideMarkers = function() {
-            for (var i = 0; i < DataModel.markerArray().length; i++) {
-                DataModel.markerArray()[i].setVisible(false);
-                $('i').prop('class', 'hidden');
-            }
-            //set pin-button icon to "off" position
-            DataModel.pinsVisible(false);
-
-
-            $('#pin-button').click(function(){
-                $(this).children().toggleClass('on');
-            });
-        };
-
-        self.showMarkers = function() {
-            for (var i = 0; i < DataModel.markerArray().length; i++) {
-                DataModel.markerArray()[i].setVisible(true);
-            }
-        };
 
         google.maps.event.addDomListener(window, 'load', initialize);//<----//
     };                                                                      //
     // window.onload = this.googleMap();                                    //
     // window.onload = this.loadScript; //TODO----------------------------- change to activate an search buton click?
     // window.onload = this.initialize;
-
-    (function pinIcon() {
-        if (DataModel.pinsVisible() == true) {
-            $('#pin-button').children().toggleClass('on');
-        }
-    })();
 
 
     // holds src-input2 value
