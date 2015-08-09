@@ -235,7 +235,6 @@ var ViewModel = function() {
         // event listner kicks off filtering on each key-stroke
         $('#src-input2').keyup(function() {
 
-            var markerElements = $('i');
             //loop through itemList and match each item against current input
             for (var i = 0; i < DataModel.itemList().length; i++) {
                     //list to search throug
@@ -243,26 +242,30 @@ var ViewModel = function() {
                     //current input
                     srcTerm = new RegExp(self.specSearch(), 'gi'),
                     //item to be shown or hidden
-                    item = DataModel.itemList()[i];
+                    item = DataModel.itemList()[i],
                     marker = DataModel.markerArray()[i];
 
+                // show marker and icon if categorie matches term
                 if (listItem.match(srcTerm)) {
                     item.visible(true);
                     marker.visible = true;
-                } else {
+                    $(marker.MarkerLabel.div).css('visibility', 'visible');
+                    marker.setMap(map);
+                } else
+                // hide marker and icon if categorie does not match term
+                if (!listItem.match(srcTerm)) {
                     item.visible(false);
                     marker.visible = false;
+                    $(marker.MarkerLabel.div).css('visibility', 'hidden');
+                    marker.setMap(map);
                 }
-                marker.setMap(map);
+                // marker.setMap(map);
                 // console.log(i);
                 // console.log('listItem: '+ listItem);
                 // console.log('srcTerm: ' +srcTerm);
                 // console.log(DataModel.itemList()[i].visible());
             }
-
         });
-
-
     };
 
     // Yelp AJAX request #####################################
