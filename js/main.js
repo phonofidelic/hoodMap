@@ -217,19 +217,7 @@ var ViewModel = function() {
             infowindow.setMap(map);
             map.setCenter(loc);
 
-            // DataModel.markerArray()[item.id].setIcon(icon = self.redMarker);
             console.log(item.id);
-
-            // // make marker red on click
-            // DataModel.markerArray()[item.id].setIcon(icon = self.redMarker);
-            // for (var i = 0; i < DataModel.markerArray().length; i++) {
-            //     //check that we don't reset the selected marker
-            //     if (i !== item.id) {
-            //         //reset rest of icons
-            //         DataModel.markerArray()[i].setIcon(icon = self.whiteMarker);
-            //     }
-            // }
-
         };
 
 
@@ -247,6 +235,7 @@ var ViewModel = function() {
         // event listner kicks off filtering on each key-stroke
         $('#src-input2').keyup(function() {
 
+            var markerElements = $('i');
             //loop through itemList and match each item against current input
             for (var i = 0; i < DataModel.itemList().length; i++) {
                     //list to search throug
@@ -255,17 +244,22 @@ var ViewModel = function() {
                     srcTerm = new RegExp(self.specSearch(), 'gi'),
                     //item to be shown or hidden
                     item = DataModel.itemList()[i];
+                    marker = DataModel.markerArray()[i];
 
                 if (listItem.match(srcTerm)) {
                     item.visible(true);
+                    marker.visible = true;
                 } else {
                     item.visible(false);
+                    marker.visible = false;
                 }
-                console.log(i);
-                console.log('listItem: '+ listItem);
-                console.log('srcTerm: ' +srcTerm);
-                console.log(DataModel.itemList()[i].visible());
+                marker.setMap(map);
+                // console.log(i);
+                // console.log('listItem: '+ listItem);
+                // console.log('srcTerm: ' +srcTerm);
+                // console.log(DataModel.itemList()[i].visible());
             }
+
         });
 
 
